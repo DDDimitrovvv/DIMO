@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/User.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <title>Login</title>
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+</head>
+
+<body>
+
+<header th:replace="fragments/fragment::navigation"></header>
+
+<div class="row tm-mt-big">
+    <div class="col-12 mx-auto tm-login-col">
+        <div class="bg-white tm-block">
+            <div class="row">
+                <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Welcome to our login page:</span>
+                </h1>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <form action="#" method="POST" class="tm-login-form">
+                        <div class="text-center">
+
+                            <!-- <small class="text-danger col-12 text-center" style="font-size:20px; background-color:#ffff99;" >Incorrect username or
+                              password</small>
+                            <br />
+                            <small class="text-danger col-12 text-center" style="font-size:20px; background-color:#ffff99;" >Username must be more than 2 characters</small>
+                            <br />
+                            <small class="text-danger col-12 text-center" style="font-size:20px; background-color:#ffff99;" >Password must be more than 3 characters</small>
+                            <br /> -->
+                        </div>
+                        <hr/>
+                        <div class="input-group">
+                            <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"
+                                   style="font-size:20px">Username</label>
+                            <input
+                                    name="username"
+                                    type="text"
+                                    class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                    id="username"
+                                    placeholder="Username" required>
+                        </div>
+                        <div class="input-group mt-3">
+                            <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label"
+                                   style="font-size:20px">Password</label>
+                            <input
+                                    name="password"
+                                    type="password"
+                                    class="form-control validate"
+                                    id="password"
+                                    placeholder="Password" required>
+                        </div>
+                        <div class="input-group mt-3">
+                            <button type="submit" class="btn btn-primary d-inline-block mx-auto"
+                                    style="font-size:20px; background-color: #ffff00">Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

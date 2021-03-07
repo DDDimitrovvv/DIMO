@@ -1,0 +1,129 @@
+.u-section-1 {
+  background-image: url("../images/Untitled1.png");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 569px;
+}
+
+.u-section-1 .u-slider-1 {
+  min-height: 469px;
+  width: 1020px;
+  margin: 50px auto;
+}
+
+.u-section-1 .u-carousel-indicators-1 {
+  position: absolute;
+  bottom: 10px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px 80px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 83px;
+  height: 83px;
+  background-image: url("../images/MyPhoto.jpg");
+  background-position: 30% 30%;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-image-2 {
+  width: 83px;
+  height: 83px;
+  background-image: url("../images/fiber.jpg");
+  background-position: 30% 30%;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 1.25rem;
+  margin: 20px 0 0;
+}
+
+.u-section-1 .u-text-2 {
+  width: 191px;
+  font-weight: 700;
+  margin: 35px auto 0;
+}
+
+.u-section-1 .u-text-3 {
+  width: 136px;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 15px auto 0;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 30px;
+}
+
+.u-section-1 .u-carousel-control-1 {
+  width: 30px;
+  height: 30px;
+}
+
+.u-section-1 .u-carousel-control-2 {
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-slider-1 {
+    height: auto;
+    width: 940px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-slider-1 {
+    width: 720px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 516px;
+  }
+
+  .u-section-1 .u-slider-1 {
+    min-height: 436px;
+    margin-right: initial;
+    margin-left: initial;
+    width: auto;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 1.125rem;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 662px;
+  }
+
+  .u-section-1 .u-slider-1 {
+    min-height: 582px;
+    width: auto;
+    margin-right: initial;
+    margin-left: initial;
+  }
+}

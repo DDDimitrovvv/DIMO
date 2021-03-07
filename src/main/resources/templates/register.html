@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/User.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <title>Register</title>
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+
+</head>
+
+<body>
+
+<header th:replace="fragments/fragment::navigation"></header>
+
+<main class="content-wrap">
+    <form class="mx-auto w-25 bg-blur" method="" action="/">
+        <div style="background-color: #ccffff;">
+
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="username" class="h4 mb-2">Username</label>
+                </div>
+                <input type="text" class="form-control" id="username" name="username"/>
+                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Username error
+                    message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="email" class="h4 mb-2">Email</label>
+                </div>
+                <input type="email" class="form-control" id="email" name="email"/>
+
+                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Email error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="password" class="h4 mb-2">Password</label>
+                </div>
+                <input type="password" class="form-control" id="password" name="password"/>
+                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Password error
+                    message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                </div>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"/>
+            </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="button btn-warning  mb-3" value="Register">Register</button>
+            </div>
+        </div>
+
+    </form>
+</main>
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

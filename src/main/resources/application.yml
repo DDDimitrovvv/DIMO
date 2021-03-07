@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 667192
+    url: jdbc:mysql://localhost:3306/dimo_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+  #      &serverTimezone=UTC
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      #      ddl-auto: update
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
