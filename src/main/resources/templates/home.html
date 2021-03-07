@@ -27,9 +27,12 @@
 
 <section class="skrollable u-align-center u-clearfix u-image u-section-1" id="sec-4415">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-custom-font u-font-Lobster u-text u-text-1" style="white-space: pre-line;">Hello Ivan,
-            Welcome to your Digital Innovative Modern Opportunities!
-        </h1>
+        <h1
+                class="u-custom-font u-font-Lobster u-text u-text-1"
+                style="white-space: pre-line;"
+                th:text="|Hello *{#authentication.name},
+                 Welcome to your Digital Innovative Modern Opportunities!|"
+        ></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <div class="u-layout">
                 <div class="u-layout-row">
