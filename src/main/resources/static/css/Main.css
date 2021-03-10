@@ -4,6 +4,16 @@
  * Copyright 2014-2020 Froala Labs
  */
 
+
+.btn-logout {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+
 .fr-clearfix::after {
   clear: both;
   display: block;

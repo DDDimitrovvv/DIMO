@@ -3,7 +3,7 @@ package bg.softuni.model.entities;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class BaseEntity {
+public class BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

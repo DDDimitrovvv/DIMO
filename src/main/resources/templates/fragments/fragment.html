@@ -115,8 +115,7 @@
                         <li class="u-nav-item"
                             sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" method="POST">
-                                <!--                                <a class="u-button-style u-nav-link">Logout</a>-->
-                                <button type="submit" class="nav-link">Logout</button>
+                                <button type="submit" class="btn-logout">Logout</button>
                             </form>
                         </li>
                     </ul>
@@ -178,7 +177,7 @@
                                 <li class="u-nav-item"
                                     sec:authorize="isAuthenticated()">
                                     <form th:action="@{/logout}" method="POST">
-                                        <a class="u-button-style u-nav-link">Logout</a>
+                                        <button type="submit" class="btn-logout">Logout</button>
                                     </form>
                                 </li>
                             </ul>

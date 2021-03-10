@@ -11,8 +11,8 @@ public class UserEntity extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "fullname")
+    private String fullname;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -41,12 +41,12 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public UserEntity setFullName(String fullName) {
-        this.fullName = fullName;
+    public UserEntity setFullname(String fullname) {
+        this.fullname = fullname;
         return this;
     }
 
@@ -94,6 +94,4 @@ public class UserEntity extends BaseEntity {
         this.stories = stories;
         return this;
     }
-
-
 }
