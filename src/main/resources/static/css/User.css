@@ -22,7 +22,7 @@ body {
 }
 
 a {
-  transition: all 0.3s ease;
+  /*transition: all 0.3s ease;*/
 }
 a:hover,
 a:focus {
@@ -57,6 +57,11 @@ a:focus {
 .tm-logout-icon {
   font-size: 1.5em;
 }
+
+.bg-red-danger {
+  background-color: red;
+}
+
 
 .tm-bg-black {
   background-color: rgba(0, 0, 0, 0.5);
@@ -351,15 +356,15 @@ input[type="checkbox"]:focus {
   width: 15px;
 }
 
-footer {
-  position: relative;
-  flex: 0 0 auto;
-  display: flex;
-  color: #ccc;
-  padding: 2.2em;
-  width: 100%;
-  justify-content: center;
-}
+/* footer {*/
+/*  position: relative;*/
+/*  flex: 0 0 auto;*/
+/*  display: flex;*/
+/*  color: #ccc;*/
+/*  padding: 2.2em;*/
+/*  width: 100%;*/
+/*  justify-content: center;*/
+/*} */
 
 .custom-select {
   height: 50px;

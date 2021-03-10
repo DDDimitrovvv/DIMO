@@ -36,7 +36,7 @@ public class DimoDBUserService implements UserDetailsService {
         userEntity.
             getRoles().
             stream().
-            map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name())).
+            map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole().name())).
             collect(Collectors.toList());
 
     return new User(

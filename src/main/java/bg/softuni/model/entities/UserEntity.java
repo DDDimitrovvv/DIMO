@@ -11,6 +11,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "full_name")
+    private String fullName;
+
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -35,6 +38,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserEntity setFullName(String fullName) {
+        this.fullName = fullName;
         return this;
     }
 
@@ -82,4 +94,6 @@ public class UserEntity extends BaseEntity {
         this.stories = stories;
         return this;
     }
+
+
 }
