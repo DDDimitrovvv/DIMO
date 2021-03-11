@@ -101,11 +101,11 @@
                         </li>
 
                         <li class="u-nav-item"
-                            sec:authorize="!isAuthenticated()"
-                        >
+                            sec:authorize="!isAuthenticated()">
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                                th:href="@{/users/login}"
-                               style="padding: 10px 28px;">Login</a></li>
+                               style="padding: 10px 28px;">Login</a>
+                        </li>
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                                sec:authorize="!isAuthenticated()"

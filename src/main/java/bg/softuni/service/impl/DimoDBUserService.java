@@ -25,7 +25,7 @@ public class DimoDBUserService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     UserEntity userEntity = userRepository.
-        findByName(username).
+        findByUsername(username).
         orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found!"));
 
     return mapToUserDetails(userEntity);
@@ -40,7 +40,7 @@ public class DimoDBUserService implements UserDetailsService {
             collect(Collectors.toList());
 
     return new User(
-        userEntity.getName(),
+        userEntity.getUsername(),
         userEntity.getPassword(),
         authorities
     );

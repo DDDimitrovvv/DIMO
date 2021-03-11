@@ -1,5 +1,9 @@
 package bg.softuni.web;
 
+import bg.softuni.model.binding.UserRegistrationBindingModel;
+import bg.softuni.model.service.UserRegistrationServiceModel;
+import bg.softuni.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/users")
 public class UserController {
 
+    private final ModelMapper modelMapper;
+    private final UserService userService;
+
+    public UserController(ModelMapper modelMapper, UserService userService) {
+        this.modelMapper = modelMapper;
+        this.userService = userService;
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -20,6 +32,14 @@ public class UserController {
     @GetMapping("/register")
     public String register() {
         return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerAndLoginUser(UserRegistrationBindingModel userRegistrationBindingModel,
+                                       ModelMapper modelMapper) {
+        UserRegistrationServiceModel userServiceModel = modelMapper.map(userRegistrationBindingModel, UserRegistrationServiceModel.class);
+        userService.registerAndLoginUser(userServiceModel);
+        return "redirect:/home";
     }
 
     @PostMapping("/login-error")

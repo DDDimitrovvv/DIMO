@@ -8,10 +8,10 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Column(name = "fullname")
+    @Column(name = "fullname", nullable = false)
     private String fullname;
 
     @Column(name = "password", nullable = false)
@@ -32,12 +32,12 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public UserEntity setName(String name) {
-        this.name = name;
+    public UserEntity setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -92,6 +92,11 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setStories(List<StoryEntity> stories) {
         this.stories = stories;
+        return this;
+    }
+
+    public UserEntity addRole(UserRoleEntity roleEntity){
+        this.roles.add(roleEntity);
         return this;
     }
 }
