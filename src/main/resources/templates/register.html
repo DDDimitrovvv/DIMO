@@ -24,7 +24,10 @@
 <header th:replace="fragments/fragment::navigation"></header>
 
 <main class="content-wrap">
-    <form class="mx-auto w-25 bg-blur" method="POST" th:action="@{/users/register}">
+    <form class="mx-auto w-25 bg-blur"
+          method="POST"
+          th:object="${userRegistrationBindingModel}"
+          th:action="@{/users/register}">
         <div style="background-color: #ccffff;">
 
             <br>
@@ -32,42 +35,95 @@
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="username" class="h4 mb-2">Username</label>
                 </div>
-                <input type="text" class="form-control" id="username" name="username"/>
-<!--                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Username error-->
-<!--                    message</small>-->
+                <input type="text"
+                       class="form-control"
+                       id="username"
+                       th:value="*{username}"
+                       th:field="*{username}"
+                       th:errorclass="is-invalid"
+                       name="username"/>
+                <p class="text-center">
+                    <small class="text-danger rounded"
+                           th:if="${#fields.hasErrors('username')}"
+                           th:errors="*{username}"
+                           style="font-size:20px; background-color:#ffff99;">Username error message</small>
+                </p>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="username" class="h4 mb-2">Full Name</label>
                 </div>
-                <input type="text" class="form-control" id="fullname" name="fullname"/>
+                <input type="text"
+                       class="form-control"
+                       id="fullname"
+                       th:value="*{fullname}"
+                       th:field="*{fullname}"
+                       th:errorclass="is-invalid"
+                       name="fullname"/>
+                <p class="text-center">
+                    <small class="text-danger rounded"
+                           th:if="${#fields.hasErrors('fullname')}"
+                           th:errors="*{fullname}"
+                           style="font-size:20px; background-color:#ffff99;">Fullname error message</small>
+                </p>
             </div>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
                     <label for="email" class="h4 mb-2">Email</label>
                 </div>
-                <input type="email" class="form-control" id="email" name="email"/>
-
-<!--                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Email error message</small>-->
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       th:value="*{email}"
+                       th:field="*{email}"
+                       th:errorclass="is-invalid"
+                       name="email"/>
+                <p class="text-center">
+                    <small class="text-danger rounded"
+                           th:if="${#fields.hasErrors('email')}"
+                           th:errors="*{email}"
+                           style="font-size:20px; background-color:#ffff99;">Email error message</small>
+                </p>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="password" class="h4 mb-2">Password</label>
                 </div>
-                <input type="password" class="form-control" id="password" name="password"/>
-<!--                <small class="text-danger" style="font-size:20px; background-color:#ffff99;">Password error-->
-<!--                    message</small>-->
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       th:field="*{password}"
+                       th:errorclass="is-invalid"
+                       name="password"/>
+                <p class="text-center">
+                    <small class="text-danger rounded"
+                           th:if="${#fields.hasErrors('password')}"
+                           th:errors="*{password}"
+                           style="font-size:20px; background-color:#ffff99;">Password error message</small>
+                </p>
             </div>
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
                 </div>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"/>
+                <input type="password"
+                       class="form-control"
+                       id="confirmPassword"
+                       th:field="*{confirmPassword}"
+                       th:errorclass="is-invalid"
+                       name="confirmPassword"/>
+                <p class="text-center">
+                    <small class="text-danger rounded"
+                           th:if="${#fields.hasErrors('confirmPassword')}"
+                           th:errors="*{confirmPassword}"
+                           style="font-size:20px; background-color:#ffff99;">Password error message</small>
+                </p>
             </div>
 
             <div class="button-holder d-flex justify-content-center">
                 <button type="submit" class="button btn-warning  mb-3" value="Register">Register</button>
             </div>
+            <h5 class="bg-danger rounded text-center" th:if="${userAlreadyExist}"> This user already exist!</h5>
         </div>
 
     </form>
