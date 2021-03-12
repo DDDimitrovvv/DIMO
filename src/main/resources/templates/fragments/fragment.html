@@ -9,7 +9,13 @@
     <header class="u-clearfix u-gradient u-header u-header" id="sec-e7d6">
         <div class="u-clearfix u-sheet u-sheet-1">
 
-            <a href="/" class="u-image u-logo u-image-1" data-image-width="980" data-image-height="980">
+            <a sec:authorize="isAuthenticated()"
+               href="/home" class="u-image u-logo u-image-1" data-image-width="980" data-image-height="980">
+                <img th:src="@{/images/DIMOlogo.png}" class="u-logo-image u-logo-image-1" data-image-width="92">
+            </a>
+
+            <a sec:authorize="!isAuthenticated()"
+               href="/" class="u-image u-logo u-image-1" data-image-width="980" data-image-height="980">
                 <img th:src="@{/images/DIMOlogo.png}" class="u-logo-image u-logo-image-1" data-image-width="92">
             </a>
 

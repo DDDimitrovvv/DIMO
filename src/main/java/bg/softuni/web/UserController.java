@@ -77,7 +77,7 @@ public class UserController {
 
         modelAndView.addObject("bad_credentials", true);
         modelAndView.addObject("username", username);
-        modelAndView.setViewName("/login");
+        modelAndView.setViewName("redirect:/users/login");
 
         return modelAndView;
     }
