@@ -11,14 +11,11 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "manufactureDate")
+    @Column(name = "manufacture_date")
     private LocalDate manufactureDate;
 
     @Column(name = "color", nullable = false)
     private String color;
-
-    @ManyToOne()
-    private CategoryEntity categoryEntity;
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
@@ -26,12 +23,21 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "warranty")
     private int warranty;
 
-    @Column(name = "details", columnDefinition = "TEXT")
+    @Column(name = "details", columnDefinition = "TEXT", nullable = false)
     private String details;
+
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
+
+    @ManyToOne
+    private CategoryEntity categoryEntity;
+
+    @ManyToOne
+    private UserEntity userEntity;
+
 
     public ProductEntity() {
     }
-
 
     public String getBrand() {
         return brand;
@@ -41,7 +47,6 @@ public class ProductEntity extends BaseEntity {
         this.brand = brand;
         return this;
     }
-
 
     public LocalDate getManufactureDate() {
         return manufactureDate;
@@ -61,17 +66,6 @@ public class ProductEntity extends BaseEntity {
         return this;
     }
 
-
-    public CategoryEntity getCategoryEntity() {
-        return categoryEntity;
-    }
-
-    public ProductEntity setCategoryEntity(CategoryEntity categoryEntity) {
-        this.categoryEntity = categoryEntity;
-        return this;
-    }
-
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -80,7 +74,6 @@ public class ProductEntity extends BaseEntity {
         this.price = price;
         return this;
     }
-
 
     public int getWarranty() {
         return warranty;
@@ -97,6 +90,33 @@ public class ProductEntity extends BaseEntity {
 
     public ProductEntity setDetails(String details) {
         this.details = details;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ProductEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public CategoryEntity getCategoryEntity() {
+        return categoryEntity;
+    }
+
+    public ProductEntity setCategoryEntity(CategoryEntity categoryEntity) {
+        this.categoryEntity = categoryEntity;
+        return this;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public ProductEntity setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 }

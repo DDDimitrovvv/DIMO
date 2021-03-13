@@ -20,11 +20,6 @@ public class UserEntity extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
-    @OneToMany
-    private List<ProductEntity> products = new ArrayList<>();
-
-    @OneToMany
-    private List<StoryEntity> stories = new ArrayList<>();
 
     public UserEntity() {
     }
@@ -65,24 +60,10 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public List<ProductEntity> getProducts() {
-        return products;
-    }
 
-    public UserEntity setProducts(List<ProductEntity> products) {
-        this.products = products;
-        return this;
-    }
 
-    public List<StoryEntity> getStories() {
-        return stories;
-    }
 
-    public UserEntity setStories(List<StoryEntity> stories) {
-        this.stories = stories;
-        return this;
-    }
-
+    //external logic
     public UserEntity addRole(UserRoleEntity roleEntity){
         this.roles.add(roleEntity);
         return this;

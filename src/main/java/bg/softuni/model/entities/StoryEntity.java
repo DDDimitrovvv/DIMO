@@ -1,8 +1,8 @@
 package bg.softuni.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import bg.softuni.model.entities.enums.StoryTypeEnum;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -15,11 +15,20 @@ public class StoryEntity extends BaseEntity {
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "link", nullable = false)
-    private String link;
+    @Column(name = "image_url", nullable = false)
+    private String imageUrl;
 
-    @Column(name = "addedDate")
+    @Column(name = "added_date")
     private LocalDate addedDate;
+
+    @Column(name = "product_link")
+    private String productLink;
+
+    @Enumerated(EnumType.STRING)
+    private StoryTypeEnum storyTypeEnum;
+
+    @ManyToOne
+    private UserEntity userEntity;
 
     public StoryEntity() {
     }
@@ -42,12 +51,12 @@ public class StoryEntity extends BaseEntity {
         return this;
     }
 
-    public String getLink() {
-        return link;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public StoryEntity setLink(String link) {
-        this.link = link;
+    public StoryEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 
@@ -57,6 +66,33 @@ public class StoryEntity extends BaseEntity {
 
     public StoryEntity setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
+        return this;
+    }
+
+    public String getProductLink() {
+        return productLink;
+    }
+
+    public StoryEntity setProductLink(String productLink) {
+        this.productLink = productLink;
+        return this;
+    }
+
+    public StoryTypeEnum getStoryTypeEnum() {
+        return storyTypeEnum;
+    }
+
+    public StoryEntity setStoryTypeEnum(StoryTypeEnum storyTypeEnum) {
+        this.storyTypeEnum = storyTypeEnum;
+        return this;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public StoryEntity setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
         return this;
     }
 }
