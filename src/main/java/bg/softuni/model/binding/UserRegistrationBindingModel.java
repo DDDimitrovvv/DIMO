@@ -13,12 +13,8 @@ import javax.validation.constraints.Size;
 )
 public class UserRegistrationBindingModel {
 
-    @NotBlank(message = "The username cannot be empty!")
-    @Size(min = 3, max = 20, message = "The username must be between three and twenty characters.")
-    private String username;
-
     @Email(message = "The email must be valid!")
-    private String email;
+    private String username;
 
     @NotBlank(message = "The full name cannot be empty!")
     @Size(min = 5, max = 30, message = "The full name must be between five and thirty characters.")
@@ -41,15 +37,6 @@ public class UserRegistrationBindingModel {
 
     public UserRegistrationBindingModel setUsername(String username) {
         this.username = username;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public UserRegistrationBindingModel setEmail(String email) {
-        this.email = email;
         return this;
     }
 

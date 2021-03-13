@@ -33,9 +33,9 @@
             <br>
             <div class="form-group">
                 <div class="label-holder textCol d-flex justify-content-center">
-                    <label for="username" class="h4 mb-2">Username</label>
+                    <label for="username" class="h4 mb-2">Email</label>
                 </div>
-                <input type="text"
+                <input type="email"
                        class="form-control"
                        id="username"
                        th:value="*{username}"
@@ -67,24 +67,24 @@
                            style="font-size:20px; background-color:#ffff99;">Fullname error message</small>
                 </p>
             </div>
-            <div class="form-group">
-                <div class="label-holder textCol d-flex justify-content-center">
-                    <label for="email" class="h4 mb-2">Email</label>
-                </div>
-                <input type="email"
-                       class="form-control"
-                       id="email"
-                       th:value="*{email}"
-                       th:field="*{email}"
-                       th:errorclass="is-invalid"
-                       name="email"/>
-                <p class="text-center">
-                    <small class="text-danger rounded"
-                           th:if="${#fields.hasErrors('email')}"
-                           th:errors="*{email}"
-                           style="font-size:20px; background-color:#ffff99;">Email error message</small>
-                </p>
-            </div>
+<!--            <div class="form-group">-->
+<!--                <div class="label-holder textCol d-flex justify-content-center">-->
+<!--                    <label for="email" class="h4 mb-2">Email</label>-->
+<!--                </div>-->
+<!--                <input type="email"-->
+<!--                       class="form-control"-->
+<!--                       id="email"-->
+<!--                       th:value="*{email}"-->
+<!--                       th:field="*{email}"-->
+<!--                       th:errorclass="is-invalid"-->
+<!--                       name="email"/>-->
+<!--                <p class="text-center">-->
+<!--                    <small class="text-danger rounded"-->
+<!--                           th:if="${#fields.hasErrors('email')}"-->
+<!--                           th:errors="*{email}"-->
+<!--                           style="font-size:20px; background-color:#ffff99;">Email error message</small>-->
+<!--                </p>-->
+<!--            </div>-->
             <div class="form-group">
                 <div class="label-holder  textCol d-flex justify-content-center">
                     <label for="password" class="h4 mb-2">Password</label>

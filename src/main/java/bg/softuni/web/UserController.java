@@ -78,8 +78,6 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("bad_credentials", true);
         redirectAttributes.addFlashAttribute("username", username);
-//        modelAndView.addObject("bad_credentials", true);
-//        modelAndView.addObject("username", username);
         modelAndView.setViewName("redirect:/users/login");
 
         return modelAndView;

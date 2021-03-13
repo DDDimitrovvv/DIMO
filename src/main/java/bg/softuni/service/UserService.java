@@ -1,5 +1,6 @@
 package bg.softuni.service;
 
+import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.service.UserRegistrationServiceModel;
 
 public interface UserService {
@@ -9,4 +10,6 @@ public interface UserService {
   void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
 
   boolean isThisUsernameAlreadyExists(String username);
+
+  String currentUserFullName();
 }

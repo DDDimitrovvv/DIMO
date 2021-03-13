@@ -3,7 +3,6 @@ package bg.softuni.model.service;
 public class UserRegistrationServiceModel {
 
     private String username;
-    private String email;
     private String fullName;
     private String password;
 
@@ -16,15 +15,6 @@ public class UserRegistrationServiceModel {
 
     public UserRegistrationServiceModel setUsername(String username) {
         this.username = username;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public UserRegistrationServiceModel setEmail(String email) {
-        this.email = email;
         return this;
     }
 

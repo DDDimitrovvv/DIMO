@@ -48,15 +48,13 @@ public class UserServiceImpl implements UserService {
             userRoleRepository.saveAll(List.of(adminRole, userRole));
 
             UserEntity admin = new UserEntity().
-                    setUsername("admin").
+                    setUsername("admin@gmail.com").
                     setFullname("Admin Adminov").
-                    setPassword(passwordEncoder.encode("123")).
-                    setEmail("admin@gmail.com");
+                    setPassword(passwordEncoder.encode("123456"));
             UserEntity user = new UserEntity().
-                    setUsername("user").
+                    setUsername("user@gmail.com").
                     setFullname("User Userov").
-                    setPassword(passwordEncoder.encode("123")).
-                    setEmail("user@gmail.com");
+                    setPassword(passwordEncoder.encode("123456"));
             admin.setRoles(List.of(adminRole, userRole));
             user.setRoles(List.of(userRole));
 
@@ -90,6 +88,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username).isPresent();
     }
 
+    @Override
+    public String currentUserFullName() {
+
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity currentUser = userRepository.findByUsername(currentUsername).orElse(null);
+        String currentUserFullName = "";
+        if (currentUser != null) {
+            currentUserFullName = currentUser.getFullname();
+        }
+
+        return currentUserFullName;
+    }
 
 }
 

@@ -1,22 +1,29 @@
 package bg.softuni.web;
 
+import bg.softuni.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class HomeController {
 
-  @GetMapping("/")
-  public String index() {
-    return "index";
-  }
+    private final UserService userService;
 
-  @GetMapping("/home")
-  public String home() {
-    return "home";
-  }
+    public HomeController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("currentUserFullName", userService.currentUserFullName());
+        return "home";
+    }
+
 
 }

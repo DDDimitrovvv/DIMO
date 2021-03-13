@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "fullname", nullable = false)
@@ -16,9 +16,6 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
@@ -56,15 +53,6 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public UserEntity setEmail(String email) {
-        this.email = email;
         return this;
     }
 
