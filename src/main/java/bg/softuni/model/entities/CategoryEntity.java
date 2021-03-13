@@ -1,28 +1,29 @@
 package bg.softuni.model.entities;
 
-import bg.softuni.model.entities.enums.CategoryEnum;
-
+import com.google.gson.annotations.Expose;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "categories")
 public class CategoryEntity extends BaseEntity {
 
-    @Enumerated(EnumType.STRING)
-    private CategoryEnum categoryEnum;
+    @Expose
+    @Column(name = "category_name", nullable = false)
+    private String categoryName;
 
+    @Expose
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     public CategoryEntity() {
     }
 
-    public CategoryEnum getCategoryEnum() {
-        return categoryEnum;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public CategoryEntity setCategoryEnum(CategoryEnum categoryEnum) {
-        this.categoryEnum = categoryEnum;
+    public CategoryEntity setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
         return this;
     }
 
