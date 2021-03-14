@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Error-500</title>
+    <link rel="stylesheet" href="/css/Main.css" type="text/css">
+    <link rel="stylesheet" href="/css/Home.css" type="text/css">
+    <link rel="stylesheet" href="/css/error500.css" type="text/css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+
+</head>
+
+<div th:replace="fragments/fragment::navigation"></div>
+
+<div id="error">
+    <div id="box"></div>
+    <h3>ERROR 500</h3>
+    <p style="font-size: 26px">Ooopps... We made a small <span>mistake</span>here!</p>
+    <p style="font-size: 26px">Please excuse us, we are <b>working</b> on it...</p>
+</div>
+
+</html>

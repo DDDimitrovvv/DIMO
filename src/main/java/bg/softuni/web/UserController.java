@@ -35,6 +35,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
+//          Error 500
+//          throw new NullPointerException();
         return "login";
     }
 
