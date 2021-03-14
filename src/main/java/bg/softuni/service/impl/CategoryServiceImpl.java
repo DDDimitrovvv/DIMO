@@ -36,11 +36,11 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryRepository.count() == 0) {
 
             try {
-                CategoryEntity[] artistEntities =
+                CategoryEntity[] categoryEntities =
                         gson.fromJson(Files.
                                 readString(Path.of(categoriesFile.getURI())), CategoryEntity[].class);
 
-                Arrays.stream(artistEntities).
+                Arrays.stream(categoryEntities).
                         forEach(categoryRepository::save);
             } catch (IOException e) {
                 throw new IllegalStateException("Sorry! The categories cannot be seed in DB!!!");

@@ -59,11 +59,11 @@
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                                href="/about" style="padding: 10px 28px;">About</a>
+                                th:href="@{/about}" style="padding: 10px 28px;">About</a>
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                                href="/contact" style="padding: 10px 28px;">Contact</a>
+                                th:href="@{/contact}" style="padding: 10px 28px;">Contact</a>
                         </li>
                         <li class="u-nav-item"
                             sec:authorize="isAuthenticated()">
@@ -72,31 +72,11 @@
                             <div class="u-nav-popup">
                                 <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
-                                                              href="/stories/add">Add Story</a>
+                                                              th:href="@{/stories/add}">Add Story</a>
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
                                                               th:href="@{/products/add}">Add Product</a>
                                     </li>
-<!--                                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-white">Products</a>-->
-<!--                                        <div class="u-nav-popup">-->
-<!--                                            <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-3">-->
-<!--                                                <li class="u-nav-item"><a-->
-<!--                                                        class="u-button-style u-nav-link u-white"-->
-<!--                                                        href="/products/speakers">Speakers</a>-->
-<!--                                                </li>-->
-<!--                                                <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"-->
-<!--                                                                          href="/products/receivers">Receivers</a>-->
-<!--                                                </li>-->
-<!--                                                <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"-->
-<!--                                                                          href="/products/accessories">Accessories</a>-->
-<!--                                                </li>-->
-<!--                                                <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"-->
-<!--                                                                          href="/products/homecinema">Home-->
-<!--                                                    Cinema</a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
                                 </ul>
                             </div>
                         </li>

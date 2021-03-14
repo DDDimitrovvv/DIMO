@@ -60,9 +60,6 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-
-
-
     //external logic
     public UserEntity addRole(UserRoleEntity roleEntity){
         this.roles.add(roleEntity);
