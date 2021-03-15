@@ -10,6 +10,8 @@
 
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link id="u-theme-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
@@ -32,13 +34,13 @@
                 <div class="col">
                     <label for="brand" style="display: block; text-align: center;"><b>Brand name</b></label>
                     <input id="brand" type="text" class="form-control" placeholder="Brand name">
-                    <small id="nameError" class="form-text bg-danger rounded">Name must be between 3 and 20
+                    <small id="brandError" class="form-text bg-danger rounded">Brand name must be between 3 and 20
                         characters</small>
                 </div>
                 <div class="col">
-                    <label for="imageUrl"><b>Picture url</b></label>
-                    <input id="imageUrl" type="text" class="form-control" placeholder="Picture url">
-                    <small id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5
+                    <label for="model" style="display: block; text-align: center;"><b>Model name</b></label>
+                    <input id="model" type="text" class="form-control" placeholder="Model name">
+                    <small id="modelError" class="form-text bg-danger rounded">Model name must be between 3 and 20
                         characters</small>
                 </div>
             </div>
@@ -75,6 +77,12 @@
                         <option value="">Second Artist</option>
                     </select>
                     <small id="artistError" class="form-text bg-danger rounded">You must select category</small>
+                </div>
+                <div class="col">
+                    <label for="imageUrl"><b>Picture url</b></label>
+                    <input id="imageUrl" type="text" class="form-control" placeholder="Picture url">
+                    <small id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5
+                        characters</small>
                 </div>
             </div>
 

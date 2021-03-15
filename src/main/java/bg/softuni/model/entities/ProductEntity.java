@@ -11,6 +11,9 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "brand", nullable = false)
     private String brand;
 
+    @Column(name = "model", nullable = false)
+    private String model;
+
     @Column(name = "manufacture_date")
     private LocalDate manufactureDate;
 
@@ -45,6 +48,15 @@ public class ProductEntity extends BaseEntity {
 
     public ProductEntity setBrand(String brand) {
         this.brand = brand;
+        return this;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public ProductEntity setModel(String model) {
+        this.model = model;
         return this;
     }
 

@@ -43,6 +43,11 @@
                     <ul class="u-custom-font u-font-Lobster u-nav u-unstyled u-nav-1">
 
                         <li class="u-nav-item"
+                            sec:authorize="isAuthenticated()">
+                            <input type="text" placeholder="Search.." name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </li>
+                        <li class="u-nav-item"
                             sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                                href="/admin" style="padding: 10px 28px;">Admin Panel</a>
@@ -128,26 +133,14 @@
                                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Add Product</a>
                                             </li>
                                             <li class="u-nav-item"><a class="u-button-style u-nav-link">Products</a>
-                                                <div class="u-nav-popup">
-                                                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-7">
-                                                        <li class="u-nav-item"><a
-                                                                class="u-button-style u-nav-link">Speakers</a>
-                                                        </li>
-                                                        <li class="u-nav-item"><a class="u-button-style u-nav-link">Recievers</a>
-                                                        </li>
-                                                        <li class="u-nav-item"><a class="u-button-style u-nav-link">Accessaries</a>
-                                                        </li>
-                                                        <li class="u-nav-item"><a class="u-button-style u-nav-link">Home
-                                                            System</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li class="u-nav-item">
-                                    <a class="u-button-style u-nav-link" href="/users/profile"
+                                    <a class="u-button-style u-nav-link"
+                                       sec:authorize="isAuthenticated()"
+                                       href="/users/profile"
                                        style="padding: 10px 28px;">Profile</a>
                                 <li class="u-nav-item">
                                 <li class="u-nav-item">
