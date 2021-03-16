@@ -1,5 +1,6 @@
 package bg.softuni.service.impl;
 
+import bg.softuni.components.ActiveUserStore;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.UserRoleEntity;
 import bg.softuni.model.entities.enums.UserRole;
@@ -25,15 +26,18 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final DimoDBUserService dimoDBUserService;
+    private final ActiveUserStore activeUserStore;
+
 
     public UserServiceImpl(UserRoleRepository userRoleRepository,
                            UserRepository userRepository,
-                           PasswordEncoder passwordEncoder, ModelMapper modelMapper, DimoDBUserService dimoDBUserService) {
+                           PasswordEncoder passwordEncoder, ModelMapper modelMapper, DimoDBUserService dimoDBUserService, ActiveUserStore activeUserStore) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.dimoDBUserService = dimoDBUserService;
+        this.activeUserStore = activeUserStore;
     }
 
 
@@ -73,6 +77,8 @@ public class UserServiceImpl implements UserService {
         newUser.addRole(userRole);
         newUser = userRepository.save(newUser);
 
+        activeUserStore.setRegisteredUsersCounter(1);
+
         UserDetails principal = dimoDBUserService.loadUserByUsername(newUser.getUsername());
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 principal,
@@ -81,6 +87,8 @@ public class UserServiceImpl implements UserService {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        activeUserStore.setLoggedUsersCounter(1);
     }
 
     @Override
@@ -99,6 +107,21 @@ public class UserServiceImpl implements UserService {
         }
 
         return currentUserFullName;
+    }
+
+    @Override
+    public int getCountOfAllLoggedUsers() {
+        return activeUserStore.getLoggedUsersCounter();
+    }
+
+    @Override
+    public int getCountOfAllUsersInDB() {
+        return userRepository.findAll().size();
+    }
+
+    @Override
+    public int getCountOfAllRegisteredUsers() {
+        return activeUserStore.getRegisteredUsersCounter();
     }
 
 }

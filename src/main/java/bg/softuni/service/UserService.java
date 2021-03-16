@@ -5,11 +5,17 @@ import bg.softuni.model.service.UserRegistrationServiceModel;
 
 public interface UserService {
 
-  void seedUsers();
+    void seedUsers();
 
-  void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
+    void registerAndLoginUser(UserRegistrationServiceModel serviceModel);
 
-  boolean isThisUsernameAlreadyExists(String username);
+    boolean isThisUsernameAlreadyExists(String username);
 
-  String currentUserFullName();
+    String currentUserFullName();
+
+    int getCountOfAllLoggedUsers();
+
+    int getCountOfAllUsersInDB();
+
+    int getCountOfAllRegisteredUsers();
 }

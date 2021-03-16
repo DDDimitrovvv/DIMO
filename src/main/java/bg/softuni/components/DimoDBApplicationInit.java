@@ -1,4 +1,4 @@
-package bg.softuni;
+package bg.softuni.components;
 
 import bg.softuni.service.CategoryService;
 import bg.softuni.service.UserService;
