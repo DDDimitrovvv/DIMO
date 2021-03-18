@@ -26,18 +26,16 @@
 
 <header th:replace="fragments/fragment::navigation"></header>
 
-
 <section class="skrollable u-align-center u-clearfix u-image u-section-1" id="sec-4415">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h1
-                class="u-custom-font u-font-Lobster u-text u-text-1"
-                style="white-space: pre-line;"
-                th:text="|Hello ${currentUserFullName},
-                 Welcome to your Digital Innovative Modern Opportunities!|"
-        ></h1>
+        <h1 class="u-custom-font u-font-Lobster u-text u-text-1"
+            style="white-space: pre-line;"
+            th:text="|Hello ${currentUserFullName},
+                 Welcome to your Digital Innovative Modern Opportunities!|"></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <div class="u-layout">
-                <div class="u-layout-row">
+                <div class="u-layout-row" id="productList">
+
                     <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-1">
                             <!--blog_post-->
@@ -74,6 +72,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
                         <div class="u-container-layout u-container-layout-2">
                             <!--blog_post-->
@@ -291,5 +290,6 @@
 </body>
 
 <footer th:replace="fragments/fragment::footer"></footer>
+<script th:src="@{js/search-field.js}"></script>
 
 </html>

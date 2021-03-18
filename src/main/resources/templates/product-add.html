@@ -28,69 +28,114 @@
     <h1 class="border-bottom" style="text-align:center; color: yellow;">Add your product:</h1>
     <div class="d-flex justify-content-center">
         <form th:action="@{/products/add}"
+              th:object="${productAddBindingModel}"
               method="POST"
+              enctype="multipart/form-data"
               class="text-light">
             <div class="form-row m-5">
                 <div class="col">
                     <label for="brand" style="display: block; text-align: center;"><b>Brand name</b></label>
-                    <input id="brand" type="text" class="form-control" placeholder="Brand name">
-                    <small id="brandError" class="form-text bg-danger rounded">Brand name must be between 3 and 20
+                    <input th:field="*{brand}"
+                           th:errorclass="is-invalid"
+                           id="brand" type="text" class="form-control" placeholder="Brand name">
+                    <small th:if="${#fields.hasErrors('brand')}"
+                           th:errors="*{brand}"
+                           id="brandError" class="form-text bg-danger rounded">Brand name must be between 3 and 20
                         characters</small>
                 </div>
                 <div class="col">
                     <label for="model" style="display: block; text-align: center;"><b>Model name</b></label>
-                    <input id="model" type="text" class="form-control" placeholder="Model name">
-                    <small id="modelError" class="form-text bg-danger rounded">Model name must be between 3 and 20
+                    <input th:field="*{model}"
+                           th:errorclass="is-invalid"
+                           id="model" type="text" class="form-control" placeholder="Model name">
+                    <small th:if="${#fields.hasErrors('model')}"
+                           th:errors="*{model}"
+                           id="modelError" class="form-text bg-danger rounded">Model name must be between 3 and 20
                         characters</small>
                 </div>
             </div>
             <div class="form-row m-5">
                 <div class="col">
                     <label for="price"><b>Price</b></label>
-                    <input id="price" type="number" class="form-control" placeholder="Price">
-                    <small id="priceError" class="form-text bg-danger rounded">Price must be positive</small>
+                    <input th:field="*{price}"
+                           th:errorclass="is-invalid"
+                           id="price" type="number" class="form-control" placeholder="Price">
+                    <small th:if="${#fields.hasErrors('price')}"
+                           th:errors="*{price}"
+                           id="priceError" class="form-text bg-danger rounded">Price must be positive</small>
                 </div>
                 <div class="col">
                     <label for="color"><b>Color</b></label>
-                    <input id="color" type="text" class="form-control" placeholder="Color">
-                    <small id="colorError" class="form-text bg-danger rounded">Copies must be positive</small>
+                    <input th:field="*{color}"
+                           th:errorclass="is-invalid"
+                           id="color" type="text" class="form-control" placeholder="Color">
+                    <small th:if="${#fields.hasErrors('color')}"
+                           th:errors="*{color}"
+                           id="colorError" class="form-text bg-danger rounded">Copies must be positive</small>
                 </div>
             </div>
             <div class="form-row m-5">
                 <div class="col">
                     <label for="manufactureDate"><b>Manufacture date</b></label>
-                    <input id="manufactureDate" type="date" class="form-control" placeholder="Manufacture date">
-                    <small id="manufactureDateError" class="form-text bg-danger rounded">Release date cannot be in the
+                    <input th:field="*{manufactureDate}"
+                           th:errorclass="is-invalid"
+                           id="manufactureDate"
+                           type="date"
+                           class="form-control"
+                           placeholder="Manufacture date">
+                    <small th:if="${#fields.hasErrors('manufactureDate')}"
+                           th:errors="*{manufactureDate}"
+                           id="manufactureDateError" class="form-text bg-danger rounded">Release date cannot be in the
                         future</small>
                 </div>
                 <div class="col">
                     <label for="warranty"><b>Warranty</b></label>
-                    <input id="warranty" type="text" class="form-control" placeholder="Warranty in months">
+                    <input th:field="*{warranty}"
+                           id="warranty" type="text" class="form-control" placeholder="Warranty in months">
                 </div>
             </div>
             <div class="form-row m-5">
                 <div class="col">
                     <label for="category"><b>Category</b></label>
-                    <select id="category" class="custom-select">
+                    <select th:field="*{categoryName}"
+                            th:errorclass="is-invalid"
+                            id="category" class="custom-select">
                         <option value="" selected>Select category</option>
-                        <option value="">First Artist</option>
-                        <option value="">Second Artist</option>
+                        <option
+                                th:each="category : ${categoryList}"
+                                th:text="${category}"
+                                th:value="${category}"
+                                value="">Select category</option>
+
                     </select>
-                    <small id="artistError" class="form-text bg-danger rounded">You must select category</small>
+                    <small th:if="${#fields.hasErrors('categoryName')}"
+                           th:errors="*{categoryName}"
+                            id="artistError" class="form-text bg-danger rounded">You must select category</small>
                 </div>
                 <div class="col">
                     <label for="imageUrl"><b>Picture url</b></label>
-                    <input id="imageUrl" type="text" class="form-control" placeholder="Picture url">
-                    <small id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5
-                        characters</small>
+                    <input
+                            th:field="*{imageUrl}"
+                            id="imageUrl"
+                            type="file"
+                            class="form-control-file"
+                            placeholder="Picture url"
+                           name="imageUrl">
+<!--                    <small -->
+<!--                            id="imageUrlError" class="form-text bg-danger rounded">Image url must be more than 5-->
+<!--                        characters</small>-->
                 </div>
             </div>
 
             <div class="form-row m-5">
                 <div class="col">
                     <label for="details"><b>Details</b></label>
-                    <textarea id="details" type="text" class="form-control" placeholder="Details"></textarea>
-                    <small id="detailsError" class="form-text bg-danger rounded">Description length must be more than 5
+                    <textarea th:field="*{details}"
+                              th:errorclass="is-invalid"
+                              id="details" type="text" class="form-control" placeholder="Details"></textarea>
+                    <small th:if="${#fields.hasErrors('details')}"
+                           th:errors="*{details}"
+                            id="detailsError" class="form-text bg-danger rounded">Description length must be more than 5
                         characters</small>
                 </div>
             </div>

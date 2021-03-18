@@ -22,7 +22,7 @@ body {
 }
 
 a {
-  transition: all 0.3s ease;
+  /*transition: all 0.3s ease;*/
 }
 a:hover,
 a:focus {
@@ -355,15 +355,15 @@ input[type="checkbox"]:focus {
   width: 15px;
 }
 
-footer {
-  position: relative;
-  flex: 0 0 auto;
-  display: flex;
-  color: #ccc;
-  padding: 2.2em;
-  width: 100%;
-  justify-content: center;
-}
+/*footer {*/
+/*  position: relative;*/
+/*  flex: 0 0 auto;*/
+/*  display: flex;*/
+/*  color: #ccc;*/
+/*  padding: 2.2em;*/
+/*  width: 100%;*/
+/*  justify-content: center;*/
+/*}*/
 
 .custom-select {
   height: 50px;

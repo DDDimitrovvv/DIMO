@@ -1,6 +1,6 @@
 package bg.softuni.web;
 
-import bg.softuni.model.binding.ProductBindingModel;
+import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/api")
-    public List<ProductBindingModel> findAll(){
+    public List<ProductViewModel> findAll(){
         return productService.getListWithAllProducts();
     }
 }

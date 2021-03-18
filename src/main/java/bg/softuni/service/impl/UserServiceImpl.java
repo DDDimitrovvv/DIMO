@@ -110,6 +110,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity getCurrentUser() {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(currentUsername).orElse(null);
+    }
+
+    @Override
     public int getCountOfAllLoggedUsers() {
         return activeUserStore.getLoggedUsersCounter();
     }

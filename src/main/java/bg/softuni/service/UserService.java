@@ -13,6 +13,8 @@ public interface UserService {
 
     String currentUserFullName();
 
+    UserEntity getCurrentUser();
+
     int getCountOfAllLoggedUsers();
 
     int getCountOfAllUsersInDB();

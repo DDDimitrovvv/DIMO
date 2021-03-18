@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -47,5 +49,23 @@ public class CategoryServiceImpl implements CategoryService {
             }
 
         }
+    }
+
+    @Override
+    public List<String> getListWithAllCategoryNames() {
+
+        List<CategoryEntity> allCatEntities = categoryRepository.findAll();
+        List<String> listWithCategoryNames = new ArrayList<>();
+
+        for ( CategoryEntity allCatEntity : allCatEntities ){
+            listWithCategoryNames.add(allCatEntity.getCategoryName());
+        }
+
+        return listWithCategoryNames;
+    }
+
+    @Override
+    public CategoryEntity findCategoryByCategoryName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName);
     }
 }

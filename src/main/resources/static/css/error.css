@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body {
+.boardt {
     display: flex;
     align-items: center;
     background: #E3F2FD;
