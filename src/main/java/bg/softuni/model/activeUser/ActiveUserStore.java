@@ -1,4 +1,4 @@
-package bg.softuni.components;
+package bg.softuni.model.activeUser;
 
 import bg.softuni.service.impl.UserServiceImpl;
 import org.slf4j.Logger;

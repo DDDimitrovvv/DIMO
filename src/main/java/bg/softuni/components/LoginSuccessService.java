@@ -1,5 +1,6 @@
 package bg.softuni.components;
 
+import bg.softuni.model.activeUser.ActiveUserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;

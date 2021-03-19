@@ -1,6 +1,6 @@
 package bg.softuni.config;
 
-import bg.softuni.components.ActiveUserStore;
+import bg.softuni.model.activeUser.ActiveUserStore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;

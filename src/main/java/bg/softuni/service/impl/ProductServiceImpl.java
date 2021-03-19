@@ -56,7 +56,6 @@ public class ProductServiceImpl implements ProductService {
                 setCategoryEntity(categoryService.findCategoryByCategoryName(productAddServiceModel.getCategoryName())).
                 setUserEntity(userService.getCurrentUser());
 
-        System.out.println();
         productRepository.save(productEntity);
     }
 }

@@ -1,9 +1,10 @@
 package bg.softuni.web;
 
 import bg.softuni.model.binding.ProductAddBindingModel;
+import bg.softuni.model.binding.StoryAddBindingModel;
 import bg.softuni.model.service.ProductAddServiceModel;
-import bg.softuni.service.CategoryService;
-import bg.softuni.service.ProductService;
+import bg.softuni.model.service.StoryAddServiceModel;
+import bg.softuni.service.StoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,47 +18,44 @@ import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/products")
-public class ProductController {
+@RequestMapping("/stories")
+public class StoryController {
 
-    private final CategoryService categoryService;
-    private final ProductService productService;
+    private final StoryService storyService;
     private final ModelMapper modelMapper;
 
-    public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper) {
-        this.categoryService = categoryService;
-        this.productService = productService;
+    public StoryController(StoryService storyService, ModelMapper modelMapper) {
+        this.storyService = storyService;
         this.modelMapper = modelMapper;
     }
+
 
     @GetMapping("/add")
     public String add(Model model) {
 
-        if (!model.containsAttribute("productAddBindingModel")) {
-            model.addAttribute("productAddBindingModel", new ProductAddBindingModel());
+        if (!model.containsAttribute("storyAddBindingModel")) {
+            model.addAttribute("storyAddBindingModel", new StoryAddBindingModel());
         }
-        model.addAttribute("categoryList", categoryService.getListWithAllCategoryNames());
-
-        return "product-add";
+        return "story-add";
     }
 
     @PostMapping("/add")
-    public String addProduct(@Valid ProductAddBindingModel productAddBindingModel,
+    public String addProduct(@Valid StoryAddBindingModel storyAddBindingModel,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
+            redirectAttributes.addFlashAttribute("storyAddBindingModel", storyAddBindingModel);
             redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.productAddBindingModel",
+                    "org.springframework.validation.BindingResult.storyAddBindingModel",
                     bindingResult);
 
             return "redirect:add";
         }
 
-        //save product in DB
-        productService
-                .addProduct(modelMapper.map(productAddBindingModel, ProductAddServiceModel.class));
+        //save story in DB
+        storyService
+                .addStory(modelMapper.map(storyAddBindingModel, StoryAddServiceModel.class));
 
         return "redirect:/home";
     }
