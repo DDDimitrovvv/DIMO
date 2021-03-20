@@ -1,7 +1,11 @@
 package bg.softuni.service;
 
 import bg.softuni.model.entities.UserEntity;
+import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.model.service.UserRegistrationServiceModel;
+
+import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
@@ -20,4 +24,9 @@ public interface UserService {
     int getCountOfAllUsersInDB();
 
     int getCountOfAllRegisteredUsers();
+
+    List<String> getAllUsernameList();
+
+    void changeRole(String username, String role);
+
 }

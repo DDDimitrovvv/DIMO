@@ -1,6 +1,7 @@
 package bg.softuni.service.impl;
 
 import bg.softuni.model.entities.StoryEntity;
+import bg.softuni.model.entities.enums.StoryTypeEnum;
 import bg.softuni.model.service.StoryAddServiceModel;
 import bg.softuni.repository.StoryRepository;
 import bg.softuni.service.CloudinaryService;
@@ -12,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Service
 public class StoryServiceImpl implements StoryService {
@@ -40,5 +43,18 @@ public class StoryServiceImpl implements StoryService {
                 setUserEntity(userService.getCurrentUser());
 
         storyRepository.save(storyEntity);
+    }
+
+    @Override
+    public Map<String, Integer> availableStoriesInDB() {
+
+        Map<String, Integer> stories = new LinkedHashMap<>();
+        stories.put("storiesCount", storyRepository.findAll().size());
+
+        for ( StoryTypeEnum storyType : StoryTypeEnum.values() ){
+            stories.put(storyType.name().toUpperCase(), storyRepository.findAllByStoryTypeEnum(storyType).size());
+        }
+
+        return stories;
     }
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Roles</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Roles.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lobster:400|Chenla:400">
+</head>
+
+<div th:replace="fragments/fragment::navigation"></div>
+
+<body>
+
+<section class="u-clearfix u-section-1" id="sec-e581">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout" style="">
+                <br/><br/><br/><br/><br/><br/><br/><br/>
+                <div class="container">
+                    <div class="row rounded">
+                        <div class="col-12">
+                        </div>
+                    </div>
+                    <!-- row -->
+                    <div class="row tm-mt-big justify-content-center">
+                        <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12">
+                            <div class="bg-white tm-block">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h2 class="newhorizont">Add new role to user</h2>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 tm-edit-product-row">
+                                    <div class="col-xl-7 col-lg-7 col-md-12">
+                                        <form
+                                                th:action="@{/admin/roles}"
+                                                method="POST"
+                                                class="tm-edit-product-form">
+                                            <div class="input-group mb-3">
+                                                <label for="username"
+                                                       class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Users</label>
+                                                <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                                        id="username"
+                                                        name="username">
+                                                    <option value="" selected>Select user</option>
+                                                    <option th:each="username : ${usernameList}" th:text="${username}"
+                                                            th:value="${username}">ivan@abv.bg
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <label class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Roles</label>
+                                                <div>
+                                                    <th:block
+                                                            th:each="role : ${T(bg.softuni.model.entities.enums.UserRole).values()}">
+                                                        <input type="radio" th:id="${role}" name="role" checked
+                                                               th:value="${role}">
+                                                        <label th:for="${role}" th:text="${role}">User</label><br/>
+                                                    </th:block>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group mb-3">
+                                                <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                                    <button type="submit" class="btn btn-primary">Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 mx-auto mb-4">
+                                        <img th:src="@{/images/computer.png}" alt="Exercise picture" width="100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

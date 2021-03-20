@@ -16,7 +16,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -130,5 +134,42 @@ public class UserServiceImpl implements UserService {
         return activeUserStore.getRegisteredUsersCounter();
     }
 
+    @Override
+    public List<String> getAllUsernameList() {
+        List<String> allUsernames = userRepository.findAllUsernames();
+        List<String> usernameList = new ArrayList<>();
+
+        for ( String username : allUsernames ){
+            if (!username.equalsIgnoreCase(getCurrentUser().getUsername())) {
+                usernameList.add(username);
+            }
+        }
+
+        return usernameList;
+    }
+
+    @Override
+    public void changeRole(String username, String role) {
+        Optional<UserEntity> user = userRepository.findByUsername(username);
+
+        // split String to List
+        List<String> roles = Arrays.asList(role.split("\\s*,\\s*"));
+        // map List with Strings to UserRole
+        List<UserRole> userRoles = roles.stream().map(r -> UserRole.valueOf(r.toUpperCase())).collect(Collectors.toList());
+        // create an empty List with UserRoleEntity
+        List<UserRoleEntity> userRoleEntities = new ArrayList<>();
+
+        for ( UserRole userRole : userRoles ){
+            UserRoleEntity userRoleEntity = userRoleRepository.findByRole(userRole).orElse(null);
+            if (userRoleEntity != null) {
+                userRoleEntities.add(userRoleEntity);
+            }
+        }
+
+        if (user.isPresent()) {
+            user.get().setRoles(userRoleEntities);
+            userRepository.save(user.get());
+        }
+    }
 }
 

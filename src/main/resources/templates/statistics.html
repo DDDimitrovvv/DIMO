@@ -75,10 +75,17 @@
                     style="fill:#7383BF;" d="M50.455,8C50.482,8.166,50.5,8.332,50.5,8.5V8H50.455z"></path>
 </g></svg>
             
-            
+
           </span>
                 <h4 class="u-custom-font u-font-oswald u-text u-text-3">Products:</h4>
-                <p class="u-text u-text-4">Products total count: 10<br>Speakers: 2<br>Receivers: 3<br>Accessories: 4<br>Home-Cinema:1
+                <p class="u-text u-text-4"
+                   style="white-space: pre-line;"
+                   th:text="|Products total count: ${totalProductCount}
+                Speakers: ${totalSpeakerProductCount}
+                Receivers: ${totalReceiverProductCount}
+                Accessories: ${totalAccessoriesProductCount}
+                Home-Cinema: ${totalHome_CinemaProductCount}|">Products total count: 10<br>Speakers: 2<br>Receivers:
+                    3<br>Accessories: 4<br>Home-Cinema:1
                 </p>
             </div>
         </div>
@@ -107,7 +114,13 @@
           </span>
                 <h4 class="u-custom-font u-font-oswald u-text u-text-5">Stories:<br>
                 </h4>
-                <p class="u-text u-text-6">Stories total count: 9<br>Fun: 6<br>Issue:1<br>Info: 2<br>
+                <p class="u-text u-text-6"
+                   style="white-space: pre-line;"
+                   th:text="|Stories total count: ${totalStoriesCount}
+                   Fun: ${totalFunStoriesCount}
+                   Issue: ${totalIssueStoriesCount}
+                   Info: ${totalInfoStoriesCount}|"
+                >Stories total count: 9<br>Fun: 6<br>Issue:1<br>Info: 2<br>
                 </p>
             </div>
         </div>
@@ -120,7 +133,7 @@
                 <span class="u-text-palette-2-base"></span>
                 <br>
             </h2>
-            <h2 class="u-text u-text-8">16 March 2021</h2>
+            <h2 class="u-text u-text-8" th:text="${localDate}">16 March 2021</h2>
         </div>
     </div>
 </section>

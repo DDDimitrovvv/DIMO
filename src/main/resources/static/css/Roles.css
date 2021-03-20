@@ -1,4 +1,19 @@
 
+body {
+  background-image: url("../images/gear-wallpaper-8.jpg");
+  opacity: 1;
+  overflow-x: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+}
+.newhorizont{
+  text-align: center;
+  color: red;
+}
+
 .u-section-1 {
   min-height: 748px;
 }

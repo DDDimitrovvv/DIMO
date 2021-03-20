@@ -355,16 +355,6 @@ input[type="checkbox"]:focus {
   width: 15px;
 }
 
-/*footer {*/
-/*  position: relative;*/
-/*  flex: 0 0 auto;*/
-/*  display: flex;*/
-/*  color: #ccc;*/
-/*  padding: 2.2em;*/
-/*  width: 100%;*/
-/*  justify-content: center;*/
-/*}*/
-
 .custom-select {
   height: 50px;
   border-radius: 0;

@@ -8,8 +8,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      #      ddl-auto: update
-      ddl-auto: create-drop
+          ddl-auto: update
+    #      ddl-auto: create-drop
     open-in-view: false
     properties:
       hibernate:
@@ -22,6 +22,6 @@ spring:
       enabled: true
 
 cloudinary:
-    cloud-name: dsrmaoof8
-    api-key: "${CLOUDINARY_KEY}"
-    api-secret: "${CLOUDINARY_SECRET}"
+  cloud-name: dsrmaoof8
+  api-key: "${CLOUDINARY_KEY}"
+  api-secret: "${CLOUDINARY_SECRET}"

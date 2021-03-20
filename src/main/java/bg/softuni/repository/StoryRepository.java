@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface StoryRepository extends JpaRepository<StoryEntity, Long> {
 
+    List<StoryEntity> findAllByStoryTypeEnum(StoryTypeEnum storyType);
 
 }
