@@ -14,6 +14,38 @@
           href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lobster:400|Chenla:400">
+
+    <!--    <script type="text/javascript">-->
+    <!--        // var myVar=setInterval(function () {myTimer()}, 1000);-->
+    <!--        // var counter = 0;-->
+    <!--        // function myTimer() {-->
+    <!--        //     var date = new Date();-->
+    <!--        //     document.getElementById("clock").innerHTML = date.toISOString();-->
+    <!--        // }-->
+
+    <!--        function currentTime() {-->
+    <!--            var date = new Date(); /* creating object of Date class */-->
+    <!--            var hour = date.getHours();-->
+    <!--            var min = date.getMinutes();-->
+    <!--            var sec = date.getSeconds();-->
+    <!--            hour = updateTime(hour);-->
+    <!--            min = updateTime(min);-->
+    <!--            sec = updateTime(sec);-->
+    <!--            document.getElementById("clock").innerText = hour + " : " + min + " : " + sec; /* adding time to the div */-->
+    <!--            var t = setTimeout(function () {-->
+    <!--                currentTime()-->
+    <!--            }, 1000); /* setting timer */-->
+    <!--        }-->
+
+    <!--        function updateTime(k) {-->
+    <!--            if (k < 10) {-->
+    <!--                return "0" + k;-->
+    <!--            } else {-->
+    <!--                return k;-->
+    <!--            }-->
+    <!--        }-->
+    <!--    </script>-->
+
 </head>
 
 <div th:replace="fragments/fragment::navigation"></div>
@@ -134,9 +166,38 @@
                 <br>
             </h2>
             <h2 class="u-text u-text-8" th:text="${localDate}">16 March 2021</h2>
+            <h2 class="u-text u-text-8" id="clock">19:55:07</h2>
         </div>
     </div>
 </section>
+
+<script>
+    setInterval(showTime, 1000);
+
+    function showTime() {
+        let time = new Date();
+        let hour = time.getHours();
+        let min = time.getMinutes();
+        let sec = time.getSeconds();
+
+        if (hour >= 0 && hour < 10) {
+            hour = '0' + hour;
+        }
+
+        if (min >= 0 && min < 10) {
+            min = '0' + min;
+        }
+
+        if (sec >= 0 && sec < 10) {
+            sec = '0' + sec;
+        }
+
+        document.getElementById("clock")
+            .innerHTML = hour + ":" + min + ":" + sec;
+    }
+
+    showTime();
+</script>
 
 </body>
 

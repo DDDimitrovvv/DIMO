@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -47,7 +49,8 @@ public class AdminController {
         model.addAttribute("totalIssueStoriesCount", stories.get("ISSUE"));
         model.addAttribute("totalInfoStoriesCount", stories.get("INFO"));
 
-        model.addAttribute("localDate", LocalDate.now());
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy", Locale.ENGLISH);
+        model.addAttribute("localDate", LocalDate.now().format(formatter));
 
         return "statistics";
     }
