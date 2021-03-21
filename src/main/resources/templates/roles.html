@@ -50,10 +50,12 @@
                                                 <label for="username"
                                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Users</label>
                                                 <select class="custom-select col-xl-9 col-lg-8 col-md-8 col-sm-7"
+                                                        required
                                                         id="username"
                                                         name="username">
                                                     <option value="" selected>Select user</option>
-                                                    <option th:each="username : ${usernameList}" th:text="${username}"
+                                                    <option th:each="username : ${usernameList}"
+                                                            th:text="${username}"
                                                             th:value="${username}">ivan@abv.bg
                                                     </option>
                                                 </select>
@@ -63,16 +65,18 @@
                                                 <div>
                                                     <th:block
                                                             th:each="role : ${T(bg.softuni.model.entities.enums.UserRole).values()}">
-                                                        <input type="radio" th:id="${role}" name="role" checked
+                                                        <input type="checkbox" th:id="${role}" name="role"
                                                                th:value="${role}">
                                                         <label th:for="${role}" th:text="${role}">User</label><br/>
                                                     </th:block>
+                                                    <div class="error-messages"
+                                                         style="display:none; background-color: yellow; color: red"></div>
                                                 </div>
                                             </div>
 
                                             <div class="input-group mb-3">
                                                 <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
-                                                    <button type="submit" class="btn btn-primary">Add
+                                                    <button type="submit" id="checkBtn" class="btn btn-primary">Add
                                                     </button>
                                                 </div>
                                             </div>
@@ -93,6 +97,21 @@
     </div>
 </section>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBtn').click(function () {
+            checked = $("input[type=checkbox]:checked").length;
+
+            if (!checked) {
+                $(".error-messages").text("You must check at least one checkbox!").fadeIn();
+                return false;
+            }
+
+        });
+    });
+
+</script>
 
 </body>
 

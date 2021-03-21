@@ -322,3 +322,15 @@ body {
     font-size: 3rem;
   }
 }
+
+select:valid {
+  border: lightgreen solid 2px;
+}
+
+select:invalid {
+  border: red solid 2px;
+}
+
+select:invalid:required {
+  background-image: linear-gradient(to right, white, navajowhite);
+}

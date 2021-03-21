@@ -45,9 +45,7 @@
                        th:errorclass="is-invalid"
                        name="username"/>
                 <p class="text-center">
-                    <small class="text-danger rounded"
-                           th:if="${#fields.hasErrors('username')}"
-                           th:errors="*{username}"
+                    <small class="text-danger invalid-feedback"
                            style="font-size:20px; background-color:#ffff99;">Username error message</small>
                 </p>
             </div>
@@ -66,9 +64,7 @@
                        th:errorclass="is-invalid"
                        name="fullname"/>
                 <p class="text-center">
-                    <small class="text-danger rounded"
-                           th:if="${#fields.hasErrors('fullname')}"
-                           th:errors="*{fullname}"
+                    <small class="text-danger invalid-feedback"
                            style="font-size:20px; background-color:#ffff99;">Fullname error message</small>
                 </p>
             </div>
@@ -86,9 +82,7 @@
                        th:errorclass="is-invalid"
                        name="password"/>
                 <p class="text-center">
-                    <small class="text-danger rounded"
-                           th:if="${#fields.hasErrors('password')}"
-                           th:errors="*{password}"
+                    <small class="text-danger  invalid-feedback"
                            style="font-size:20px; background-color:#ffff99;">Password error message</small>
                 </p>
             </div>
@@ -106,9 +100,7 @@
                        th:errorclass="is-invalid"
                        name="confirmPassword"/>
                 <p class="text-center">
-                    <small class="text-danger rounded"
-                           th:if="${#fields.hasErrors('confirmPassword')}"
-                           th:errors="*{confirmPassword}"
+                    <small class="text-danger invalid-feedback"
                            style="font-size:20px; background-color:#ffff99;">Password error message</small>
                 </p>
             </div>
