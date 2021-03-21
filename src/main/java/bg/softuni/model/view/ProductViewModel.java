@@ -1,11 +1,11 @@
 package bg.softuni.model.view;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ProductViewModel {
 
+    private long id;
     private String brand;
     private String model;
     private LocalDate manufactureDate;
@@ -19,16 +19,13 @@ public class ProductViewModel {
     public ProductViewModel() {
     }
 
-    public ProductViewModel(String brand, String model, LocalDate manufactureDate, String color, BigDecimal price, int warranty, String details, String imageUrl, String categoryName) {
-        this.brand = brand;
-        this.model = model;
-        this.manufactureDate = manufactureDate;
-        this.color = color;
-        this.price = price;
-        this.warranty = warranty;
-        this.details = details;
-        this.imageUrl = imageUrl;
-        this.categoryName = categoryName;
+    public long getId() {
+        return id;
+    }
+
+    public ProductViewModel setId(long id) {
+        this.id = id;
+        return this;
     }
 
     public String getBrand() {

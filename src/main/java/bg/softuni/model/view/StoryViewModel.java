@@ -1,28 +1,36 @@
-package bg.softuni.model.service;
+package bg.softuni.model.view;
 
-import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
-public class StoryAddServiceModel {
+public class StoryViewModel {
 
+    private long id;
     private String title;
     private String description;
-    private MultipartFile imageUrl;
+    private String imageUrl;
     private LocalDate addedDate;
     private String productLink;
     private StoryTypeEnum storyTypeEnum;
 
-    public StoryAddServiceModel() {
+    public StoryViewModel() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public StoryViewModel setId(long id) {
+        this.id = id;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public StoryAddServiceModel setTitle(String title) {
+    public StoryViewModel setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -31,16 +39,16 @@ public class StoryAddServiceModel {
         return description;
     }
 
-    public StoryAddServiceModel setDescription(String description) {
+    public StoryViewModel setDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public MultipartFile getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public StoryAddServiceModel setImageUrl(MultipartFile imageUrl) {
+    public StoryViewModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -49,7 +57,7 @@ public class StoryAddServiceModel {
         return addedDate;
     }
 
-    public StoryAddServiceModel setAddedDate(LocalDate addedDate) {
+    public StoryViewModel setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
         return this;
     }
@@ -58,7 +66,7 @@ public class StoryAddServiceModel {
         return productLink;
     }
 
-    public StoryAddServiceModel setProductLink(String productLink) {
+    public StoryViewModel setProductLink(String productLink) {
         this.productLink = productLink;
         return this;
     }
@@ -67,7 +75,7 @@ public class StoryAddServiceModel {
         return storyTypeEnum;
     }
 
-    public StoryAddServiceModel setStoryTypeEnum(StoryTypeEnum storyTypeEnum) {
+    public StoryViewModel setStoryTypeEnum(StoryTypeEnum storyTypeEnum) {
         this.storyTypeEnum = storyTypeEnum;
         return this;
     }

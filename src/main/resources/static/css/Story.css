@@ -537,3 +537,39 @@ input[type="checkbox"]:focus {
     top: 107px;
   }
 }
+
+input:valid {
+  border: lightgreen solid 2px;
+}
+
+input:invalid {
+  border: red solid 2px;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, white, navajowhite);
+}
+
+textarea:valid {
+  border: lightgreen solid 2px;
+}
+
+textarea:invalid {
+  border: red solid 2px;
+}
+
+textarea:invalid:required {
+  background-image: linear-gradient(to right, white, navajowhite);
+}
+
+select:valid {
+  border: lightgreen solid 2px;
+}
+
+select:invalid {
+  border: red solid 2px;
+}
+
+select:invalid:required {
+  background-image: linear-gradient(to right, white, navajowhite);
+}

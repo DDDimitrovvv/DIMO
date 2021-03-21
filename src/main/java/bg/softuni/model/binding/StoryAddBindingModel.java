@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class StoryAddBindingModel {
 
     @NotBlank(message = "The title cannot be empty!")
-    @Size(min = 3, max = 20, message = "The title must contains between three and twenty characters.")
+    @Size(min = 3, max = 30, message = "The title must contains between three and twenty characters.")
     private String title;
 
     @Size(min = 5, message = "The description must be at least five characters.")

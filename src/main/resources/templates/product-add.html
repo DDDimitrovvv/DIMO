@@ -37,6 +37,9 @@
                     <label for="brand" style="display: block; text-align: center;"><b>Brand name</b></label>
                     <input th:field="*{brand}"
                            th:errorclass="is-invalid"
+                           required
+                           th:minlength="2"
+                           th:maxlength="20"
                            id="brand"
                            name="brand"
                            type="text"
@@ -50,6 +53,9 @@
                     <label for="model" style="display: block; text-align: center;"><b>Model name</b></label>
                     <input th:field="*{model}"
                            th:errorclass="is-invalid"
+                           required
+                           th:minlength="3"
+                           th:maxlength="20"
                            id="model"
                            type="text"
                            class="form-control"
@@ -65,6 +71,7 @@
                     <label for="price"><b>Price</b></label>
                     <input th:field="*{price}"
                            th:errorclass="is-invalid"
+                           required
                            id="price"
                            type="number"
                            step="0.1"
@@ -78,6 +85,9 @@
                     <label for="color"><b>Color</b></label>
                     <input th:field="*{color}"
                            th:errorclass="is-invalid"
+                           required
+                           th:minlength="3"
+                           th:maxlength="20"
                            id="color"
                            type="text"
                            class="form-control"
@@ -116,6 +126,7 @@
                     <select th:field="*{categoryName}"
                             th:errorclass="is-invalid"
                             id="category"
+                            required
                             name="categoryName"
                             class="custom-select">
                         <option value="" selected>Select category</option>
@@ -139,6 +150,7 @@
                             accept=".png, .jpg, .jpeg"
                             id="imageUrl"
                             type="file"
+                            required
                             class="form-control-file"
                             name="imageUrl">
                     <small th:if="*{imageUrl}"
@@ -152,6 +164,8 @@
                     <label for="details"><b>Details</b></label>
                     <textarea th:field="*{details}"
                               th:errorclass="is-invalid"
+                              required
+                              th:minlength="5"
                               id="details"
                               type="text"
                               class="form-control"

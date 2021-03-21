@@ -5,7 +5,7 @@ const allProducts = [];
 
 fetch("http://localhost:8080/products/api").then(response => response.json()).then(data => {
     for (let product of data) {
-        allProducts.push(data);
+        allProducts.push(product);
     }
 
 })

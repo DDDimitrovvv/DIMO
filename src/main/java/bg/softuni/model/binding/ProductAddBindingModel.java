@@ -28,6 +28,7 @@ public class ProductAddBindingModel {
     @DecimalMin(value = "0", message = "The price must be bigger than a zero!")
     private BigDecimal price;
 
+    @Min(0)
     private int warranty;
 
     @Size(min = 5, message = "The product description must be at least five characters.")

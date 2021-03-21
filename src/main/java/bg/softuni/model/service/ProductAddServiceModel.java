@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 public class ProductAddServiceModel {
 
-    private String id;
     private String brand;
     private String model;
     private LocalDate manufactureDate;
@@ -21,14 +20,6 @@ public class ProductAddServiceModel {
     public ProductAddServiceModel() {
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public ProductAddServiceModel setId(String id) {
-        this.id = id;
-        return this;
-    }
 
     public String getBrand() {
         return brand;

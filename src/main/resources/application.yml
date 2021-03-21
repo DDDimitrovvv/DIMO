@@ -8,12 +8,17 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-          ddl-auto: update
+      ddl-auto: update
     #      ddl-auto: create-drop
     open-in-view: false
     properties:
       hibernate:
         format_sql: true
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 
   servlet:
     multipart:

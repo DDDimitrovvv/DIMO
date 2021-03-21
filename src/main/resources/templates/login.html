@@ -50,6 +50,8 @@
                             <input
                                     th:value="${username}"
                                     name="username"
+                                    th:minlength="5"
+                                    th:maxlength="20"
                                     type="email"
                                     class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
                                     id="username"
@@ -61,6 +63,8 @@
                             <input
                                     name="password"
                                     type="password"
+                                    th:minlength="5"
+                                    th:maxlength="20"
                                     class="form-control validate"
                                     id="password"
                                     placeholder="Password" required>
