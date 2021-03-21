@@ -13,8 +13,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,10 +53,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(ProductAddServiceModel productAddServiceModel) throws IOException {
+    public void addProduct(ProductAddServiceModel productAddServiceModel) throws Exception {
 
         ProductEntity productEntity = modelMapper.map(productAddServiceModel, ProductEntity.class);
-
         MultipartFile img = productAddServiceModel.getImageUrl();
         String imageUrl = cloudinaryService.uploadImage(img);
 

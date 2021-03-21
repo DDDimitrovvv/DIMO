@@ -21,7 +21,7 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(Model model) {
+    public String home(Model model) throws Exception {
         model.addAttribute("currentUserFullName", userService.currentUserFullName());
         return "home";
     }

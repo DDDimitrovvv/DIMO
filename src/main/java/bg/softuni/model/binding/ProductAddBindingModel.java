@@ -25,8 +25,9 @@ public class ProductAddBindingModel {
     @Size(min = 3, max = 20, message = "The color must contains between three and twenty characters.")
     private String color;
 
-    @DecimalMin(value = "0", message = "The price must be positive value!")
+    @DecimalMin(value = "0", message = "The price must be bigger than a zero!")
     private BigDecimal price;
+
     private int warranty;
 
     @Size(min = 5, message = "The product description must be at least five characters.")
@@ -35,7 +36,7 @@ public class ProductAddBindingModel {
     @NotNull
     private MultipartFile imageUrl;
 
-    @NotNull(message = "You must select a category!")
+    @NotBlank(message = "You must select a category!")
     private String categoryName;
 
     public ProductAddBindingModel() {

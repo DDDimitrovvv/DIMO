@@ -56,14 +56,14 @@ public class AdminController {
     }
 
     @GetMapping("/roles")
-    public String roles(Model model) {
+    public String roles(Model model) throws Exception {
         model.addAttribute("usernameList", userService.getAllUsernameList());
         return "roles";
     }
 
     @PostMapping("/roles")
     public String rolesConfirm( String username,
-                              String role) {
+                              String role) throws Exception {
 
         userService.changeRole(username, role);
 

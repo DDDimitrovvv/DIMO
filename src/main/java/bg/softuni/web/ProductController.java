@@ -44,9 +44,9 @@ public class ProductController {
     @PostMapping("/add")
     public String addProduct(@Valid ProductAddBindingModel productAddBindingModel,
                              BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) throws IOException {
+                             RedirectAttributes redirectAttributes) throws Exception {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || productAddBindingModel.getImageUrl().isEmpty()) {
             redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.productAddBindingModel",

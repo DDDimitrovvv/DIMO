@@ -37,7 +37,10 @@
                     <label for="brand" style="display: block; text-align: center;"><b>Brand name</b></label>
                     <input th:field="*{brand}"
                            th:errorclass="is-invalid"
-                           id="brand" type="text" class="form-control" placeholder="Brand name">
+                           id="brand"
+                           name="brand"
+                           type="text"
+                           class="form-control">
                     <small th:if="${#fields.hasErrors('brand')}"
                            th:errors="*{brand}"
                            id="brandError" class="form-text bg-danger rounded">Brand name must be between 3 and 20
@@ -47,7 +50,10 @@
                     <label for="model" style="display: block; text-align: center;"><b>Model name</b></label>
                     <input th:field="*{model}"
                            th:errorclass="is-invalid"
-                           id="model" type="text" class="form-control" placeholder="Model name">
+                           id="model"
+                           type="text"
+                           class="form-control"
+                           name="model">
                     <small th:if="${#fields.hasErrors('model')}"
                            th:errors="*{model}"
                            id="modelError" class="form-text bg-danger rounded">Model name must be between 3 and 20
@@ -59,7 +65,11 @@
                     <label for="price"><b>Price</b></label>
                     <input th:field="*{price}"
                            th:errorclass="is-invalid"
-                           id="price" type="number" class="form-control" placeholder="Price">
+                           id="price"
+                           type="number"
+                           step="0.1"
+                           name="price"
+                           class="form-control">
                     <small th:if="${#fields.hasErrors('price')}"
                            th:errors="*{price}"
                            id="priceError" class="form-text bg-danger rounded">Price must be positive</small>
@@ -68,7 +78,10 @@
                     <label for="color"><b>Color</b></label>
                     <input th:field="*{color}"
                            th:errorclass="is-invalid"
-                           id="color" type="text" class="form-control" placeholder="Color">
+                           id="color"
+                           type="text"
+                           class="form-control"
+                           name="color">
                     <small th:if="${#fields.hasErrors('color')}"
                            th:errors="*{color}"
                            id="colorError" class="form-text bg-danger rounded">Please add color</small>
@@ -82,7 +95,7 @@
                            id="manufactureDate"
                            type="date"
                            class="form-control"
-                           placeholder="Manufacture date">
+                           name="manufactureDate">
                     <small th:if="${#fields.hasErrors('manufactureDate')}"
                            th:errors="*{manufactureDate}"
                            id="manufactureDateError" class="form-text bg-danger rounded">Release date cannot be in the
@@ -91,7 +104,10 @@
                 <div class="col">
                     <label for="warranty"><b>Warranty</b></label>
                     <input th:field="*{warranty}"
-                           id="warranty" type="text" class="form-control" placeholder="Warranty in months">
+                           id="warranty"
+                           type="text"
+                           class="form-control"
+                           name="warranty">
                 </div>
             </div>
             <div class="form-row m-5">
@@ -99,7 +115,9 @@
                     <label for="category"><b>Category</b></label>
                     <select th:field="*{categoryName}"
                             th:errorclass="is-invalid"
-                            id="category" class="custom-select">
+                            id="category"
+                            name="categoryName"
+                            class="custom-select">
                         <option value="" selected>Select category</option>
                         <option
                                 th:each="category : ${categoryList}"
@@ -109,9 +127,10 @@
                         </option>
 
                     </select>
-                    <small th:if="${#fields.hasErrors('categoryName')}"
-                           th:errors="*{categoryName}"
-                           id="categoryError" class="form-text bg-danger rounded">You must select category</small>
+                    <small
+                            th:if="${#fields.hasErrors('categoryName')}"
+                            th:errors="*{categoryName}"
+                            id="categoryError" class="form-text bg-danger rounded">You must select category!</small>
                 </div>
                 <div class="col">
                     <label for="imageUrl"><b>Picture url</b></label>
@@ -121,8 +140,10 @@
                             id="imageUrl"
                             type="file"
                             class="form-control-file"
-                            placeholder="Picture url"
                             name="imageUrl">
+                    <small th:if="*{imageUrl}"
+                           id="imageUrlError" class="form-text bg-danger rounded">Add image file, please!!!
+                    </small>
                 </div>
             </div>
 
@@ -131,7 +152,10 @@
                     <label for="details"><b>Details</b></label>
                     <textarea th:field="*{details}"
                               th:errorclass="is-invalid"
-                              id="details" type="text" class="form-control" placeholder="Details"></textarea>
+                              id="details"
+                              type="text"
+                              class="form-control"
+                              name="details"></textarea>
                     <small th:if="${#fields.hasErrors('details')}"
                            th:errors="*{details}"
                            id="detailsError" class="form-text bg-danger rounded">Description length must be more than 5

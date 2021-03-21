@@ -35,7 +35,10 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(UserRoleRepository userRoleRepository,
                            UserRepository userRepository,
-                           PasswordEncoder passwordEncoder, ModelMapper modelMapper, DimoDBUserService dimoDBUserService, ActiveUserStore activeUserStore) {
+                           PasswordEncoder passwordEncoder,
+                           ModelMapper modelMapper,
+                           DimoDBUserService dimoDBUserService,
+                           ActiveUserStore activeUserStore) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -104,7 +107,7 @@ public class UserServiceImpl implements UserService {
     public String currentUserFullName() {
 
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity currentUser = userRepository.findByUsername(currentUsername).orElse(null);
+        UserEntity currentUser = userRepository.findByUsername(currentUsername).orElseThrow(() -> new IllegalArgumentException("User not found!"));
         String currentUserFullName = "";
         if (currentUser != null) {
             currentUserFullName = currentUser.getFullname();
@@ -116,7 +119,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity getCurrentUser() {
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByUsername(currentUsername).orElse(null);
+        return userRepository.findByUsername(currentUsername).orElseThrow(() -> new IllegalArgumentException("User not found!"));
     }
 
     @Override
@@ -160,7 +163,7 @@ public class UserServiceImpl implements UserService {
         List<UserRoleEntity> userRoleEntities = new ArrayList<>();
 
         for ( UserRole userRole : userRoles ){
-            UserRoleEntity userRoleEntity = userRoleRepository.findByRole(userRole).orElse(null);
+            UserRoleEntity userRoleEntity = userRoleRepository.findByRole(userRole).orElseThrow(() -> new IllegalArgumentException("Not found user with " + username + "!"));
             if (userRoleEntity != null) {
                 userRoleEntities.add(userRoleEntity);
             }

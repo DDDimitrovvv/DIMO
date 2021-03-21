@@ -10,7 +10,7 @@ import java.util.Map;
 public interface ProductService {
     List<ProductViewModel> getListWithAllProducts();
 
-    void addProduct(ProductAddServiceModel productAddServiceModel) throws IOException;
+    void addProduct(ProductAddServiceModel productAddServiceModel) throws Exception;
 
     Map<String, Integer> availableProductInDB();
 

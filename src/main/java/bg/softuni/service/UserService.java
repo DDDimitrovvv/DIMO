@@ -15,9 +15,9 @@ public interface UserService {
 
     boolean isThisUsernameAlreadyExists(String username);
 
-    String currentUserFullName();
+    String currentUserFullName() throws Exception;
 
-    UserEntity getCurrentUser();
+    UserEntity getCurrentUser() throws Exception;
 
     int getCountOfAllLoggedUsers();
 
@@ -25,8 +25,8 @@ public interface UserService {
 
     int getCountOfAllRegisteredUsers();
 
-    List<String> getAllUsernameList();
+    List<String> getAllUsernameList() throws Exception;
 
-    void changeRole(String username, String role);
+    void changeRole(String username, String role) throws Exception;
 
 }

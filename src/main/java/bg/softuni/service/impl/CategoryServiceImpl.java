@@ -36,7 +36,6 @@ public class CategoryServiceImpl implements CategoryService {
     public void seedCategories() {
 
         if (categoryRepository.count() == 0) {
-
             try {
                 CategoryEntity[] categoryEntities =
                         gson.fromJson(Files.
@@ -47,7 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
             } catch (IOException e) {
                 throw new IllegalStateException("Sorry! The categories cannot be seed in DB!!!");
             }
-
         }
     }
 
@@ -60,7 +58,6 @@ public class CategoryServiceImpl implements CategoryService {
         for ( CategoryEntity allCatEntity : allCatEntities ){
             listWithCategoryNames.add(allCatEntity.getCategoryName());
         }
-
         return listWithCategoryNames;
     }
 

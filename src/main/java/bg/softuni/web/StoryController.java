@@ -36,20 +36,20 @@ public class StoryController {
         if (!model.containsAttribute("storyAddBindingModel")) {
             model.addAttribute("storyAddBindingModel", new StoryAddBindingModel());
         }
-        return "story-add";
+
+            return "story-add";
     }
 
     @PostMapping("/add")
     public String addProduct(@Valid StoryAddBindingModel storyAddBindingModel,
                              BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) throws IOException {
+                             RedirectAttributes redirectAttributes) throws Exception {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || storyAddBindingModel.getImageUrl().isEmpty()) {
             redirectAttributes.addFlashAttribute("storyAddBindingModel", storyAddBindingModel);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.storyAddBindingModel",
                     bindingResult);
-
             return "redirect:add";
         }
 

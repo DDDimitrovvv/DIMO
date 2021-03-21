@@ -16,7 +16,7 @@ public class StoryAddBindingModel {
     @Size(min = 5, message = "The description must be at least five characters.")
     private String description;
 
-    @NotNull
+    @NotNull(message = "The image cannot be null. Please add it!")
     private MultipartFile imageUrl;
 
     private String productLink;
