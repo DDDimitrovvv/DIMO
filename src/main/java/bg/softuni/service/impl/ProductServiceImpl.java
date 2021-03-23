@@ -89,4 +89,11 @@ public class ProductServiceImpl implements ProductService {
                     return productViewModel;
                 }).orElseThrow(IllegalArgumentException::new);
     }
+
+    @Override
+    public ProductEntity findProductEntityById(Long productId) {
+        return productRepository.
+                findById(productId).
+                orElseThrow(IllegalArgumentException::new);
+    }
 }

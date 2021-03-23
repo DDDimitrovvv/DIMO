@@ -1,5 +1,6 @@
 package bg.softuni.service;
 
+import bg.softuni.model.entities.ProductEntity;
 import bg.softuni.model.service.ProductAddServiceModel;
 import bg.softuni.model.view.ProductViewModel;
 
@@ -15,4 +16,6 @@ public interface ProductService {
     Map<String, Integer> availableProductInDB();
 
     ProductViewModel findById(Long id);
+
+    ProductEntity findProductEntityById(Long productId);
 }

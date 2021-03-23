@@ -1,5 +1,7 @@
 package bg.softuni.web;
 
+import bg.softuni.model.view.LogViewModel;
+import bg.softuni.service.LogService;
 import bg.softuni.service.ProductService;
 import bg.softuni.service.StoryService;
 import bg.softuni.service.UserService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -21,13 +24,16 @@ public class AdminController {
     private final UserService userService;
     private final ProductService productService;
     private final StoryService storyService;
+    private final LogService logService;
 
     public AdminController(UserService userService,
                            ProductService productService,
-                           StoryService storyService) {
+                           StoryService storyService,
+                           LogService logService) {
         this.userService = userService;
         this.productService = productService;
         this.storyService = storyService;
+        this.logService = logService;
     }
 
     @GetMapping("/statistics")
@@ -51,6 +57,9 @@ public class AdminController {
 
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM, yyyy", Locale.ENGLISH);
         model.addAttribute("localDate", LocalDate.now().format(formatter));
+
+        model.addAttribute("isAvailableUserChoice", logService.getAllLogsOfUsers().size() > 0);
+        model.addAttribute("userChoice", logService.getAllLogsOfUsers());
 
         return "statistics";
     }

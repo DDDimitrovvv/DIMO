@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
         List<String> usernameList = new ArrayList<>();
 
         for ( String username : allUsernames ){
-            if (!username.equalsIgnoreCase(getCurrentUser().getUsername())) {
+            if (!username.equalsIgnoreCase(getCurrentUser().getUsername()) && !username.equals("admin@gmail.com")) {
                 usernameList.add(username);
             }
         }

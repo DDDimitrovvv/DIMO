@@ -140,6 +140,56 @@
     </div>
 </section>
 
+<section th:if="${isAvailableUserChoice}" class="u-align-center u-clearfix u-section-2" id="sec-ba99">
+    <div
+            class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <h3>Users preferences:</h3>
+
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="5%">
+                    <col width="25%">
+                    <col width="40%">
+                    <col width="20%">
+                    <col width="10%">
+                </colgroup>
+                <thead class="u-palette-4-base u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Id</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">User</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Product</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Date and time</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Page</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <th:block
+                        th:each="details : ${userChoice}">
+                    <tr style="height: 60px;">
+                        <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5"
+                            th:text="*{details.getId()}">Row 1
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5"
+                            th:text="*{details.getUsername()}">Row 1
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="|*{details.getProductBrand()}, *{details.getProductModel()}|">Description
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="${#temporals.format(details.getLocalDateTime(), 'dd-MM-yyyy HH:mm:ss')}">Description
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell" th:text="*{details.getActionPage()}">
+                            Description
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
 <script>
     setInterval(showTime, 1000);
 
@@ -164,6 +214,7 @@
         document.getElementById("clock")
             .innerHTML = hour + ":" + min + ":" + sec;
     }
+
     showTime();
 </script>
 
