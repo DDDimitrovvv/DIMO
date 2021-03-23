@@ -26,27 +26,37 @@
 
 <header th:replace="fragments/fragment::navigation"></header>
 
-<section class="u-clearfix u-image u-section-1" id="carousel_8295" data-image-width="962" data-image-height="1253">
-    <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
-        <img alt="" class="u-image u-image-round u-radius-25 u-image-1" data-image-width="1000" data-image-height="763" th:src="@{/images/11771199.jpg}">
+<section style="resize: vertical;  overflow: auto;" class="u-clearfix u-image u-section-1" id="carousel_8295"
+         data-image-width="962" data-image-height="1253">
+    <div th:object="${product}"
+         class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <img alt="" class="u-image u-image-round u-radius-25 u-image-1" data-image-width="1000" data-image-height="763"
+             th:src="*{imageUrl}">
         <div class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-1">
-            <div class="u-container-layout u-container-layout-1">
-                <h2 class="u-text u-text-1">Brand: JBL</h2>
-                <h3 class="u-text u-text-2">Model: JBL</h3>
-                <h4 class="u-text u-text-3">Category: Speakers</h4>
-                <h4 class="u-text u-text-4">Price: 300$</h4>
-                <h4 class="u-text u-text-5">Color: black</h4>
-                <h5 class="u-text u-text-6">Warranty: 2 monts</h5>
-                <h5 class="u-text u-text-7">Manufacture date: 1995-10-03</h5>
-                <p class="u-small-text u-text u-text-variant u-text-8">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Click to select the text box. Click again or double click to start editing the text.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <a href="#" class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-2 u-radius-50 u-text-black u-btn-1">STORIES</a>
-                <a href="#" class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
-                <a href="#" class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-3">Edit</a>
+            <div style="resize: vertical;  overflow: auto;" class="u-container-layout u-container-layout-1">
+                <h2 class="u-text u-text-1" style="color: darkviolet" th:text="|Brand: *{brand}|">Brand: JBL</h2>
+                <h3 class="u-text u-text-2" style="color: darkviolet" th:text="|Model: *{model}|">Model: JBL</h3>
+                <h4 class="u-text u-text-3" style="color: darkviolet" th:text="|Category: *{categoryName}|">Category:
+                    Speakers</h4>
+                <h4 class="u-text u-text-4" style="color: darkviolet" th:text="|Price: *{price}€|">Price: 300$</h4>
+                <h4 class="u-text u-text-5" style="color: darkviolet" th:text="|Color: *{color}|">Color: black</h4>
+                <h5 th:unless="*{warranty < 0}" style="color: grey" class="u-text u-text-6"
+                    th:text="|Warranty: *{warranty} months|">Warranty: 2 monts</h5>
+                <h5 th:unless="*{manufactureDate == null}" style="color: grey" class="u-text u-text-7"
+                    th:text="|Manufacture: *{manufactureDate}|">Manufacture date: 1995-10-03</h5>
+                <p class="u-small-text u-text u-text-variant u-text-8" th:text="*{details}">Sample text. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <a style="position: absolute;  bottom: 10px;" href="#"
+                   class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-2 u-radius-50 u-text-black u-btn-1">STORIES</a>
+                <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                <a style="float: right" href="#"
+                   class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
+                <a style="position: absolute;  bottom: 10px;" href="#"
+                   class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-3">Edit</a>
             </div>
         </div>
     </div>
 </section>
-
 
 
 </body>

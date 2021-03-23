@@ -2,6 +2,7 @@ package bg.softuni.web;
 
 import bg.softuni.model.binding.ProductAddBindingModel;
 import bg.softuni.model.service.ProductAddServiceModel;
+import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.service.CategoryService;
 import bg.softuni.service.ProductService;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,7 +56,6 @@ public class ProductController {
 
             return "redirect:add";
         }
-
         //save product in DB
         productService
                 .addProduct(modelMapper.map(productAddBindingModel, ProductAddServiceModel.class));
@@ -62,9 +63,11 @@ public class ProductController {
         return "redirect:/home";
     }
 
+    @GetMapping("/details/{id}")
+    public String details(Model model, @PathVariable Long id) {
 
-    @GetMapping("/details")
-    public String details(Model model) {
+        ProductViewModel productViewModel = productService.findById(id);
+        model.addAttribute("product", productViewModel);
 
         return "product-details";
     }

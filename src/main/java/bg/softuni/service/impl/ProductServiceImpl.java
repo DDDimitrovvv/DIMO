@@ -78,4 +78,15 @@ public class ProductServiceImpl implements ProductService {
         });
         return products;
     }
+
+    @Override
+    public ProductViewModel findById(Long id) {
+        return productRepository.
+                findById(id).
+                map(productEntity -> {
+                    ProductViewModel productViewModel = modelMapper.map(productEntity, ProductViewModel.class);
+                    productViewModel.setCategoryName(productEntity.getCategoryEntity().getCategoryName());
+                    return productViewModel;
+                }).orElseThrow(IllegalArgumentException::new);
+    }
 }

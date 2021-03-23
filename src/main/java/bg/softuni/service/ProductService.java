@@ -14,4 +14,5 @@ public interface ProductService {
 
     Map<String, Integer> availableProductInDB();
 
+    ProductViewModel findById(Long id);
 }
