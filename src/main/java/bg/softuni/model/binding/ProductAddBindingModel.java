@@ -31,7 +31,7 @@ public class ProductAddBindingModel {
     @Min(0)
     private int warranty;
 
-    @Size(min = 5, message = "The product description must be at least five characters.")
+    @Size(min = 5, max = 650, message = "The product description must be at least five characters.")
     private String details;
 
     @NotNull
