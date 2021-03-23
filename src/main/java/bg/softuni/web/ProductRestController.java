@@ -3,6 +3,7 @@ package bg.softuni.web;
 import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.service.ProductService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,9 @@ public class ProductRestController {
     }
 
     @GetMapping("/api")
-    public List<ProductViewModel> findAll(){
-        return productService.getListWithAllProducts();
+    public ResponseEntity<List<ProductViewModel>> findAll() {
+        return ResponseEntity.
+                ok().
+                body(productService.getListWithAllProducts());
     }
 }

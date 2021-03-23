@@ -33,11 +33,17 @@
             th:text="|Hello ${currentUserFullName},
                  Welcome to your Digital Innovative Modern Opportunities!|"></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+            <li class="u-nav-item">
+                <input style="width: 400px; text-align:center;" id="searchInput" type="search" placeholder="Search by product brand, model or category" name="search">
+                <small class="text-danger invalid-feedback" id="customError"
+                       style="display: none; font-size:20px; background-color:orangered;">Sorry! No products found!</small>
+            </li>
+
             <div class="u-layout">
                 <div class="u-layout-row" id="productList">
 
                     <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-1">
+                        <div class="u-container-layout u-container-layout-2">
                             <!--blog_post-->
                             <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
                                 <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
@@ -62,7 +68,7 @@
                                     </div>
                                     <!--/blog_post_content-->
                                     <!--blog_post_readmore-->
-                                    <a href="../blog/post.html"
+                                    <a href="/products/details"
                                        class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1">
                                         <!--blog_post_readmore_content-->Read More
                                         <!--/blog_post_readmore_content-->
@@ -72,8 +78,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
+                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-2">
                             <!--blog_post-->
                             <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
@@ -109,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
+                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-3">
                             <!--blog_post-->
                             <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
@@ -145,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="u-container-style u-layout-cell u-shape-rectangle u-size-15 u-size-30-md u-layout-cell-4">
+                    <div class="u-container-style u-layout-cell u-shape-rectangle u-size-15 u-size-30-md u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-4">
                             <!--blog_post-->
                             <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
@@ -181,6 +186,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

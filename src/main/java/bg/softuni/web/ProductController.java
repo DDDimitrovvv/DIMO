@@ -61,4 +61,11 @@ public class ProductController {
 
         return "redirect:/home";
     }
+
+
+    @GetMapping("/details")
+    public String details(Model model) {
+
+        return "product-details";
+    }
 }
