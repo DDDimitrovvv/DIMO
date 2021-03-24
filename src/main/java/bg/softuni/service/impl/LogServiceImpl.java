@@ -12,7 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,23 +45,10 @@ public class LogServiceImpl implements LogService {
                 setActionPage(actionPage);
 
         logRepository.save(logEntity);
-
     }
 
     @Override
     public List<LogViewModel> getAllLogsOfUsers() {
-//        List<LogEntity> logRepositoryAll = logRepository.findAll();
-//        List<LogViewModel> finalViewModel = new ArrayList<>();
-//
-//        for ( LogEntity logEntity : logRepositoryAll ){
-//            finalViewModel.add(new LogViewModel().
-//                    setUsername(logEntity.getUserEntity().getUsername()).
-//                    setPageName(logEntity.getActionPage()).
-//                    setLocalDateTime(logEntity.getLocalDateTime()).
-//                    setProductBrand(logEntity.getProductEntity().getBrand()).
-//                    setProductModel(logEntity.getProductEntity().getModel()).
-//                    setId(logEntity.getId()));
-//        }
         return logRepository.
                 findAll().
                 stream().
@@ -74,5 +60,10 @@ public class LogServiceImpl implements LogService {
                             setProductModel(logEntity.getProductEntity().getModel());
                     return logViewModel;
                 }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteAllLogsEntities() {
+        logRepository.deleteAll();
     }
 }

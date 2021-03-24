@@ -1,6 +1,7 @@
 package bg.softuni.config;
 
-import bg.softuni.model.activeUser.ActiveUserStore;
+import bg.softuni.model.scheduletasks.ActiveUserStore;
+import bg.softuni.model.scheduletasks.ClearLogFromDB;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package bg.softuni.model.activeUser;
+package bg.softuni.model.scheduletasks;
 
 import bg.softuni.service.impl.UserServiceImpl;
 import org.slf4j.Logger;

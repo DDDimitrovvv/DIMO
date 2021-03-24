@@ -8,4 +8,6 @@ public interface LogService {
     void createLog(String actionPage, Long productId) throws Exception;
 
     List<LogViewModel> getAllLogsOfUsers();
+
+    void deleteAllLogsEntities();
 }

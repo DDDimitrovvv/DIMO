@@ -1,6 +1,6 @@
 package bg.softuni.service.impl;
 
-import bg.softuni.model.activeUser.ActiveUserStore;
+import bg.softuni.model.scheduletasks.ActiveUserStore;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.UserRoleEntity;
 import bg.softuni.model.entities.enums.UserRole;

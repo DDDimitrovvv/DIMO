@@ -58,7 +58,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // remove the session from the server
                         invalidateHttpSession(true).
                 // delete the session cookie
-                        deleteCookies("JSESSIONID");//bye! :-)
+                        deleteCookies("JSESSIONID");
     }
 
     @Override
