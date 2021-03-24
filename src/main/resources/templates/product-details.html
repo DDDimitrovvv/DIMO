@@ -61,15 +61,16 @@
                     th:text="|Warranty: *{warranty} months|">Warranty: 2 monts</h5>
                 <h5 th:unless="*{manufactureDate == null}" style="color: darkorange" class="u-text u-text-7"
                     th:text="|Manufacture: *{manufactureDate}|">Manufacture date: 1995-10-03</h5>
-                <p class="u-small-text u-text u-text-variant u-text-8" th:text="*{details}">Sample text. Excepteur sint
+                <p class="u-small-text u-text u-text-variant u-text-8" style="text-align:justify" th:text="*{details}">
+                    Sample text. Excepteur sint
                     occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-        <div class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-2">
+        <div th:if="${editAccess}"
+             class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-2">
             <div class="u-container-layout u-container-layout-2">
-
-                <a href="#"
-                   class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">Edit</a>
+                <a th:href="@{/products/edit/{id}(id = *{id})}"
+                   class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">EDIT</a>
 
                 <a href="#"
                    class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>

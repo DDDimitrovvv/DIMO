@@ -1,7 +1,8 @@
 package bg.softuni.service.impl;
 
 import bg.softuni.model.entities.ProductEntity;
-import bg.softuni.model.service.ProductAddServiceModel;
+import bg.softuni.model.entities.UserEntity;
+import bg.softuni.model.service.ProductServiceModel;
 import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.ProductRepository;
@@ -53,15 +54,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(ProductAddServiceModel productAddServiceModel) throws Exception {
+    public void addProduct(ProductServiceModel productServiceModel) throws Exception {
 
-        ProductEntity productEntity = modelMapper.map(productAddServiceModel, ProductEntity.class);
-        MultipartFile img = productAddServiceModel.getImageUrl();
+        ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
+        MultipartFile img = productServiceModel.getImageUrl();
         String imageUrl = cloudinaryService.uploadImage(img);
 
         productEntity.
                 setImageUrl(imageUrl).
-                setCategoryEntity(categoryService.findCategoryByCategoryName(productAddServiceModel.getCategoryName())).
+                setCategoryEntity(categoryService.findCategoryByCategoryName(productServiceModel.getCategoryName())).
                 setUserEntity(userService.getCurrentUser());
 
         productRepository.save(productEntity);
@@ -95,5 +96,32 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.
                 findById(productId).
                 orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public boolean validateUserAccess(Long id) throws Exception {
+        UserEntity currentUser = userService.getCurrentUser();
+        long userIdFromProductEntity = findProductEntityById(id).getUserEntity().getId();
+        return currentUser.getId() == userIdFromProductEntity || currentUser.getUsername().equals("admin@gmail.com");
+    }
+
+    @Override
+    public void editProduct(ProductServiceModel productServiceModel, Long id, String notUpdateMyPicture) throws Exception {
+        String imageUrl = findById(id).getImageUrl();
+
+        ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
+
+        if (!notUpdateMyPicture.equals("true")) {
+            MultipartFile img = productServiceModel.getImageUrl();
+            imageUrl = cloudinaryService.uploadImage(img);
+        }
+
+        productEntity.
+                setImageUrl(imageUrl).
+                setCategoryEntity(categoryService.findCategoryByCategoryName(productServiceModel.getCategoryName())).
+                setUserEntity(userService.getCurrentUser()).
+                setId(id);
+
+        productRepository.save(productEntity);
     }
 }

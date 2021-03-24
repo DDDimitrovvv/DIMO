@@ -1,8 +1,6 @@
 package bg.softuni.web;
 
-import bg.softuni.model.binding.ProductAddBindingModel;
 import bg.softuni.model.binding.StoryAddBindingModel;
-import bg.softuni.model.service.ProductAddServiceModel;
 import bg.softuni.model.service.StoryAddServiceModel;
 import bg.softuni.service.StoryService;
 import org.modelmapper.ModelMapper;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/stories")

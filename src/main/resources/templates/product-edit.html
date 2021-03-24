@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/Product.css">
     <link rel="stylesheet" href="/css/Main.css" media="screen">
-    <title>Add Product</title>
+    <title>Edit Product</title>
 
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
@@ -25,11 +25,14 @@
 
 <main class="content-wrap">
 
-    <h1 class="border-bottom" style="text-align:center; color: yellow;">Add your product:</h1>
+<!--    th:method="patch"-->
+
+    <h1 class="border-bottom" style="text-align:center; color: yellow;">Edit your product:</h1>
     <div class="d-flex justify-content-center">
-        <form th:action="@{/products/add}"
-              th:object="${productAddBindingModel}"
-              method="POST"
+        <form th:action="@{/products/edit/{id}(id = *{id})}"
+
+              th:object="${productViewModel}"
+              th:method="patch"
               enctype="multipart/form-data"
               class="text-light">
             <div class="form-row m-5">
@@ -126,7 +129,7 @@
                             class="custom-select">
                         <option value="" selected>Select category</option>
                         <option
-                                th:each="category : ${categoryList}"
+                                th:each="category : ${categoryListItems}"
                                 th:value="${category}"
                                 th:text="${category}"
                                 value="">Select category
@@ -144,7 +147,6 @@
                             accept=".png, .jpg, .jpeg"
                             id="imageUrl"
                             type="file"
-                            required
                             class="form-control-file"
                             name="imageUrl">
                     <small th:if="*{imageUrl}"
@@ -156,7 +158,9 @@
             <div class="form-row m-5">
                 <div class="col">
                     <label for="details"><b>Details</b></label>
-                    <textarea th:field="*{details}"
+                    <textarea th:if="notUpdateMyPicture !=null"
+                            th:field="*{details}"
+                              th:text="*{details}"
                               th:errorclass="is-invalid"
                               required
                               th:minlength="5"
@@ -171,7 +175,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-primary btn-block w-50" type="submit"><b>Add Product</b></button>
+                <input type="checkbox" id="notUpdateMyPicture" name="notUpdateMyPicture" value="true">
+                <label for="notUpdateMyPicture"> -> Do not update the picture</label>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button class="btn btn-primary btn-block w-50" type="submit"><b>Edit Product</b></button>
             </div>
         </form>
     </div>

@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProductAddServiceModel {
+public class ProductServiceModel {
 
     private String brand;
     private String model;
@@ -17,7 +17,7 @@ public class ProductAddServiceModel {
     private MultipartFile imageUrl;
     private String categoryName;
 
-    public ProductAddServiceModel() {
+    public ProductServiceModel() {
     }
 
 
@@ -25,7 +25,7 @@ public class ProductAddServiceModel {
         return brand;
     }
 
-    public ProductAddServiceModel setBrand(String brand) {
+    public ProductServiceModel setBrand(String brand) {
         this.brand = brand;
         return this;
     }
@@ -34,7 +34,7 @@ public class ProductAddServiceModel {
         return model;
     }
 
-    public ProductAddServiceModel setModel(String model) {
+    public ProductServiceModel setModel(String model) {
         this.model = model;
         return this;
     }
@@ -43,7 +43,7 @@ public class ProductAddServiceModel {
         return manufactureDate;
     }
 
-    public ProductAddServiceModel setManufactureDate(LocalDate manufactureDate) {
+    public ProductServiceModel setManufactureDate(LocalDate manufactureDate) {
         this.manufactureDate = manufactureDate;
         return this;
     }
@@ -52,7 +52,7 @@ public class ProductAddServiceModel {
         return color;
     }
 
-    public ProductAddServiceModel setColor(String color) {
+    public ProductServiceModel setColor(String color) {
         this.color = color;
         return this;
     }
@@ -61,7 +61,7 @@ public class ProductAddServiceModel {
         return price;
     }
 
-    public ProductAddServiceModel setPrice(BigDecimal price) {
+    public ProductServiceModel setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -70,7 +70,7 @@ public class ProductAddServiceModel {
         return warranty;
     }
 
-    public ProductAddServiceModel setWarranty(int warranty) {
+    public ProductServiceModel setWarranty(int warranty) {
         this.warranty = warranty;
         return this;
     }
@@ -79,7 +79,7 @@ public class ProductAddServiceModel {
         return details;
     }
 
-    public ProductAddServiceModel setDetails(String details) {
+    public ProductServiceModel setDetails(String details) {
         this.details = details;
         return this;
     }
@@ -88,7 +88,7 @@ public class ProductAddServiceModel {
         return imageUrl;
     }
 
-    public ProductAddServiceModel setImageUrl(MultipartFile imageUrl) {
+    public ProductServiceModel setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -97,7 +97,7 @@ public class ProductAddServiceModel {
         return categoryName;
     }
 
-    public ProductAddServiceModel setCategoryName(String categoryName) {
+    public ProductServiceModel setCategoryName(String categoryName) {
         this.categoryName = categoryName;
         return this;
     }
