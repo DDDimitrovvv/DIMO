@@ -91,7 +91,6 @@ public class ProductController {
                                      @Valid ProductAddBindingModel productAddBindingModel,
                                      BindingResult bindingResult,
                                      RedirectAttributes redirectAttributes,String notUpdateMyPicture) throws Exception {
-
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
             redirectAttributes.addFlashAttribute(

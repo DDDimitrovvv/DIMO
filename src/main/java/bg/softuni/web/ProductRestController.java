@@ -28,4 +28,5 @@ public class ProductRestController {
                 ok().
                 body(productService.getListWithAllProducts());
     }
+
 }

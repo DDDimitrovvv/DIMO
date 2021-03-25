@@ -1,6 +1,8 @@
 const productList = document.getElementById('productList');
 const searchField = document.getElementById('searchInput');
 const customErrorField = document.getElementById('customError');
+const foundItems = document.getElementById('foundItems');
+const dropDownMenu = document.getElementById('dpSelector');
 
 const allProducts = [];
 
@@ -8,10 +10,10 @@ fetch("http://localhost:8080/products/api").then(response => response.json()).th
     for (let product of data) {
         allProducts.push(product);
     }
-
 })
 
 searchField.addEventListener("keyup", (e) => {
+
     const searchingCharacters = searchField.value.toLowerCase();
     let filteredProducts = allProducts.filter(product => {
         return product.brand.toLowerCase().includes(searchingCharacters)
@@ -24,15 +26,21 @@ searchField.addEventListener("keyup", (e) => {
         setTimeout(function() {
             $('#customError').fadeOut('fast');
         }, 1000);
-
     } else {
+        foundItems.style.display = "block";
+        foundItems.style.display = "block";
+        setTimeout(function() {
+            $('#foundItems').fadeOut('fast');
+        }, 2000);
         displayProducts(filteredProducts);
     }
 })
 
 const displayProducts = (products) => {
+    let foundItemsCounter = 0;
     productList.innerHTML = products
         .map((prod) => {
+            foundItemsCounter +=1;
             return `     <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
                             <div class="u-container-layout u-container-layout-1">
                                 <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
@@ -53,6 +61,31 @@ const displayProducts = (products) => {
         })
         .join('');
 
+    foundItems.innerText = 'Found ' + foundItemsCounter + ' products:';
+
+}
+
+
+function myFunction() {
+
+    const selectedCategory = dropDownMenu.value.toLowerCase();
+    console.log(selectedCategory);
+    let filteredProducts = allProducts.filter(product => {
+        return product.categoryName.toLowerCase().includes(selectedCategory);
+    })
+
+    if (filteredProducts.length === 0) {
+        customErrorField.style.display = "block";
+        setTimeout(function() {
+            $('#customError').fadeOut('fast');
+        }, 1000);
+    } else {
+        foundItems.style.display = "block";
+        setTimeout(function() {
+            $('#foundItems').fadeOut('fast');
+        }, 2000);
+        displayProducts(filteredProducts);
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package bg.softuni.web;
 
+import bg.softuni.service.CategoryService;
 import bg.softuni.service.ProductService;
 import bg.softuni.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -12,10 +13,12 @@ public class HomeController {
 
     private final UserService userService;
     private final ProductService productService;
+    private final CategoryService categoryService;
 
-    public HomeController(UserService userService, ProductService productService) {
+    public HomeController(UserService userService, ProductService productService, CategoryService categoryService) {
         this.userService = userService;
         this.productService = productService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
@@ -27,6 +30,7 @@ public class HomeController {
     public String home(Model model) throws Exception {
         model.addAttribute("currentUserFullName", userService.currentUserFullName());
         model.addAttribute("allProducts", productService.getListWithAllProducts());
+        model.addAttribute("categoryList", categoryService.getListWithAllCategoryNames());
         return "home";
     }
 

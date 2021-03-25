@@ -34,19 +34,22 @@
                  Welcome to your Digital Innovative Modern Opportunities!|"></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <li class="u-nav-item">
-                <select name="cars" id="cars">
-                    <option value="volvo">Order products by:</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                <select name="dpSelector" id="dpSelector" onchange="myFunction()">
+                    <option value="">Order products by:</option>
+                    <option th:each="category : ${categoryList}"
+                            th:value="${category}"
+                            th:text="${category}">Speakers
+                    </option>
                 </select>
                 <input style="width: 400px; text-align:center;" id="searchInput" type="search"
                        placeholder="Search by product brand, model or category" name="search">
+                <div id="foundItems"
+                     style="background-color: yellow; display: none;  width: 30%; text-align: center; margin-left: 35%;">
+                    <b>Found:</b></div>
                 <small class="text-danger invalid-feedback" id="customError"
                        style="display: none; font-size:20px; background-color:orangered;">Sorry! No products
                     found!</small>
             </li>
-
             <div class="u-layout">
                 <div class="u-layout-row" id="productList">
 
