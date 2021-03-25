@@ -35,164 +35,49 @@
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <li class="u-nav-item">
                 <select name="cars" id="cars">
-                    <option value="volvo">How to order products:</option>
+                    <option value="volvo">Order products by:</option>
                     <option value="saab">Saab</option>
                     <option value="mercedes">Mercedes</option>
                     <option value="audi">Audi</option>
                 </select>
-                <input style="width: 400px; text-align:center;" id="searchInput" type="search" placeholder="Search by product brand, model or category" name="search">
+                <input style="width: 400px; text-align:center;" id="searchInput" type="search"
+                       placeholder="Search by product brand, model or category" name="search">
                 <small class="text-danger invalid-feedback" id="customError"
-                       style="display: none; font-size:20px; background-color:orangered;">Sorry! No products found!</small>
+                       style="display: none; font-size:20px; background-color:orangered;">Sorry! No products
+                    found!</small>
             </li>
 
             <div class="u-layout">
                 <div class="u-layout-row" id="productList">
 
-                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-2">
-                            <!--blog_post-->
-                            <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <!--blog_post_header-->
-                                    <h4 class="u-blog-control u-text u-text-1">
-                                        <a class="u-post-header-link" href="../blog/post.html">
-                                            <!--blog_post_header_content-->Post 1 Headline
-                                            <!--/blog_post_header_content-->
-                                        </a>
-                                    </h4>
-                                    <!--/blog_post_header-->
-                                    <!--blog_post_image-->
-                                    <a class="u-post-header-link" href="../blog/post.html"><img alt=""
-                                                                                                class="u-blog-control u-expanded-width u-image u-image-default u-image-1"
-                                                                                                src="images/1.jpeg"></a>
-                                    <!--/blog_post_image-->
-                                    <!--blog_post_content-->
-                                    <div class="u-blog-control u-post-content u-text u-text-2 fr-view">Sample small
-                                        text. Lorem ipsum
-                                        dolor sit
-                                        amet.
+                    <th:block th:each="product : ${allProducts}">
+                        <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
+                            <div class="u-container-layout u-container-layout-1">
+                                <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
+                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                                        <h4>
+                                            <a class="u-post-header-link" style="font-size: 20px; color: darkred"
+                                               th:text="|Brand: *{product.getBrand()}|">BRAND</a>
+                                        </h4>
+                                        <a class="u-post-header-link" style="color: mediumpurple"
+                                           th:text="|Model: *{product.getModel()}|">MODEL</a>
+                                        <a class="u-post-header-link">
+                                            <img alt=""
+                                                 style="height:200px; width:auto; max-width:170px; object-fit: contain"
+                                                 th:src="*{product.getImageUrl()}"></a>
+                                        <a class="u-post-header-link" style="color: forestgreen"
+                                           th:text="|Price: *{product.getPrice()}€|">PRICE</a>
+                                        <div class="u-blog-control u-post-content u-text u-text-2 fr-view"
+                                             th:text="|*{product.getDetails().substring(0,15)}...|">
+                                        </div>
+                                        <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
+                                           class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1"
+                                        >View product</a>
                                     </div>
-                                    <!--/blog_post_content-->
-                                    <!--blog_post_readmore-->
-                                    <a href="/products/details"
-                                       class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1">
-                                        <!--blog_post_readmore_content-->Read More
-                                        <!--/blog_post_readmore_content-->
-                                    </a>
-                                    <!--/blog_post_readmore-->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-2">
-                            <!--blog_post-->
-                            <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <!--blog_post_header-->
-                                    <h4 class="u-blog-control u-text u-text-1">
-                                        <a class="u-post-header-link" href="../blog/post.html">
-                                            <!--blog_post_header_content-->Post 1 Headline
-                                            <!--/blog_post_header_content-->
-                                        </a>
-                                    </h4>
-                                    <!--/blog_post_header-->
-                                    <!--blog_post_image-->
-                                    <a class="u-post-header-link" href="../blog/post.html"><img alt=""
-                                                                                                class="u-blog-control u-expanded-width u-image u-image-default u-image-1"
-                                                                                                src="images/1.jpeg"></a>
-                                    <!--/blog_post_image-->
-                                    <!--blog_post_content-->
-                                    <div class="u-blog-control u-post-content u-text u-text-2 fr-view">Sample small
-                                        text. Lorem ipsum
-                                        dolor sit
-                                        amet.
-                                    </div>
-                                    <!--/blog_post_content-->
-                                    <!--blog_post_readmore-->
-                                    <a href="../blog/post.html"
-                                       class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1">
-                                        <!--blog_post_readmore_content-->Read More
-                                        <!--/blog_post_readmore_content-->
-                                    </a>
-                                    <!--/blog_post_readmore-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-3">
-                            <!--blog_post-->
-                            <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <!--blog_post_header-->
-                                    <h4 class="u-blog-control u-text u-text-1">
-                                        <a class="u-post-header-link" href="../blog/post.html">
-                                            <!--blog_post_header_content-->Post 1 Headline
-                                            <!--/blog_post_header_content-->
-                                        </a>
-                                    </h4>
-                                    <!--/blog_post_header-->
-                                    <!--blog_post_image-->
-                                    <a class="u-post-header-link" href="../blog/post.html"><img alt=""
-                                                                                                class="u-blog-control u-expanded-width u-image u-image-default u-image-1"
-                                                                                                src="images/1.jpeg"></a>
-                                    <!--/blog_post_image-->
-                                    <!--blog_post_content-->
-                                    <div class="u-blog-control u-post-content u-text u-text-2 fr-view">Sample small
-                                        text. Lorem ipsum
-                                        dolor sit
-                                        amet.
-                                    </div>
-                                    <!--/blog_post_content-->
-                                    <!--blog_post_readmore-->
-                                    <a href="../blog/post.html"
-                                       class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1">
-                                        <!--blog_post_readmore_content-->Read More
-                                        <!--/blog_post_readmore_content-->
-                                    </a>
-                                    <!--/blog_post_readmore-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="u-container-style u-layout-cell u-shape-rectangle u-size-15 u-size-30-md u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-4">
-                            <!--blog_post-->
-                            <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
-                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <!--blog_post_header-->
-                                    <h4 class="u-blog-control u-text u-text-1">
-                                        <a class="u-post-header-link" href="../blog/post.html">
-                                            <!--blog_post_header_content-->Post 1 Headline
-                                            <!--/blog_post_header_content-->
-                                        </a>
-                                    </h4>
-                                    <!--/blog_post_header-->
-                                    <!--blog_post_image-->
-                                    <a class="u-post-header-link" href="../blog/post.html"><img alt=""
-                                                                                                class="u-blog-control u-expanded-width u-image u-image-default u-image-1"
-                                                                                                src="images/1.jpeg"></a>
-                                    <!--/blog_post_image-->
-                                    <!--blog_post_content-->
-                                    <div class="u-blog-control u-post-content u-text u-text-2 fr-view">Sample small
-                                        text. Lorem ipsum
-                                        dolor sit
-                                        amet.
-                                    </div>
-                                    <!--/blog_post_content-->
-                                    <!--blog_post_readmore-->
-                                    <a href="../blog/post.html"
-                                       class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1">
-                                        <!--blog_post_readmore_content-->Read More
-                                        <!--/blog_post_readmore_content-->
-                                    </a>
-                                    <!--/blog_post_readmore-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    </th:block>
                 </div>
             </div>
         </div>
