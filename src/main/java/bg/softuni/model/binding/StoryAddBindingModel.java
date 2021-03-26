@@ -13,7 +13,7 @@ public class StoryAddBindingModel {
     @Size(min = 3, max = 30, message = "The title must contains between three and twenty characters.")
     private String title;
 
-    @Size(min = 5, message = "The description must be at least five characters.")
+    @Size(min = 50, message = "The description must be at least five characters.")
     private String description;
 
     @NotNull(message = "The image cannot be null. Please add it!")

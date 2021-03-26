@@ -9,9 +9,9 @@
     <meta name="keywords" content="Welcome to your digital innovative modern opportunities!">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Home</title>
+    <title>Stories</title>
     <link rel="stylesheet" href="/css/Main.css" type="text/css">
-    <link rel="stylesheet" href="/css/Home.css" type="text/css">
+    <link rel="stylesheet" href="/css/Stories.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
@@ -26,66 +26,44 @@
 
 <header th:replace="fragments/fragment::navigation"></header>
 
-<section class="skrollable u-align-center u-clearfix u-image u-section-1" id="sec-4415">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-custom-font u-font-Lobster u-text u-text-1"
-            style="white-space: pre-line;"
-            th:text="|Hello ${currentUserFullName},
-                 Welcome to your Digital Innovative Modern Opportunities!|"></h1>
-        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-            <li class="u-nav-item">
-                <select name="dpSelector" id="dpSelector" onchange="myFunction()">
-                    <option value="">Order products by:</option>
-                    <option th:each="category : ${categoryList}"
-                            th:value="${category}"
-                            th:text="${category}">Speakers
-                    </option>
-                </select>
-                <input style="width: 400px; text-align:center;" id="searchInput" type="search"
-                       placeholder="Search by product brand, model or category" name="search">
-                <div id="foundItems"
-                     style="background-color: yellow; display: none;  width: 30%; text-align: center; margin-left: 35%;">
-                    <b>Found:</b></div>
-                <small class="text-danger invalid-feedback" id="customError"
-                       style="display: none; font-size:20px; background-color:#ff4500;">Sorry! No products
-                    found!</small>
-            </li>
-            <div class="u-layout">
-                <div class="u-layout-row" id="productList">
+<section class="skrollable u-clearfix u-gradient u-section-1" id="sec-632d">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-expanded-width u-list u-repeater u-list-1">
+            <div th:each="story : ${storiesCollection}"
+                 class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-1"
+                 data-image-width="500"
+                 data-image-height="750"
+                 data-animation-name="zoomIn"
+                 data-animation-duration="1000"
+                 data-animation-delay="0"
+                 data-animation-direction="Down"
+                 th:style="|background-image:url(*{story.imageUrl})|">
+                <a href="/home">
+                    <div class="u-container-layout u-similar-container u-container-layout-1">
+                        <h5 class="u-align-center u-text u-text-1"
+                            data-animation-name="fadeIn"
+                            data-animation-duration="1000"
+                            data-animation-delay="0"
+                            data-animation-direction=""
+                            th:text="*{story.storyTypeEnum}" style="background-color: purple;border-radius: 25px;">
+                            ISSUE</h5>
+                        <h5 class="u-text u-text-2"
+                            style="color: black; white-space: pre-line; background-color: lavender; border: thin solid blueviolet"
+                            th:utext="|&lt;b&gt;Title:&lt;/b&gt;
+                            *{story.title}
 
-                    <th:block th:each="product : ${allProducts}">
-                        <div class="u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-1">
-                            <div class="u-container-layout u-container-layout-1">
-                                <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
-                                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                        <h4>
-                                            <a class="u-post-header-link" style="font-size: 20px; color: darkred"
-                                               th:text="|Brand: *{product.getBrand()}|">BRAND</a>
-                                        </h4>
-                                        <a class="u-post-header-link" style="color: mediumpurple"
-                                           th:text="|Model: *{product.getModel()}|">MODEL</a>
-                                        <a class="u-post-header-link">
-                                            <img alt=""
-                                                 style="height:200px; width:auto; max-width:170px; object-fit: contain"
-                                                 th:src="*{product.getImageUrl()}"></a>
-                                        <a class="u-post-header-link" style="color: forestgreen"
-                                           th:text="|Price: *{product.getPrice()}€|">PRICE</a>
-                                        <div class="u-blog-control u-post-content u-text u-text-2 fr-view"
-                                             th:text="|*{product.getDetails().substring(0,15)}...|">
-                                        </div>
-                                        <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
-                                           class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1"
-                                        >View product</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
-                </div>
+                            &lt;b&gt;Description:&lt;/b&gt;
+                            *{story.description.substring(0,50)}...|"
+                        >Sample
+                            Headline</h5>
+                    </div>
+                </a>
             </div>
+
         </div>
     </div>
 </section>
+
 <section class="u-clearfix u-gradient u-section-2" id="sec-2836">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-list u-repeater u-list-1">

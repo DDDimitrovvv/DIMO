@@ -1,8 +1,9 @@
 package bg.softuni.service;
 
 import bg.softuni.model.service.StoryAddServiceModel;
+import bg.softuni.model.view.StoryViewModel;
 
-import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public interface StoryService {
@@ -10,4 +11,5 @@ public interface StoryService {
 
     Map<String, Integer> availableStoriesInDB();
 
+    List<StoryViewModel> getAllStories();
 }

@@ -3,6 +3,7 @@ package bg.softuni.service.impl;
 import bg.softuni.model.entities.StoryEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
 import bg.softuni.model.service.StoryAddServiceModel;
+import bg.softuni.model.view.StoryViewModel;
 import bg.softuni.repository.StoryRepository;
 import bg.softuni.service.CloudinaryService;
 import bg.softuni.service.StoryService;
@@ -13,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class StoryServiceImpl implements StoryService {
@@ -55,5 +58,14 @@ public class StoryServiceImpl implements StoryService {
         }
 
         return stories;
+    }
+
+    @Override
+    public List<StoryViewModel> getAllStories() {
+        return storyRepository.
+                findAll().
+                stream().
+                map(StoryEntity -> modelMapper.map(StoryEntity, StoryViewModel.class)).
+                collect(Collectors.toList());
     }
 }

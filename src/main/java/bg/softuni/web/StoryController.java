@@ -26,6 +26,12 @@ public class StoryController {
         this.modelMapper = modelMapper;
     }
 
+    @GetMapping("/all")
+    public String allStories(Model model) {
+        model.addAttribute("storiesCollection", storyService.getAllStories());
+        return "stories";
+    }
+
 
     @GetMapping("/add")
     public String add(Model model) {
@@ -34,7 +40,7 @@ public class StoryController {
             model.addAttribute("storyAddBindingModel", new StoryAddBindingModel());
         }
 
-            return "story-add";
+        return "story-add";
     }
 
     @PostMapping("/add")
