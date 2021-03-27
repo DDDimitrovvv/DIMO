@@ -63,17 +63,32 @@
                     <div class="u-container-style u-image u-layout-cell u-size-30 u-image-1">
                         <div class="u-container-layout u-container-layout-2">
                             <div class="u-container-style u-group u-radius-25 u-shape-round u-group-1"
-                                 th:classappend="${editAccess} ? u-palette-4-light-1"
-                            >
+                                 th:classappend="${editAccess} ? u-palette-4-light-1">
                                 <div th:if="${editAccess}" class="u-container-layout u-container-layout-3">
                                     <a th:href="@{/stories/edit/{id}(id = *{id})}"
                                        class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">Edit</a>
-                                    <a href="#"
+                                    <a th:href="@{/stories/delete/{id}(id = *{id})}"
                                        class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
                                 </div>
                             </div>
-                            <img th:src="*{imageUrl}" class="u-image u-image-default u-image-2"
-                                 data-image-width="640" data-image-height="400">
+                            <img th:src="*{imageUrl}"
+                                 class="u-image u-image-default u-image-2"
+                                 style="display: flex;
+                    object-fit: cover;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 1000px;
+                    max-height: 760px;
+                    cursor:pointer"
+                                 onclick="onClick(this)"  >
+
+                            <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+                                <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+                                <div class="w3-modal-content w3-animate-zoom">
+                                    <img id="img01" style="width:100%">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -82,6 +97,12 @@
     </div>
 </section>
 
+<script>
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+    }
+</script>
 
 </body>
 

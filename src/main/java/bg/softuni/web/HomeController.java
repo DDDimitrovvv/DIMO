@@ -3,6 +3,9 @@ package bg.softuni.web;
 import bg.softuni.service.CategoryService;
 import bg.softuni.service.ProductService;
 import bg.softuni.service.UserService;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/home";
+        }
         return "index";
     }
 

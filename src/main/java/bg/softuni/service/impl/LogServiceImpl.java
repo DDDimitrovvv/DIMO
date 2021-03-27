@@ -66,4 +66,10 @@ public class LogServiceImpl implements LogService {
     public void deleteAllLogsEntities() {
         logRepository.deleteAll();
     }
+
+    @Override
+    public void deleteAllLogsForProductWithId(Long id) {
+        List<LogEntity> logEntities = logRepository.findAllByProductEntity_Id(id);
+        logEntities.forEach(logRepository::delete);
+    }
 }

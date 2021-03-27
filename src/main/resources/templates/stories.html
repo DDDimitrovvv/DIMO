@@ -26,7 +26,21 @@
 
 <header th:replace="fragments/fragment::navigation"></header>
 
-<section class="skrollable u-clearfix u-gradient u-section-1" id="sec-632d">
+<section th:unless="${storiesCollection.size() > 0}" class="u-align-left u-clearfix u-section-2" id="sec-883a">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-align-center u-container-style u-gradient u-group u-group-1">
+            <div class="u-container-layout u-valign-middle u-container-layout-1">
+                <h1 class="u-text u-text-custom-color-5 u-text-1">Congratulations!!!</h1>
+                <p class="u-text u-text-2">You have the unique opportunity to add&nbsp;<br>the first story in your Web page!&nbsp;<br>Let's start!
+                </p>
+                <a th:href="@{/stories/add}" class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-1">ADD story</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:if="${storiesCollection.size() > 0}"
+        class="skrollable u-clearfix u-gradient u-section-1" id="sec-632d">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-list u-repeater u-list-1">
             <div th:each="story : ${storiesCollection}"

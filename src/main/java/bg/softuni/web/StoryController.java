@@ -60,7 +60,7 @@ public class StoryController {
         storyService
                 .addStory(modelMapper.map(storyAddBindingModel, StoryServiceModel.class));
 
-        return "redirect:/home";
+        return "redirect:/stories/all";
     }
 
 
@@ -103,6 +103,13 @@ public class StoryController {
                 .editProduct(modelMapper.map(storyAddBindingModel, StoryServiceModel.class), id, notUpdateMyPicture);
 
         return "redirect:/stories/details/{id}";
+    }
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteId(@PathVariable Long id){
+        storyService.deleteStory(id);
+        return "redirect:/stories/all";
     }
 
 

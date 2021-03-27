@@ -33,7 +33,7 @@
             th:text="|Hello ${currentUserFullName},
                  Welcome to your Digital Innovative Modern Opportunities!|"></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-            <li class="u-nav-item">
+            <li th:if="${allProducts.size() > 0}" class="u-nav-item">
                 <select name="dpSelector" id="dpSelector" onchange="myFunction()">
                     <option value="">Order products by:</option>
                     <option th:each="category : ${categoryList}"
@@ -50,6 +50,19 @@
                        style="display: none; font-size:20px; background-color:#ff4500;">Sorry! No products
                     found!</small>
             </li>
+            <div th:unless="${allProducts.size() > 0}" class="u-align-left u-clearfix u-section-2" id="sec-883a">
+                <div class="u-align-center u-container-style u-gradient u-group u-group-1">
+                    <div class="u-container-layout u-valign-middle u-container-layout-1">
+                        <h1 class="u-text u-text-custom-color-5 u-text-1">Congratulations!!!</h1>
+                        <p class="u-text u-text-2">You have the unique opportunity to add&nbsp;<br>the first product in
+                            your Web page!&nbsp;<br>Let's start!
+                        </p>
+                        <a th:href="@{/products/add}"
+                           class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-1">ADD
+                            PRODUCT</a>
+                    </div>
+                </div>
+            </div>
             <div class="u-layout">
                 <div class="u-layout-row" id="productList">
 
@@ -86,6 +99,7 @@
         </div>
     </div>
 </section>
+
 <section class="u-clearfix u-gradient u-section-2" id="sec-2836">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-list u-repeater u-list-1">
@@ -136,9 +150,7 @@
                 </path>
               </svg></span>
                     <h4 class="u-text u-text-3">Design</h4>
-                    <p class="u-text u-text-4">Sample text. Click to select the text box. Click again or double click to
-                        start
-                        editing the text.</p>
+                    <p class="u-text u-text-4">We can find the beauty in every shape!</p>
                 </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-list-item-3">
@@ -157,9 +169,7 @@
                 </path>
               </svg></span>
                     <h4 class="u-text u-text-5">Pricing</h4>
-                    <p class="u-text u-text-6">Sample text. Click to select the text box. Click again or double click to
-                        start
-                        editing the text.</p>
+                    <p class="u-text u-text-6">Quality products at a reasonable price! :)</p>
                 </div>
             </div>
             <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-list-item-4">
@@ -178,9 +188,9 @@
                 </path>
               </svg></span>
                     <h4 class="u-text u-text-7">Support</h4>
-                    <p class="u-text u-text-8">Sample text. Click to select the text box. Click again or double click to
-                        start
-                        editing the text.</p>
+                    <p class="u-text u-text-8">If you have the technology knowledge, you don't need any support! But
+                        we're still
+                        here for you! :)</p>
                 </div>
             </div>
         </div>

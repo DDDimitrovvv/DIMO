@@ -10,4 +10,6 @@ public interface LogService {
     List<LogViewModel> getAllLogsOfUsers();
 
     void deleteAllLogsEntities();
+
+    void deleteAllLogsForProductWithId(Long id);
 }

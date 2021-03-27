@@ -4,6 +4,7 @@ import bg.softuni.model.binding.ProductAddBindingModel;
 import bg.softuni.model.service.ProductServiceModel;
 import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.service.CategoryService;
+import bg.softuni.service.LogService;
 import bg.softuni.service.ProductService;
 import bg.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -23,12 +24,14 @@ public class ProductController {
     private final ProductService productService;
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final LogService logService;
 
-    public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper, UserService userService) {
+    public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper, UserService userService, LogService logService) {
         this.categoryService = categoryService;
         this.productService = productService;
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.logService = logService;
     }
 
     @GetMapping("/add")
@@ -106,4 +109,18 @@ public class ProductController {
 
         return "redirect:/products/details/{id}";
     }
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteId(@PathVariable Long id){
+
+        //clear all logs for this product (already unused data)
+        logService.deleteAllLogsForProductWithId(id);
+
+        //clear all logs for this product (already unused data)
+        productService.deleteProduct(id);
+
+        return "redirect:/home";
+    }
+
 }

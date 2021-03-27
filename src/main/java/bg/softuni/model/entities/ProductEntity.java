@@ -1,5 +1,7 @@
 package bg.softuni.model.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -32,10 +34,10 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @ManyToOne
+    @ManyToOne()
     private CategoryEntity categoryEntity;
 
-    @ManyToOne
+    @ManyToOne()
     private UserEntity userEntity;
 
 

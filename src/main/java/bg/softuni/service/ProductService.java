@@ -21,4 +21,6 @@ public interface ProductService {
     boolean validateUserAccess(Long id) throws Exception;
 
     void editProduct(ProductServiceModel productServiceModel, Long id, String notUpdateMyPicture) throws Exception;
+
+    void deleteProduct(Long id);
 }

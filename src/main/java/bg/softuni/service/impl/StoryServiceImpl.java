@@ -107,4 +107,9 @@ public class StoryServiceImpl implements StoryService {
 
         storyRepository.save(storyEntity);
     }
+
+    @Override
+    public void deleteStory(Long id) {
+        storyRepository.deleteById(id);
+    }
 }
