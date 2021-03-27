@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Story.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <title>Edit Story</title>
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+</head>
+
+<div th:replace="fragments/fragment::navigation"></div>
+
+<body>
+
+<main class="content-wrap">
+    <h1 class="border-bottom" style="text-align:center; color: yellow;"><b>Edit your Story:</b></h1>
+    <div class="d-flex justify-content-center">
+        <form th:object="${storyModel}"
+              th:action="@{/stories/edit/{id}(id = *{id})}"
+              th:method="patch"
+              enctype="multipart/form-data"
+              class="text-light">
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="title" style="display: block; text-align: center;"><b>Title</b></label>
+                    <input th:field="*{title}"
+                           th:errorclass="is-invalid"
+                           required
+                           th:minlength="3"
+                           th:maxlength="30"
+                           id="title"
+                           type="text"
+                           class="form-control"
+                           name="title">
+                    <small
+                            id="titleError" class="form-text invalid-feedback rounded">The title must be between 3 and
+                        20
+                        characters</small>
+                </div>
+                <div class="col">
+                    <label for="imageUrl"><b>Picture url</b></label>
+                    <input
+                            th:field="*{imageUrl}"
+                            accept=".png, .jpg, .jpeg"
+                            id="imageUrl"
+                            type="file"
+                            class="form-control-file"
+                            name="imageUrl">
+                    <small style="display: block; color: red" id="testId">Please add an picture!!!
+                    </small>
+                </div>
+            </div>
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="productLink"><b>Product link</b></label>
+                    <input th:field="*{productLink}"
+                           th:errorclass="is-invalid"
+                           id="productLink"
+                           type="text"
+                           class="form-control"
+                           name="productLink"
+                           placeholder="(optional)">
+                    <small id="productLinkError" class="form-text invalid-feedback rounded">Add a product link</small>
+                </div>
+                <div class="col">
+                    <label for="storyTypeEnum"><b>Category</b></label>
+                    <select th:field="*{storyTypeEnum}"
+                            th:errorclass="is-invalid"
+                            required
+                            id="storyTypeEnum"
+                            name="storyTypeEnum"
+                            class="custom-select">
+                        <option value="" selected>Select type of story</option>
+                        <option
+                                th:each="storyType : ${T(bg.softuni.model.entities.enums.StoryTypeEnum).values()}"
+                                th:text="${storyType}"
+                                th:value="${storyType}"
+                                value="">Select type
+                        </option>
+
+                    </select>
+                    <small
+                            id="storyTypeEnumError" class="form-text invalid-feedback rounded">You must select
+                        type</small>
+                </div>
+            </div>
+
+            <div class="form-row m-5">
+                <div class="col">
+                    <label for="description"><b>Description</b></label>
+                    <textarea th:field="*{description}"
+                              th:errorclass="is-invalid"
+                              required
+                              th:minlength="50"
+                              id="description"
+                              type="text"
+                              class="form-control"
+                              name="description"></textarea>
+                    <small
+                           id="descriptionError" class="form-text invalid-feedback rounded">Description length must be
+                        more
+                        than 5
+                        characters</small>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <input type="checkbox" id="notUpdateMyPicture" name="notUpdateMyPicture" value="true">
+                <label for="notUpdateMyPicture"> -> Do not update the picture</label>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button class="btn btn-primary btn-block w-50" type="submit"><b>Edit Story</b></button>
+            </div>
+        </form>
+    </div>
+
+</main>
+
+<script th:src="@{/js/pictureCheckbox.js}"></script>
+
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

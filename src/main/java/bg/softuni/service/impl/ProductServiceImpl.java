@@ -111,7 +111,7 @@ public class ProductServiceImpl implements ProductService {
 
         ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
 
-        if (!notUpdateMyPicture.equals("true")) {
+        if (notUpdateMyPicture == null) {
             MultipartFile img = productServiceModel.getImageUrl();
             imageUrl = cloudinaryService.uploadImage(img);
         }

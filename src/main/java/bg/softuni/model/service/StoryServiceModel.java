@@ -1,12 +1,11 @@
 package bg.softuni.model.service;
 
-import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
-public class StoryAddServiceModel {
+public class StoryServiceModel {
 
     private String title;
     private String description;
@@ -15,14 +14,14 @@ public class StoryAddServiceModel {
     private String productLink;
     private StoryTypeEnum storyTypeEnum;
 
-    public StoryAddServiceModel() {
+    public StoryServiceModel() {
     }
 
     public String getTitle() {
         return title;
     }
 
-    public StoryAddServiceModel setTitle(String title) {
+    public StoryServiceModel setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -31,7 +30,7 @@ public class StoryAddServiceModel {
         return description;
     }
 
-    public StoryAddServiceModel setDescription(String description) {
+    public StoryServiceModel setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -40,7 +39,7 @@ public class StoryAddServiceModel {
         return imageUrl;
     }
 
-    public StoryAddServiceModel setImageUrl(MultipartFile imageUrl) {
+    public StoryServiceModel setImageUrl(MultipartFile imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -49,7 +48,7 @@ public class StoryAddServiceModel {
         return addedDate;
     }
 
-    public StoryAddServiceModel setAddedDate(LocalDate addedDate) {
+    public StoryServiceModel setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
         return this;
     }
@@ -58,7 +57,7 @@ public class StoryAddServiceModel {
         return productLink;
     }
 
-    public StoryAddServiceModel setProductLink(String productLink) {
+    public StoryServiceModel setProductLink(String productLink) {
         this.productLink = productLink;
         return this;
     }
@@ -67,7 +66,7 @@ public class StoryAddServiceModel {
         return storyTypeEnum;
     }
 
-    public StoryAddServiceModel setStoryTypeEnum(StoryTypeEnum storyTypeEnum) {
+    public StoryServiceModel setStoryTypeEnum(StoryTypeEnum storyTypeEnum) {
         this.storyTypeEnum = storyTypeEnum;
         return this;
     }

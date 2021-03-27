@@ -83,6 +83,7 @@ public class ProductController {
 
         model.addAttribute("productViewModel", productViewModel);
         model.addAttribute("categoryListItems", categoryService.getListWithAllCategoryNames());
+
         return "product-edit";
     }
 
@@ -90,12 +91,12 @@ public class ProductController {
     public String editProductConfirm(@PathVariable Long id,
                                      @Valid ProductAddBindingModel productAddBindingModel,
                                      BindingResult bindingResult,
-                                     RedirectAttributes redirectAttributes,String notUpdateMyPicture) throws Exception {
-        if (bindingResult.hasErrors()) {
+                                     RedirectAttributes redirectAttributes, String notUpdateMyPicture) throws Exception {
+
+        if (bindingResult.hasErrors() || notUpdateMyPicture == null && productAddBindingModel.getImageUrl().isEmpty()) {
             redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
             redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.productAddBindingModel",
-                    bindingResult);
+                    "org.springframework.validation.BindingResult.productAddBindingModel", bindingResult);
 
             return "redirect:/products/edit/{id}";
         }

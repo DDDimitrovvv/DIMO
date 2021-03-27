@@ -1,8 +1,9 @@
 package bg.softuni.service.impl;
 
 import bg.softuni.model.entities.StoryEntity;
+import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
-import bg.softuni.model.service.StoryAddServiceModel;
+import bg.softuni.model.service.StoryServiceModel;
 import bg.softuni.model.view.StoryViewModel;
 import bg.softuni.repository.StoryRepository;
 import bg.softuni.service.CloudinaryService;
@@ -34,10 +35,10 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public void addStory(StoryAddServiceModel storyAddServiceModel) throws Exception {
+    public void addStory(StoryServiceModel storyServiceModel) throws Exception {
 
-        StoryEntity storyEntity = modelMapper.map(storyAddServiceModel, StoryEntity.class);
-        MultipartFile img = storyAddServiceModel.getImageUrl();
+        StoryEntity storyEntity = modelMapper.map(storyServiceModel, StoryEntity.class);
+        MultipartFile img = storyServiceModel.getImageUrl();
         String imageUrl = cloudinaryService.uploadImage(img);
 
         storyEntity.setAddedDate(LocalDate.now()).
@@ -67,5 +68,43 @@ public class StoryServiceImpl implements StoryService {
                 stream().
                 map(StoryEntity -> modelMapper.map(StoryEntity, StoryViewModel.class)).
                 collect(Collectors.toList());
+    }
+
+    @Override
+    public StoryViewModel getStoryById(Long id) {
+        StoryEntity storyEntity = storyRepository.
+                findById(id).
+                orElseThrow(() -> new IllegalStateException("Story entity not found."));
+        return modelMapper.map(storyEntity, StoryViewModel.class);
+    }
+
+    @Override
+    public boolean validateUserAccess(Long id) throws Exception {
+        UserEntity currentUser = userService.getCurrentUser();
+        StoryEntity storyEntity = storyRepository.
+                findById(id).
+                orElseThrow(() -> new IllegalStateException("Story entity not found."));
+        long userIdFromStoryEntity = storyEntity.getUserEntity().getId();
+        return currentUser.getId() == userIdFromStoryEntity || currentUser.getUsername().equals("admin@gmail.com");
+    }
+
+    @Override
+    public void editProduct(StoryServiceModel storyServiceModel, Long id, String notUpdateMyPicture) throws Exception {
+        String imageUrl = getStoryById(id).getImageUrl();
+
+        StoryEntity storyEntity = modelMapper.map(storyServiceModel, StoryEntity.class);
+
+        if (notUpdateMyPicture == null) {
+            MultipartFile img = storyServiceModel.getImageUrl();
+            imageUrl = cloudinaryService.uploadImage(img);
+        }
+
+        storyEntity.
+                setAddedDate(LocalDate.now()).
+                setImageUrl(imageUrl).
+                setUserEntity(userService.getCurrentUser()).
+                setId(id);
+
+        storyRepository.save(storyEntity);
     }
 }

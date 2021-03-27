@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Product details</title>
+    <link rel="stylesheet" href="/css/Main.css">
+    <link rel="stylesheet" href="/css/story-details.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+
+</head>
+
+<body class="u-body">
+
+<header th:replace="fragments/fragment::navigation"></header>
+
+<section class="u-clearfix u-section-1" id="carousel_190f">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout" style="">
+                <div th:object="${story}" class="u-layout-row" style="">
+                    <div class="u-align-left u-container-style u-gradient u-layout-cell u-size-30 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <h3 class="u-text u-text-1" th:text="|Title: *{title}|">Title:</h3>
+                            <div class="u-border-3 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                            <h6 class="u-custom-font u-font-merriweather u-text u-text-2"
+                                th:text="|Type: *{storyTypeEnum.name()}|">Type: Friendly Service</h6>
+                            <div th:unless="*{productLink.isEmpty()}">
+                                <p class="u-custom-font u-font-merriweather u-text u-text-2">Product URL:</p>
+                                <a class="u-text u-text-3"
+                                   style="color: blue"
+                                   th:text="*{productLink}"
+                                   th:href="@{*{productLink.toString()}}"
+                                >Product URL: We're
+                                    experts at what we do. But knowing the best techniques is&nbsp;</a>
+                            </div>
+
+                            <div class="u-border-3 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-2"></div>
+                            <h6 class="u-custom-font u-font-merriweather u-text u-text-4">Description:</h6>
+                            <p class="u-text u-text-5" th:text="*{description}">From the moment you walk in the
+                                door, our focus is on relaxation. Our spa services are a great way to take a step back
+                                from the bustle of everyday life. Come take a break with us.om the moment you walk in
+                                the door, our focus is on relaxation. Our spa services are a great way to take a step
+                                back from the bustle of everyday life. Come take a break with us.om the moment you walk
+                                in the door, our focus is on relaxation. Our spa services are a great way to take a step
+                                back from the bustle of everyday life. Come take a break with us.</p>
+                        </div>
+                    </div>
+                    <div class="u-container-style u-image u-layout-cell u-size-30 u-image-1">
+                        <div class="u-container-layout u-container-layout-2">
+                            <div class="u-container-style u-group u-radius-25 u-shape-round u-group-1"
+                                 th:classappend="${editAccess} ? u-palette-4-light-1"
+                            >
+                                <div th:if="${editAccess}" class="u-container-layout u-container-layout-3">
+                                    <a th:href="@{/stories/edit/{id}(id = *{id})}"
+                                       class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">Edit</a>
+                                    <a href="#"
+                                       class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
+                                </div>
+                            </div>
+                            <img th:src="*{imageUrl}" class="u-image u-image-default u-image-2"
+                                 data-image-width="640" data-image-height="400">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>
