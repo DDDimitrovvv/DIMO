@@ -1,0 +1,136 @@
+package bg.softuni.web;
+
+import bg.softuni.model.entities.CategoryEntity;
+import bg.softuni.model.entities.ProductEntity;
+import bg.softuni.model.entities.UserEntity;
+import bg.softuni.repository.CategoryRepository;
+import bg.softuni.repository.LogRepository;
+import bg.softuni.repository.ProductRepository;
+import bg.softuni.repository.UserRepository;
+import bg.softuni.service.CloudinaryService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.HashMap;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureTestDatabase
+public class ProductControllerTest {
+
+    private static final String PRODUCT_CONTROLLER_PREFIX = "/products";
+    private long testProductId;
+
+    @MockBean
+    CloudinaryService mockCloudinaryService;
+
+    @Autowired
+    private MockMvc mockMvc;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private LogRepository logRepository;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        when(mockCloudinaryService.uploadImage(Mockito.any())).thenReturn("https://pixar.fandom.com/wiki/Cars?file=Haa.jpg");
+        this.init();
+    }
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void testShouldReturnValidStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(
+                PRODUCT_CONTROLLER_PREFIX + "/details/{id}", testProductId
+        )).
+                andExpect(status().isOk()).
+                andExpect(view().name("product-details")).
+                andExpect(model().attributeExists("product")).
+                andExpect(model().attributeExists("editAccess"));
+    }
+
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void addProduct() throws Exception {
+        
+        FileInputStream inputFile = new FileInputStream( "D:\\jbl.jpg");
+//        MockMultipartFile imgFile = new MockMultipartFile("file", "jbl.jpg", "multipart/form-data", inputFile);
+        MockMultipartFile imgFile = new MockMultipartFile("file",  inputFile);
+        HashMap<String, String> contentTypeParams = new HashMap<String, String>();
+        contentTypeParams.put("boundary", "265001916915724");
+        MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
+
+        System.out.println();
+        mockMvc.perform(MockMvcRequestBuilders.post(
+                PRODUCT_CONTROLLER_PREFIX + "/add")
+                .param("brand", "HK")
+                .param("model", "AVR270")
+                .param("color", "black")
+                .param("manufactureDate", "2019-01-09")
+                .param("price", "100")
+                .param("warranty", "12")
+                .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
+//                .content(imgFile.getBytes())
+//                        .contentType(mediaType)
+//                .param("imageUrl")
+                .param("categoryName", "Receivers")
+                .with(csrf())).
+                andExpect(status().is3xxRedirection());
+
+        Assertions.assertEquals(2, productRepository.count());
+    }
+
+
+    private void init() {
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryName("Speakers");
+        categoryEntity.setDescription("Cars came into global use during the 20th century, and developed economies depend on them. The year 1886 is regarded as the birth year of the modern car when German inventor Karl Benz patented his Benz Patent-Motorwagen. Cars became widely available in the early 20th century.");
+        categoryEntity = categoryRepository.save(categoryEntity);
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername("test@abv.bg");
+        userEntity.setFullname("Test Testov");
+        userEntity.setPassword("123456");
+        userEntity = userRepository.save(userEntity);
+
+
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.setBrand("JBL");
+        productEntity.setModel("E80");
+        productEntity.setColor("black");
+        productEntity.setImageUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1616877657/e2dkd8tro6bxkgfg51kn.png");
+        productEntity.setDetails("Cars came into global use during the 20th century, and developed economies depend on them. The year 1886 is regarded as the birth year of the modern car when German inventor Karl Benz patented his Benz Patent-Motorwagen. Cars became widely available in the early 20th century.");
+        productEntity.setPrice(BigDecimal.TEN);
+        productEntity.setManufactureDate(LocalDate.of(2018, 4, 5));
+        productEntity.setWarranty(12);
+        productEntity.setUserEntity(userEntity);
+        productEntity.setCategoryEntity(categoryEntity);
+        productEntity = productRepository.save(productEntity);
+        testProductId = productEntity.getId();
+    }
+}

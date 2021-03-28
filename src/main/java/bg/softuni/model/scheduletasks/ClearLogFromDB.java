@@ -19,6 +19,6 @@ public class ClearLogFromDB {
     @Scheduled(cron = "0 0 0 * * *")
     public void clearDBFromOldLogs(){
         logService.deleteAllLogsEntities();
-        LOGGER.info("ALl logged and registered users are reset!");
+        LOGGER.info("ALl logs are reset!");
     }
 }
