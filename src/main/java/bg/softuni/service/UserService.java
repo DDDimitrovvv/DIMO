@@ -29,4 +29,5 @@ public interface UserService {
 
     void changeRole(String username, String role) throws Exception;
 
+    void deleteUser(long id);
 }
