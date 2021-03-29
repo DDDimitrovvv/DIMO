@@ -1,12 +1,15 @@
 package bg.softuni.service.impl;
 
-import bg.softuni.model.scheduletasks.ActiveUserStore;
+import bg.softuni.model.service.ProfileServiceModel;
+import bg.softuni.scheduletasks.ActiveUserStore;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.UserRoleEntity;
 import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.model.service.UserRegistrationServiceModel;
+import bg.softuni.model.view.UserViewModel;
 import bg.softuni.repository.UserRepository;
 import bg.softuni.repository.UserRoleRepository;
+import bg.softuni.service.CloudinaryService;
 import bg.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +18,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +36,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final DimoDBUserService dimoDBUserService;
     private final ActiveUserStore activeUserStore;
+    private final CloudinaryService cloudinaryService;
 
 
     public UserServiceImpl(UserRoleRepository userRoleRepository,
@@ -38,13 +44,14 @@ public class UserServiceImpl implements UserService {
                            PasswordEncoder passwordEncoder,
                            ModelMapper modelMapper,
                            DimoDBUserService dimoDBUserService,
-                           ActiveUserStore activeUserStore) {
+                           ActiveUserStore activeUserStore, CloudinaryService cloudinaryService) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.dimoDBUserService = dimoDBUserService;
         this.activeUserStore = activeUserStore;
+        this.cloudinaryService = cloudinaryService;
     }
 
 
@@ -61,11 +68,13 @@ public class UserServiceImpl implements UserService {
             UserEntity admin = new UserEntity().
                     setUsername("admin@gmail.com").
                     setFullname("Admin Adminov").
-                    setPassword(passwordEncoder.encode("123456"));
+                    setPassword(passwordEncoder.encode("123456")).
+                    setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040599/maxresdefault_dbs08u.jpg");
             UserEntity user = new UserEntity().
                     setUsername("user@gmail.com").
                     setFullname("User Userov").
-                    setPassword(passwordEncoder.encode("123456"));
+                    setPassword(passwordEncoder.encode("123456")).
+                    setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png");
             admin.setRoles(List.of(adminRole, userRole));
             user.setRoles(List.of(userRole));
 
@@ -81,7 +90,9 @@ public class UserServiceImpl implements UserService {
         UserRoleEntity userRole = userRoleRepository.
                 findByRole(UserRole.USER).
                 orElseThrow(() -> new IllegalStateException("User role not found. Please seed the roles."));
-        newUser.addRole(userRole);
+        newUser.
+                addRole(userRole).
+                setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png");
         newUser = userRepository.save(newUser);
 
         activeUserStore.setRegisteredUsersCounter(1);
@@ -176,8 +187,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserViewModel getCurrentUserViewModel() {
+        return modelMapper.map(this.getCurrentUser(), UserViewModel.class);
+    }
+
+    @Override
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public boolean validateUserAccess(Long id) {
+        return this.getCurrentUser().getId() == id || this.getCurrentUser().getUsername().equals("admin@gmail.com");
+    }
+
+    @Override
+    public void updateUser(ProfileServiceModel profileServiceModel, Long id) throws IOException {
+        String avatarUrl = this.getCurrentUser().getAvatarUrl();
+
+        UserEntity userEntity = modelMapper.map(profileServiceModel, UserEntity.class);
+
+        if (!profileServiceModel.getAvatarUrl().isEmpty()) {
+            MultipartFile img = profileServiceModel.getAvatarUrl();
+            avatarUrl = cloudinaryService.uploadImage(img);
+        }
+
+        userEntity.
+                setAvatarUrl(avatarUrl).
+                setRoles(this.getCurrentUser().getRoles()).
+                setPassword(passwordEncoder.encode(profileServiceModel.getPassword())).
+                setId(id);
+
+        userRepository.save(userEntity);
+    }
+
 }
 

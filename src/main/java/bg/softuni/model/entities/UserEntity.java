@@ -17,11 +17,26 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
 
     public UserEntity() {
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public UserEntity setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+        return this;
     }
 
     public String getUsername() {
@@ -57,6 +72,16 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
+        return this;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public UserEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 

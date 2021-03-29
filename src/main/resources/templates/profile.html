@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 16px;"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Welcome to your digital innovative modern opportunities!">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/Main.css">
+    <link rel="stylesheet" href="/css/Profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+</head>
+
+<body class="u-body">
+
+<header th:replace="fragments/fragment::navigation"></header>
+
+<section class="u-clearfix u-palette-3-light-1 u-section-1" id="carousel_c20a">
+    <div th:object="${user}" class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-height u-palette-3-base u-shape u-shape-rectangle u-shape-1"></div>
+        <img th:src="*{avatarUrl}" class="u-align-left u-image u-image-1">
+        <div class="u-align-left u-container-style u-group u-white u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <h2 class="u-custom-font u-text u-text-2" th:text="*{fullname}"><b>FUlLL Name</b></h2>
+                <p class="u-text u-text-2" th:utext="|&lt;b&gt;Email:&lt;/b&gt; *{username}|"><b>Email:</b></p>
+                <!--                <p class="u-text u-text-3" th:text="*{username}">xxx</p>-->
+                <p class="u-text u-text-4">
+                <div th:if="*{!description.isBlank()}">
+                              <span style="font-weight: 700;"
+                                    th:utext="|&lt;b&gt;Description:&lt;/b&gt; *{description}|">Description:</span>
+                </div>
+                <div th:unless="*{!description.isBlank()}">
+                    <span style="font-weight: 700;"><b>Description: </b></span>
+                    <h5>Welcome to your Profile page. Here you can add a short description about yourself!</h5>
+                </div>
+                </p>
+                <a th:href="@{/profile/edit/{id}(id = *{id})}"
+                   class="u-btn u-button-style u-custom-color-4 u-text-body-alt-color u-btn-1">EDIT YOUR PROFILE</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="u-align-center u-clearfix u-section-2" id="sec-46e5">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <br/> <br/>
+        <p class="u-text u-text-1">Your buyed products:</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-grey-50 u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Product ID</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Brand</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Model</th>
+                    <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <tr style="height: 75px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 3</td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 4</td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        Description
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="u-align-center u-clearfix u-section-3" id="sec-93fc">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-1">Your sold products:</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                <tr style="height: 65px;">
+                    <td class="u-palette-3-base u-table-cell u-table-cell-1">Product ID</td>
+                    <td class="u-palette-3-base u-table-cell u-table-cell-2">Brand</td>
+                    <td class="u-palette-3-base u-table-cell u-table-cell-3">Model</td>
+                    <td class="u-palette-3-base u-table-cell u-table-cell-4">Date</td>
+                </tr>
+                <tr style="height: 65px;">
+                    <td class="u-table-cell">Row 1</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 65px;">
+                    <td class="u-table-cell">Row 2</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 65px;">
+                    <td class="u-table-cell">Row 3</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 65px;">
+                    <td class="u-table-cell">Row 4</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                    <td class="u-table-cell">Description</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="u-align-center u-clearfix u-section-4" id="sec-9d1c">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-1">Your products:</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-palette-4-base u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Product ID</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Brand</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Model</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Date</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <tr style="height: 75px;">
+                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">Row 1
+                    </td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-9">Row 2
+                    </td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-13">Row 3
+                    </td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-17">Row 4
+                    </td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="u-align-center u-clearfix u-section-5" id="sec-6117">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-1">Your stories:</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-black u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-black u-table-cell">Story ID</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Title</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Short description</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Date</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <tr style="height: 75px;">
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 1</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 2</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 3</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                <tr style="height: 76px;">
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 4</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

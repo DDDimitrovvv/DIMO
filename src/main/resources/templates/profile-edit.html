@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Profile-edit.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <title>Profile</title>
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster:400">
+</head>
+
+<body class="u-body">
+
+<header th:replace="fragments/fragment::navigation"></header>
+
+<section class="u-clearfix u-palette-3-light-1 u-section-1" id="sec-fe3f">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <form th:object="${user}"
+              th:action="@{/profile/edit/{id}(id = *{id})}"
+              th:method="patch"
+              enctype="multipart/form-data"
+              class="text-light">
+            <div class="u-expanded-height u-palette-3-base u-shape u-shape-rectangle u-shape-1"></div>
+            <h2 class="u-align-center u-custom-font u-text u-text-1">EDIT YOUR PROFILE</h2>
+            <img th:src="*{avatarUrl}" class="u-align-left u-image u-image-1">
+            <div class="u-align-left u-container-style u-group u-white u-group-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <div class="col">
+                        <label for="fullname" style="display: block; text-align: center;"><b>Full name</b></label>
+                        <input
+                                th:field="*{fullname}"
+                                th:errorclass="is-invalid"
+                                required
+                                th:minlength="5"
+                                th:maxlength="30"
+                                id="fullname"
+                                type="text"
+                                style="text-align:center;"
+                                class="u-border-1 u-border-grey-10 u-input u-input-rectangle u-palette-4-light-3"
+                                name="fullname">
+                        <small
+                                id="fullnameError" class="form-text invalid-feedback rounded">The full name must be between five and thirty characters.</small>
+                    </div>
+                    <br/>
+
+                    <div class="col">
+                        <label for="username" style="display: block; text-align: center;"><b>Email</b></label>
+                        <input
+                                th:field="*{username}"
+                                th:errorclass="is-invalid"
+                                type="email"
+                                required
+                                id="username"
+                                style="text-align:center;"
+                                class="u-border-1 u-border-grey-10 u-input u-input-rectangle u-palette-4-light-3"
+                                name="username">
+                        <small
+                                id="usernameError" class="form-text invalid-feedback rounded">The email must be valid!</small>
+                    </div>
+                    <br/>
+
+                    <div class="col">
+                        <label for="password" style="display: block; text-align: center;"><b>Password</b></label>
+                        <input
+                                th:field="*{password}"
+                                th:errorclass="is-invalid"
+                                required
+                                th:minlength="5"
+                                th:maxlength="20"
+                                id="password"
+                                type="password"
+                                style="text-align:center;"
+                                class="u-border-1 u-border-grey-10 u-input u-input-rectangle u-palette-4-light-3"
+                                name="password">
+                        <small
+                                id="passwordError" class="form-text invalid-feedback rounded">The password must be between five and twenty characters.</small>
+                    </div>
+                    <br/>
+                    <div class="col">
+                        <label for="avatarUrl" style="display: block; text-align: center;"><b>Profile
+                            picture</b></label>
+                        <input
+                                th:field="*{avatarUrl}"
+                                id="avatarUrl"
+                                accept=".png, .jpg, .jpeg"
+                                type="file"
+                                style="text-align:center;"
+                                class="u-border-1 u-border-grey-10 u-input u-input-rectangle u-palette-4-light-3"
+                                name="avatarUrl">
+                    </div>
+                    <br/>
+                    <div class="col">
+                        <label for="avatarUrl" style="display: block; text-align: center;"><b>Details</b></label>
+                        <textarea th:field="*{description}"
+                                  th:text="*{description}"
+                                style="display: block; text-align: center; width: 100%; height: 200px;"
+                                  id="description"
+                                  type="text"
+                                  name="description"></textarea>
+                    </div>
+                </div>
+            </div>
+                <button class="u-btn u-button-style u-custom-color-3 u-text-body-alt-color u-btn-5" type="submit"><b>SAVE</b></button>
+<!--            <a href="#" class="u-btn u-button-style u-custom-color-3 u-text-body-alt-color u-btn-5">SAVE</a>-->
+        </form>
+    </div>
+</section>
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>

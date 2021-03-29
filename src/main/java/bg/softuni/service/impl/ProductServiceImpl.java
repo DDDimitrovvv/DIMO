@@ -107,7 +107,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void editProduct(ProductServiceModel productServiceModel, Long id, String notUpdateMyPicture) throws Exception {
-        String imageUrl = findById(id).getImageUrl();
+        String imageUrl = this.findById(id).getImageUrl();
 
         ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
 

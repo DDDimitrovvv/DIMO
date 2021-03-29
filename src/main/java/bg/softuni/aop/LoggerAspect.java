@@ -1,4 +1,4 @@
-package bg.softuni.model.aop;
+package bg.softuni.aop;
 
 import bg.softuni.service.LogService;
 import org.aspectj.lang.JoinPoint;
