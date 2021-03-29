@@ -23,11 +23,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -77,17 +75,18 @@ public class ProductControllerTest {
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER"})
     void addProduct() throws Exception {
-        
-        FileInputStream inputFile = new FileInputStream( "D:\\jbl.jpg");
-//        MockMultipartFile imgFile = new MockMultipartFile("file", "jbl.jpg", "multipart/form-data", inputFile);
-        MockMultipartFile imgFile = new MockMultipartFile("file",  inputFile);
-        HashMap<String, String> contentTypeParams = new HashMap<String, String>();
-        contentTypeParams.put("boundary", "265001916915724");
-        MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
 
-        System.out.println();
-        mockMvc.perform(MockMvcRequestBuilders.post(
+        MockMultipartFile mockImgFile
+                = new MockMultipartFile(
+                "imageUrl",
+                "hello.png",
+                MediaType.TEXT_PLAIN_VALUE,
+                "Hello, World!".getBytes()
+        );
+
+        mockMvc.perform(MockMvcRequestBuilders.multipart(
                 PRODUCT_CONTROLLER_PREFIX + "/add")
+                .file(mockImgFile)
                 .param("brand", "HK")
                 .param("model", "AVR270")
                 .param("color", "black")
@@ -95,9 +94,6 @@ public class ProductControllerTest {
                 .param("price", "100")
                 .param("warranty", "12")
                 .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
-//                .content(imgFile.getBytes())
-//                        .contentType(mediaType)
-//                .param("imageUrl")
                 .param("categoryName", "Receivers")
                 .with(csrf())).
                 andExpect(status().is3xxRedirection());
@@ -117,7 +113,6 @@ public class ProductControllerTest {
         userEntity.setFullname("Test Testov");
         userEntity.setPassword("123456");
         userEntity = userRepository.save(userEntity);
-
 
         ProductEntity productEntity = new ProductEntity();
         productEntity.setBrand("JBL");

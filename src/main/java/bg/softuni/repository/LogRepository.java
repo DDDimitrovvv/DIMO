@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 public interface LogRepository extends JpaRepository<LogEntity, Long> {
 
-//    @Query(value = "SELECT logs from LogEntity AS logs WHERE ProductEntity.id = ?1")
-//    List<LogEntity> findLogByProductId(Long id);
     List<LogEntity> findAllByProductEntity_Id(Long id);
 }
