@@ -1,9 +1,12 @@
+
 .u-section-1 {
-  background-image: none;
+  /*background-image: none;*/
+  background-image: url("../images/scott-clouds.jpg");
+
 }
 
 .u-section-1 .u-sheet-1 {
-  min-height: 978px;
+  min-height: 1030px;
   position: relative;
 }
 
@@ -15,15 +18,15 @@
 }
 
 .u-section-1 .u-text-1 {
-  font-family: Michroma;
   font-size: 2.25rem;
-  margin: 29px -40px 0 40px;
+  width: 374px;
+  margin: 50px auto 0;
 }
 
 .u-section-1 .u-image-1 {
   width: 372px;
   height: 252px;
-  margin: 72px auto 0 0;
+  margin: 51px auto 0 0;
 }
 
 .u-section-1 .u-group-1 {
@@ -142,13 +145,9 @@
   }
 
   .u-section-1 .u-text-1 {
+    font-family: Arial, sans-serif;
     margin-top: -817px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .u-section-1 .u-image-1 {
-    margin-top: 51px;
+    width: 509px;
   }
 
   .u-section-1 .u-group-1 {
@@ -276,7 +275,7 @@
 
 @media (max-width: 575px) {
   .u-section-1 .u-sheet-1 {
-    min-height: 956px;
+    min-height: 1008px;
   }
 
   .u-section-1 .u-shape-1 {
@@ -286,6 +285,7 @@
   .u-section-1 .u-text-1 {
     font-size: 1.5rem;
     margin-top: 346px;
+    width: 340px;
   }
 
   .u-section-1 .u-image-1 {
@@ -338,6 +338,14 @@
     margin-top: -280px;
   }
 }
+
+
+
+
+
+
+
+
 
 
 

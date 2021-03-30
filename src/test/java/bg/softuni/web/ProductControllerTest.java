@@ -1,42 +1,31 @@
 package bg.softuni.web;
 
 import bg.softuni.model.entities.*;
-import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.LogRepository;
 import bg.softuni.repository.ProductRepository;
 import bg.softuni.repository.UserRepository;
 import bg.softuni.service.CloudinaryService;
-import bg.softuni.service.ProductService;
-import bg.softuni.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -105,32 +94,36 @@ public class ProductControllerTest {
     }
 
 
-    @Test
-    @WithMockUser(value = "user@gmail.com", roles = {"USER"})
-    void testEditProductShouldReturnRedirectStatusPostConfig() throws Exception {
-
-        MockMultipartFile mockImgFile
-                = new MockMultipartFile(
-                "imageUrl",
-                "helloMe.png",
-                MediaType.TEXT_PLAIN_VALUE,
-                "Hello, My World!".getBytes()
-        );
-
-        mockMvc.perform(MockMvcRequestBuilders.multipart(
-                PRODUCT_CONTROLLER_PREFIX + "/edit/{id}", testProductId)
-                .file(mockImgFile)
-                .param("brand", "HK")
-                .param("model", "AVR270")
-                .param("color", "silver")
-                .param("manufactureDate", "2019-01-09")
-                .param("price", "100")
-                .param("warranty", "36")
-                .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
-                .param("categoryName", "Receivers")
-                .with(csrf())).
-                andExpect(status().is4xxClientError());
-    }
+//    @Test
+//    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+//    void testEditProductShouldReturnRedirectStatusPostConfig() throws Exception {
+//
+//        MockMultipartFile mockImgFile
+//                = new MockMultipartFile(
+//                "imageUrl",
+//                "hello.png",
+//                MediaType.TEXT_PLAIN_VALUE,
+//                "Hello, My World!".getBytes()
+//        );
+//
+//        mockMvc.perform(MockMvcRequestBuilders.multipart(
+//                PRODUCT_CONTROLLER_PREFIX + "/edit/{id}", testProductId)
+//                .file(mockImgFile)
+//                .param("Brand", "HKR")
+//                .param("model", "AVR270")
+//                .param("coloT", "black")
+//                .param("manufactureDate", "2019-01-09")
+//                .param("price", "100")
+//                .param("warranty", "12")
+//                .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
+//                .param("categoryName", "Receivers")
+//                .param("notUpdateMyPicture", "")
+//                .with(csrf())).
+//                andExpect(status().is3xxRedirection()).
+//                andExpect(view().name("redirect:add"));
+//
+////        Assertions.assertEquals(1, productRepository.count());
+//    }
 
 
     @Test
@@ -213,7 +206,7 @@ public class ProductControllerTest {
 
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER"})
-    void addProductUnvalidInput() throws Exception {
+    void addProductInvalidInput() throws Exception {
 
         MockMultipartFile mockImgFile
                 = new MockMultipartFile(

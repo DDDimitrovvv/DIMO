@@ -36,11 +36,11 @@
                 <p class="u-text u-text-2" th:utext="|&lt;b&gt;Email:&lt;/b&gt; *{username}|"><b>Email:</b></p>
                 <!--                <p class="u-text u-text-3" th:text="*{username}">xxx</p>-->
                 <p class="u-text u-text-4">
-                <div th:if="*{!description.isBlank()}">
+                <div th:if="*{description.length() > 0}">
                               <span style="font-weight: 700;"
                                     th:utext="|&lt;b&gt;Description:&lt;/b&gt; *{description}|">Description:</span>
                 </div>
-                <div th:unless="*{!description.isBlank()}">
+                <div th:if="*{description == null || description.length() == 0}">
                     <span style="font-weight: 700;"><b>Description: </b></span>
                     <h5>Welcome to your Profile page. Here you can add a short description about yourself!</h5>
                 </div>
