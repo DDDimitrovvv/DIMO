@@ -123,4 +123,30 @@ public class ProductController {
         return "redirect:/home";
     }
 
+
+    @GetMapping ("/buy/{id}")
+    public String buyProduct(@PathVariable Long id) throws Exception {
+
+//        logService.deleteAllLogsForProductWithId(id);
+        logService.deleteAllLogsForProductWithId(id);
+
+        productService.buyProduct(id);
+
+
+
+//        if (bindingResult.hasErrors() || notUpdateMyPicture == null && productAddBindingModel.getImageUrl().isEmpty()) {
+//            redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
+//            redirectAttributes.addFlashAttribute(
+//                    "org.springframework.validation.BindingResult.productAddBindingModel", bindingResult);
+//
+//            return "redirect:/products/edit/{id}";
+//        }
+//        //update product in DB
+//        productService
+//                .editProduct(modelMapper.map(productAddBindingModel, ProductServiceModel.class), id, notUpdateMyPicture);
+
+        return "redirect:/home";
+    }
+
+
 }

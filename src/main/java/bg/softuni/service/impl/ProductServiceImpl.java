@@ -1,15 +1,14 @@
 package bg.softuni.service.impl;
 
 import bg.softuni.model.entities.ProductEntity;
+import bg.softuni.model.entities.PurchasedProductEntity;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.service.ProductServiceModel;
 import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.ProductRepository;
-import bg.softuni.service.CategoryService;
-import bg.softuni.service.CloudinaryService;
-import bg.softuni.service.ProductService;
-import bg.softuni.service.UserService;
+import bg.softuni.repository.PurchasedProductRepository;
+import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,13 +27,14 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryService categoryService;
     private final UserService userService;
     private final CategoryRepository categoryRepository;
+    private final PurchasedProductRepository purchasedProductRepository;
 
     public ProductServiceImpl(ProductRepository productRepository,
                               ModelMapper modelMapper,
                               CloudinaryService cloudinaryService,
                               CategoryService categoryService,
                               UserService userService,
-                              CategoryRepository categoryRepository) {
+                              CategoryRepository categoryRepository, PurchasedProductRepository purchasedProductRepository) {
 
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
@@ -42,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
         this.categoryService = categoryService;
         this.userService = userService;
         this.categoryRepository = categoryRepository;
+        this.purchasedProductRepository = purchasedProductRepository;
     }
 
     @Override
@@ -128,5 +129,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public void buyProduct(Long id) {
+        ProductEntity productEntityById = this.findProductEntityById(id);
+
+        if (productEntityById.getId() > 0) {
+            PurchasedProductEntity purchasedProductEntity = modelMapper.map(productEntityById, PurchasedProductEntity.class);
+            purchasedProductEntity.setId(0);
+            purchasedProductRepository.save(purchasedProductEntity);
+            productRepository.deleteById(id);
+        }
     }
 }

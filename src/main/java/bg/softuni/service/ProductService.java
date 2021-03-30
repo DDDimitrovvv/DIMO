@@ -23,4 +23,6 @@ public interface ProductService {
     void editProduct(ProductServiceModel productServiceModel, Long id, String notUpdateMyPicture) throws Exception;
 
     void deleteProduct(Long id);
+
+    void buyProduct(Long id);
 }

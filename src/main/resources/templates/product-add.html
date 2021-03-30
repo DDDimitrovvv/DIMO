@@ -29,7 +29,7 @@
     <div class="d-flex justify-content-center">
         <form th:action="@{/products/add}"
               th:object="${productAddBindingModel}"
-              method="POST"
+              th:method="POST"
               enctype="multipart/form-data"
               class="text-light">
             <div class="form-row m-5">
