@@ -13,4 +13,5 @@ public interface StoryRepository extends JpaRepository<StoryEntity, Long> {
 
     List<StoryEntity> findAllByStoryTypeEnum(StoryTypeEnum storyType);
 
+    List<StoryEntity> findAllByUserEntity_Id(Long id);
 }

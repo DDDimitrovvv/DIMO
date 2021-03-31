@@ -69,6 +69,8 @@
                                 style="text-align:center;"
                                 class="u-border-1 u-border-grey-10 u-input u-input-rectangle u-palette-4-light-3"
                                 name="username">
+                        <h5 class="bg-danger rounded text-center" style="white-space: pre-line;" th:if="${userAlreadyExist}"> This email is not valid!
+                        Please enter another email!</h5>
                         <small
                                 id="usernameError" class="form-text invalid-feedback rounded">The email must be
                             valid!</small>

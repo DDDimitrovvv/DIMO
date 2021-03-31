@@ -4,6 +4,7 @@ import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.model.service.ProfileServiceModel;
 import bg.softuni.model.service.UserRegistrationServiceModel;
+import bg.softuni.model.view.StoryViewModel;
 import bg.softuni.model.view.UserViewModel;
 
 import java.io.IOException;

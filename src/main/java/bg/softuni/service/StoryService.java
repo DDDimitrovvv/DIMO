@@ -20,4 +20,7 @@ public interface StoryService {
     void editProduct(StoryServiceModel storyServiceModel, Long id, String notUpdateMyPicture) throws Exception;
 
     void deleteStory(Long id);
+
+    List<StoryViewModel> getAllStoriesByCurrUser() throws Exception;
+
 }

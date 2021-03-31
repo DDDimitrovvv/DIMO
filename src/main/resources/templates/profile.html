@@ -34,13 +34,12 @@
             <div class="u-container-layout u-container-layout-1">
                 <h2 class="u-custom-font u-text u-text-2" th:text="*{fullname}"><b>FUlLL Name</b></h2>
                 <p class="u-text u-text-2" th:utext="|&lt;b&gt;Email:&lt;/b&gt; *{username}|"><b>Email:</b></p>
-                <!--                <p class="u-text u-text-3" th:text="*{username}">xxx</p>-->
                 <p class="u-text u-text-4">
-                <div th:if="*{description.length() > 0}">
+                <div th:unless="*{description == null || description.isBlank()}">
                               <span style="font-weight: 700;"
                                     th:utext="|&lt;b&gt;Description:&lt;/b&gt; *{description}|">Description:</span>
                 </div>
-                <div th:if="*{description == null || description.length() == 0}">
+                <div th:if="*{description == null || description.isBlank()}">
                     <span style="font-weight: 700;"><b>Description: </b></span>
                     <h5>Welcome to your Profile page. Here you can add a short description about yourself!</h5>
                 </div>
@@ -52,130 +51,114 @@
     </div>
 </section>
 
-<section class="u-align-center u-clearfix u-section-2" id="sec-46e5">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <br/> <br/>
-        <p class="u-text u-text-1">Your buyed products:</p>
-        <div class="u-expanded-width u-table u-table-responsive u-table-1">
-            <table class="u-table-entity u-table-entity-1">
-                <colgroup>
-                    <col width="25%">
-                    <col width="25%">
-                    <col width="25%">
-                    <col width="25%">
-                </colgroup>
-                <thead class="u-grey-50 u-table-header u-table-header-1">
-                <tr style="height: 21px;">
-                    <th class="u-border-1 u-border-grey-50 u-table-cell">Product ID</th>
-                    <th class="u-border-1 u-border-grey-50 u-table-cell">Brand</th>
-                    <th class="u-border-1 u-border-grey-50 u-table-cell">Model</th>
-                    <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>
-                </tr>
-                </thead>
-                <tbody class="u-table-body">
-                <tr style="height: 75px;">
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 3</td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 4</td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                        Description
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-<section class="u-align-center u-clearfix u-section-3" id="sec-93fc">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-text u-text-1">Your sold products:</p>
-        <div class="u-expanded-width u-table u-table-responsive u-table-1">
-            <table class="u-table-entity u-table-entity-1">
-                <colgroup>
-                    <col width="25%">
-                    <col width="25%">
-                    <col width="25%">
-                    <col width="25%">
-                </colgroup>
-                <tbody class="u-table-alt-palette-1-light-3 u-table-body">
-                <tr style="height: 65px;">
-                    <td class="u-palette-3-base u-table-cell u-table-cell-1">Product ID</td>
-                    <td class="u-palette-3-base u-table-cell u-table-cell-2">Brand</td>
-                    <td class="u-palette-3-base u-table-cell u-table-cell-3">Model</td>
-                    <td class="u-palette-3-base u-table-cell u-table-cell-4">Date</td>
-                </tr>
-                <tr style="height: 65px;">
-                    <td class="u-table-cell">Row 1</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                    <td class="u-table-cell">Row 2</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                    <td class="u-table-cell">Row 3</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                    <td class="u-table-cell">Row 4</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                    <td class="u-table-cell">Description</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+<!--<section class="u-align-center u-clearfix u-section-2" id="sec-46e5">-->
+<!--    <div class="u-clearfix u-sheet u-sheet-1">-->
+<!--        <br/> <br/>-->
+<!--        <button class="u-text u-text-1">Your purchased products:</button>-->
+<!--        <p th:if="${UserPurchasedProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any-->
+<!--            purchased products-->
+<!--            yet. :)</p>-->
+<!--        <div class="u-expanded-width u-table u-table-responsive u-table-1">-->
+<!--            <table class="u-table-entity u-table-entity-1">-->
+<!--                <colgroup>-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                </colgroup>-->
+<!--                <thead class="u-grey-50 u-table-header u-table-header-1">-->
+<!--                <tr style="height: 21px;">-->
+<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Product ID</th>-->
+<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Brand</th>-->
+<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Model</th>-->
+<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody class="u-table-body">-->
+<!--                <tr style="height: 75px;">-->
+<!--                    <th:block th:each="purchasedProduct : ${UserPurchasedProductsList}">-->
+<!--                        <td th:text="|ID:*{purchasedProduct.getId()}|"-->
+<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Product-->
+<!--                            ID-->
+<!--                        </td>-->
+<!--                        <td th:text="*{purchasedProduct.getBrand()}"-->
+<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
+<!--                            Brand-->
+<!--                        </td>-->
+<!--                        <td th:text="*{purchasedProduct.getModel()}"-->
+<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
+<!--                            Model-->
+<!--                        </td>-->
+<!--                        <td th:if="*{purchasedProduct.getManufactureDate() != null}"-->
+<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
+<!--                            Date-->
+<!--                        </td>-->
+<!--                        <td th:if="*{purchasedProduct.getManufactureDate() == null}"-->
+<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">No date-->
+<!--                            entered!-->
+<!--                        </td>-->
+<!--                    </th:block>-->
+<!--                </tr>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="u-align-center u-clearfix u-section-3" id="sec-93fc">-->
+<!--    <div class="u-clearfix u-sheet u-sheet-1">-->
+<!--        <button class="u-text u-text-1">Your sold products:</button>-->
+<!--        <p th:if="${userSoldProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any sold-->
+<!--            products-->
+<!--            yet. :)</p>-->
+<!--        <div class="u-expanded-width u-table u-table-responsive u-table-1">-->
+<!--            <table class="u-table-entity u-table-entity-1">-->
+<!--                <colgroup>-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                    <col width="25%">-->
+<!--                </colgroup>-->
+<!--                <tbody class="u-table-alt-palette-1-light-3 u-table-body">-->
+<!--                <tr style="height: 65px;">-->
+<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-1">Product ID</td>-->
+<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-2">Brand</td>-->
+<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-3">Model</td>-->
+<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-4">Manufacture Date</td>-->
+<!--                </tr>-->
+<!--                <th:block th:each="soldProduct : ${userSoldProductsList}">-->
+<!--                    <tr style="height: 65px;">-->
+<!--                        <td class="u-table-cell"-->
+<!--                            th:text="|ID:*{soldProduct.getId()}|">Product ID-->
+<!--                        </td>-->
+<!--                        <td class="u-table-cell"-->
+<!--                            th:text="*{soldProduct.getBrand()}">Brand-->
+<!--                        </td>-->
+<!--                        <td class="u-table-cell"-->
+<!--                            th:text="*{soldProduct.getModel()}">Model-->
+<!--                        </td>-->
+<!--                        <td th:if="*{soldProduct.getManufactureDate() != null}"-->
+<!--                            class="u-table-cell"-->
+<!--                            th:text="*{soldProduct.getManufactureDate()}">ManufactureDate-->
+<!--                        </td>-->
+<!--                        <td th:if="*{soldProduct.getManufactureDate() == null}"-->
+<!--                            class="u-table-cell"-->
+<!--                        >No date entered!-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </th:block>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
 <section class="u-align-center u-clearfix u-section-4" id="sec-9d1c">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-text u-text-1">Your products:</p>
+        <button class="u-text u-text-1">Your products:</button>
+        <p th:if="${userProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any products
+            yet. :)</p>
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
             <table class="u-table-entity u-table-entity-1">
                 <colgroup>
@@ -186,41 +169,35 @@
                 </colgroup>
                 <thead class="u-palette-4-base u-table-header u-table-header-1">
                 <tr style="height: 21px;">
-                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Product ID</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Product ID (click)</th>
                     <th class="u-border-1 u-border-palette-4-base u-table-cell">Brand</th>
                     <th class="u-border-1 u-border-palette-4-base u-table-cell">Model</th>
-                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Date</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Manufacture Date</th>
                 </tr>
                 </thead>
                 <tbody class="u-table-body">
-                <tr style="height: 75px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">Row 1
-                    </td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-9">Row 2
-                    </td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-13">Row 3
-                    </td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-17">Row 4
-                    </td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
+                <th:block th:each="product : ${userProductsList}">
+                    <tr style="height: 75px;">
+                        <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">
+                            <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
+                               th:text="|ID:*{product.getId()}|">My clickable text</a>
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getBrand()}">Brand
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getModel()}">Model
+                        </td>
+                        <td th:if="*{product.getManufactureDate() != null}"
+                            class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getManufactureDate()}">ManufactureDate
+                        </td>
+                        <td th:if="*{product.getManufactureDate() == null}"
+                            class="u-border-1 u-border-grey-30 u-table-cell"
+                        >No date entered!
+                        </td>
+                    </tr>
+                </th:block>
                 </tbody>
             </table>
         </div>
@@ -228,7 +205,9 @@
 </section>
 <section class="u-align-center u-clearfix u-section-5" id="sec-6117">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-text u-text-1">Your stories:</p>
+        <button class="u-text u-text-1">Your stories:</button>
+        <p th:if="${userStoriesList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any stories
+            yet. :)</p>
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
             <table class="u-table-entity u-table-entity-1">
                 <colgroup>
@@ -239,37 +218,30 @@
                 </colgroup>
                 <thead class="u-black u-table-header u-table-header-1">
                 <tr style="height: 21px;">
-                    <th class="u-border-1 u-border-black u-table-cell">Story ID</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Story ID (click)</th>
                     <th class="u-border-1 u-border-black u-table-cell">Title</th>
                     <th class="u-border-1 u-border-black u-table-cell">Short description</th>
                     <th class="u-border-1 u-border-black u-table-cell">Date</th>
                 </tr>
                 </thead>
                 <tbody class="u-table-body">
-                <tr style="height: 75px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 1</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 2</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 3</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 76px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Row 4</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
+                <th:block th:each="story : ${userStoriesList}">
+                    <tr style="height: 75px;">
+                        <td class="u-border-1 u-border-grey-30 u-table-cell">
+                            <a th:href="@{/stories/details/{id}(id = *{story.getId()})}"
+                               th:text="|ID:*{story.getId()}|">My clickable text</a>
+                        </td>
+                        <td th:text="*{story.getTitle()}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Title
+                        </td>
+                        <td th:text="*{story.getDescription().substring(0, 20)}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Description
+                        </td>
+                        <td th:text="*{story.getAddedDate()}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Date
+                        </td>
+                    </tr>
+                </th:block>
                 </tbody>
             </table>
         </div>

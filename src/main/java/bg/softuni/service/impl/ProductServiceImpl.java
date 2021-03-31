@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,14 +28,14 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryService categoryService;
     private final UserService userService;
     private final CategoryRepository categoryRepository;
-    private final PurchasedProductRepository purchasedProductRepository;
+    private final PurchasedProductService purchasedProductService;
 
     public ProductServiceImpl(ProductRepository productRepository,
                               ModelMapper modelMapper,
                               CloudinaryService cloudinaryService,
                               CategoryService categoryService,
                               UserService userService,
-                              CategoryRepository categoryRepository, PurchasedProductRepository purchasedProductRepository) {
+                              CategoryRepository categoryRepository, PurchasedProductService purchasedProductService) {
 
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
@@ -42,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
         this.categoryService = categoryService;
         this.userService = userService;
         this.categoryRepository = categoryRepository;
-        this.purchasedProductRepository = purchasedProductRepository;
+        this.purchasedProductService = purchasedProductService;
     }
 
     @Override
@@ -132,14 +133,44 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void buyProduct(Long id) {
+    public void buyProduct(Long id) throws Exception {
         ProductEntity productEntityById = this.findProductEntityById(id);
 
         if (productEntityById.getId() > 0) {
-            PurchasedProductEntity purchasedProductEntity = modelMapper.map(productEntityById, PurchasedProductEntity.class);
-            purchasedProductEntity.setId(0);
-            purchasedProductRepository.save(purchasedProductEntity);
+            //Step 1: Map and save the bought product in purchasedProductEntity
+            purchasedProductService.createPurchasedProduct(productEntityById);
+
+            //Step 2: Delete the sold Product from Products Entities
             productRepository.deleteById(id);
         }
+    }
+
+    @Override
+    public List<ProductViewModel> getAllProductsForCurrUser() throws Exception {
+        return productRepository.
+                findAllByUserEntity_Id(userService.getCurrentUser().getId()).
+                stream().
+                map(productEntity -> {
+                    return modelMapper.map(productEntity, ProductViewModel.class);
+                }).
+                collect(Collectors.toList());
+
+
+    }
+
+    @Override
+    public boolean amITheCreatorOfThisProduct(Long id) throws Exception {
+        Optional<ProductEntity> productEntity = productRepository.findById(id);
+        boolean creator = false;
+
+        if (productEntity.isPresent()) {
+            if (userService.getCurrentUser().getId() == productEntity.get().getUserEntity().getId()) {
+                creator = true;
+            }
+            if (userService.getCurrentUser().getUsername().equals("admin@gmail.com")) {
+                creator = true;
+            }
+        }
+        return creator;
     }
 }

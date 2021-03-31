@@ -54,7 +54,8 @@
 
             <div class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-1">
                 <div class="u-container-layout u-container-layout-1">
-                    <h2 class="u-text u-text-1" style="color: darkviolet" th:text="|Brand: *{brand}|" name="brand">Brand: JBL</h2>
+                    <h2 class="u-text u-text-1" style="color: darkviolet" th:text="|Brand: *{brand}|" name="brand">
+                        Brand: JBL</h2>
                     <h3 class="u-text u-text-2" style="color: darkviolet" th:text="|Model: *{model}|">Model: JBL</h3>
                     <h4 class="u-text u-text-3" style="color: darkviolet" th:text="|Category: *{categoryName}|">
                         Category:Speakers</h4>
@@ -71,24 +72,23 @@
                         laborum.</p>
                 </div>
             </div>
-            <div th:if="${editAccess}"
-                 class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-2">
+            <div class="u-container-style u-custom-color-1 u-group u-radius-25 u-shape-round u-group-2">
                 <div class="u-container-layout u-container-layout-2">
-                    <a th:href="@{/products/edit/{id}(id = *{id})}"
-                       class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">EDIT</a>
 
-                    <a th:href="@{/products/delete/{id}(id = *{id})}"
-                       class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
-
-                    <button class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-3"
+                    <button th:if="${!creator}"
+                            class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-3"
                             type="submit"><b>BUY</b></button>
-<!--                    <a th:href="@{/products/buy/{id}(id = *{id})}"-->
-<!--                       class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-3">BUY</a>-->
+                    <a th:if="${editAccess}"
+                       th:href="@{/products/edit/{id}(id = *{id})}"
+                    class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-3-light-1 u-radius-50 u-text-black u-btn-1">EDIT</a>
 
+                    <a th:if="${editAccess}"
+                       th:href="@{/products/delete/{id}(id = *{id})}"
+                    class="u-active-grey-15 u-border-2 u-border-active-grey-15 u-border-grey-25 u-border-hover-grey-15 u-btn u-btn-round u-button-style u-custom-color-2 u-hover-custom-color-3 u-radius-50 u-text-black u-btn-2">DELETE</a>
                 </div>
             </div>
         </div>
-        </form>
+    </form>
 </section>
 
 <script>

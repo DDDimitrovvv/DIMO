@@ -23,14 +23,13 @@ public class ProductController {
     private final CategoryService categoryService;
     private final ProductService productService;
     private final ModelMapper modelMapper;
-    private final UserService userService;
+//    private final UserService userService;
     private final LogService logService;
 
-    public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper, UserService userService, LogService logService) {
+    public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper, LogService logService) {
         this.categoryService = categoryService;
         this.productService = productService;
         this.modelMapper = modelMapper;
-        this.userService = userService;
         this.logService = logService;
     }
 
@@ -70,6 +69,7 @@ public class ProductController {
 
         ProductViewModel productViewModel = productService.findById(id);
         model.addAttribute("product", productViewModel);
+        model.addAttribute("creator", productService.amITheCreatorOfThisProduct(id));
         model.addAttribute("editAccess", productService.validateUserAccess(id));
 
         return "product-details";
@@ -83,7 +83,6 @@ public class ProductController {
         }
 
         ProductViewModel productViewModel = productService.findById(id);
-
         model.addAttribute("productViewModel", productViewModel);
         model.addAttribute("categoryListItems", categoryService.getListWithAllCategoryNames());
 
@@ -112,7 +111,7 @@ public class ProductController {
 
 
     @GetMapping("/delete/{id}")
-    public String deleteId(@PathVariable Long id){
+    public String deleteId(@PathVariable Long id) {
 
         //clear all logs for this product (already unused data)
         logService.deleteAllLogsForProductWithId(id);
@@ -124,26 +123,11 @@ public class ProductController {
     }
 
 
-    @GetMapping ("/buy/{id}")
+    @GetMapping("/buy/{id}")
     public String buyProduct(@PathVariable Long id) throws Exception {
 
-//        logService.deleteAllLogsForProductWithId(id);
         logService.deleteAllLogsForProductWithId(id);
-
         productService.buyProduct(id);
-
-
-
-//        if (bindingResult.hasErrors() || notUpdateMyPicture == null && productAddBindingModel.getImageUrl().isEmpty()) {
-//            redirectAttributes.addFlashAttribute("productAddBindingModel", productAddBindingModel);
-//            redirectAttributes.addFlashAttribute(
-//                    "org.springframework.validation.BindingResult.productAddBindingModel", bindingResult);
-//
-//            return "redirect:/products/edit/{id}";
-//        }
-//        //update product in DB
-//        productService
-//                .editProduct(modelMapper.map(productAddBindingModel, ProductServiceModel.class), id, notUpdateMyPicture);
 
         return "redirect:/home";
     }

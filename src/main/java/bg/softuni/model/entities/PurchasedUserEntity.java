@@ -11,7 +11,7 @@ public class PurchasedUserEntity extends BaseEntity{
     @ManyToOne
     private UserEntity userEntity;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "purchased_products_users_list")
     private List<PurchasedProductEntity> productEntityList = new ArrayList<>();
 

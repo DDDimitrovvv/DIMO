@@ -1,18 +1,15 @@
 package bg.softuni.web;
 
-import bg.softuni.model.binding.ProductAddBindingModel;
 import bg.softuni.model.binding.ProfileBindingModel;
-import bg.softuni.model.service.ProductServiceModel;
+import bg.softuni.model.binding.StoryAddBindingModel;
+import bg.softuni.model.binding.UserRegistrationBindingModel;
 import bg.softuni.model.service.ProfileServiceModel;
-import bg.softuni.service.UserService;
+import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -22,21 +19,47 @@ import javax.validation.Valid;
 public class ProfileController {
 
     private final UserService userService;
+    private final ProductService productService;
+    private final StoryService storyService;
+    private final PurchasedUserService purchasedUserService;
+    private final PurchasedProductService purchasedProductService;
     private final ModelMapper modelMapper;
 
 
-    public ProfileController(UserService userService, ModelMapper modelMapper) {
+    public ProfileController(UserService userService,
+                             ProductService productService,
+                             StoryService storyService,
+                             PurchasedUserService purchasedUserService,
+                             PurchasedProductService purchasedProductService,
+                             ModelMapper modelMapper) {
         this.userService = userService;
+        this.productService = productService;
+        this.storyService = storyService;
+        this.purchasedUserService = purchasedUserService;
+        this.purchasedProductService = purchasedProductService;
         this.modelMapper = modelMapper;
     }
 
+
+    @ModelAttribute("profileBindingModel")
+    public ProfileBindingModel createBindingModel() {
+        return new ProfileBindingModel();
+    }
+
+
     @GetMapping("/view")
-    public String viewProfile(Model model) {
+    public String viewProfile(Model model) throws Exception {
+        System.out.println();
 
         model.addAttribute("user", userService.getCurrentUserViewModel());
+        model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
+        model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
+//        model.addAttribute("userSoldProductsList", purchasedProductService.getAllProductSoldByUserId());
+//        model.addAttribute("UserPurchasedProductsList", purchasedUserService.getAllPurchasedProductsByThisUser());
+        System.out.println();
 
-//          Error 500
-//          throw new NullPointerException();
+
+
         return "profile";
     }
 
@@ -46,7 +69,6 @@ public class ProfileController {
         if (!userService.validateUserAccess(id)) {
             return "redirect:/home";
         }
-
         model.addAttribute("user", userService.getCurrentUserViewModel());
         return "profile-edit";
     }
@@ -65,8 +87,17 @@ public class ProfileController {
 
             return "redirect:/profile/edit/{id}";
         }
+
+        if (userService.isThisUsernameAlreadyExists(profileBindingModel.getUsername())) {
+            redirectAttributes.addFlashAttribute("profileBindingModel", profileBindingModel);
+            redirectAttributes.addFlashAttribute("userAlreadyExist", true);
+            return "redirect:/profile/edit/{id}";
+        }
+
+        ProfileServiceModel profileServiceModel = modelMapper.map(profileBindingModel, ProfileServiceModel.class);
+
         //update product in DB
-        userService.updateUser(modelMapper.map(profileBindingModel, ProfileServiceModel.class), id);
+        userService.updateUser(profileServiceModel, id);
 
         return "redirect:/profile/view";
     }

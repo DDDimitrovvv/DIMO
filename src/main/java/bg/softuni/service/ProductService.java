@@ -24,5 +24,9 @@ public interface ProductService {
 
     void deleteProduct(Long id);
 
-    void buyProduct(Long id);
+    void buyProduct(Long id) throws Exception;
+
+    List<ProductViewModel> getAllProductsForCurrUser() throws Exception;
+
+    boolean amITheCreatorOfThisProduct(Long id) throws Exception;
 }

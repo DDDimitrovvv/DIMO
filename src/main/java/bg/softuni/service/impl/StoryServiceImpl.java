@@ -2,8 +2,11 @@ package bg.softuni.service.impl;
 
 import bg.softuni.model.entities.StoryEntity;
 import bg.softuni.model.entities.UserEntity;
+import bg.softuni.model.entities.UserRoleEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
+import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.model.service.StoryServiceModel;
+import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.model.view.StoryViewModel;
 import bg.softuni.repository.StoryRepository;
 import bg.softuni.service.CloudinaryService;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +89,16 @@ public class StoryServiceImpl implements StoryService {
                 findById(id).
                 orElseThrow(() -> new IllegalStateException("Story entity not found."));
         long userIdFromStoryEntity = storyEntity.getUserEntity().getId();
-        return currentUser.getId() == userIdFromStoryEntity || currentUser.getUsername().equals("admin@gmail.com");
+        UserRoleEntity adminRole = new UserRoleEntity().setRole(UserRole.ADMIN);
+
+        boolean isAdmin = false;
+        for ( UserRoleEntity role : currentUser.getRoles() ){
+            if (role.getRole().equals(UserRole.ADMIN)) {
+                isAdmin = true;
+                break;
+            }
+        }
+        return currentUser.getId() == userIdFromStoryEntity || isAdmin;
     }
 
     @Override
@@ -111,5 +124,16 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public void deleteStory(Long id) {
         storyRepository.deleteById(id);
+    }
+
+    @Override
+    public List<StoryViewModel> getAllStoriesByCurrUser() throws Exception {
+        return storyRepository.
+                findAllByUserEntity_Id(userService.getCurrentUser().getId()).
+                stream().
+                map(storyEntity -> {
+                    return modelMapper.map(storyEntity, StoryViewModel.class);
+                }).
+                collect(Collectors.toList());
     }
 }
