@@ -31,50 +31,70 @@
         <div class="u-align-center u-container-style u-gradient u-group u-group-1">
             <div class="u-container-layout u-valign-middle u-container-layout-1">
                 <h1 class="u-text u-text-custom-color-5 u-text-1">Congratulations!!!</h1>
-                <p class="u-text u-text-2">You have the unique opportunity to add&nbsp;<br>the first story in your Web page!&nbsp;<br>Let's start!
+                <p class="u-text u-text-2">You have the unique opportunity to add&nbsp;<br>the first story in your Web
+                    page!&nbsp;<br>Let's start!
                 </p>
-                <a th:href="@{/stories/add}" class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-1">ADD story</a>
+                <a th:href="@{/stories/add}"
+                   class="u-btn u-btn-round u-button-style u-color-scheme-summer-time u-color-style-multicolor-1 u-palette-2-base u-radius-50 u-btn-1">ADD
+                    story</a>
             </div>
         </div>
     </div>
 </section>
 
 <section th:if="${storiesCollection.size() > 0}"
-        class="skrollable u-clearfix u-gradient u-section-1" id="sec-632d">
+         class="skrollable u-clearfix u-gradient u-section-1" id="sec-632d">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-expanded-width u-list u-repeater u-list-1">
-            <div th:each="story : ${storiesCollection}"
-                 class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-1"
-                 data-image-width="500"
-                 data-image-height="750"
-                 data-animation-name="zoomIn"
-                 data-animation-duration="1000"
-                 data-animation-delay="0"
-                 data-animation-direction="Down"
-                 th:style="|background-image:url(*{story.imageUrl})|">
-                <a th:href="@{/stories/details/{id}(id = *{story.getId()})}">
-                    <div class="u-container-layout u-similar-container u-container-layout-1">
-                        <h5 class="u-align-center u-text u-text-1"
-                            data-animation-name="fadeIn"
-                            data-animation-duration="1000"
-                            data-animation-delay="0"
-                            data-animation-direction=""
-                            th:text="*{story.storyTypeEnum}" style="background-color: purple;border-radius: 25px;">
-                            ISSUE</h5>
-                        <h5 class="u-text u-text-2"
-                            style="color: black; white-space: pre-line; background-color: lavender; border: thin solid blueviolet"
-                            th:utext="|&lt;b&gt;Title:&lt;/b&gt;
+        <div class="u-align-center u-clearfix"><small style="font-size: 16px"><b>Group stories by:</b></small>
+            <select name="dpSelector" id="dpSelector" onchange="myFunction()">
+                <option value="">-</option>
+                <option th:each="storyCategory : ${T(bg.softuni.model.entities.enums.StoryTypeEnum).values()}"
+                        th:value="${storyCategory}"
+                        th:text="${storyCategory}">INFO
+                </option>
+            </select>
+            <div id="foundItems"
+                 style="background-color: yellow; display: none;  width: 30%; text-align: center; margin-left: 35%;">
+                <b>Found:</b></div>
+            <small class="text-danger invalid-feedback" id="customError"
+                   style="display: none; font-size:20px; background-color:#ff4500;">Sorry! No stories found!</small>
+        </div>
+<!--        <div id="qwe">-->
+            <div class="u-expanded-width u-list u-repeater u-list-1" id="storiesList">
+                <th:block th:each="story : ${storiesCollection}">
+                    <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-1"
+                         data-image-width="500"
+                         data-image-height="750"
+                         data-animation-name="zoomIn"
+                         data-animation-duration="1000"
+                         data-animation-delay="0"
+                         data-animation-direction="Down"
+                         th:style="|background-image:url(*{story.imageUrl})|">
+                        <a th:href="@{/stories/details/{id}(id = *{story.getId()})}">
+                            <div class="u-container-layout u-similar-container u-container-layout-1">
+                                <h5 class="u-align-center u-text u-text-1"
+                                    data-animation-name="fadeIn"
+                                    data-animation-duration="1000"
+                                    data-animation-delay="0"
+                                    data-animation-direction=""
+                                    th:text="*{story.storyTypeEnum}"
+                                    style="background-color: purple;border-radius: 25px;">
+                                    ISSUE</h5>
+                                <h5 class="u-text u-text-2"
+                                    style="color: black; white-space: pre-line; background-color: lavender; border: thin solid blueviolet"
+                                    th:utext="|&lt;b&gt;Title:&lt;/b&gt;
                             *{story.title}
 
                             &lt;b&gt;Description:&lt;/b&gt;
                             *{story.description.substring(0,50)}...|"
-                        >Sample
-                            Headline</h5>
+                                >Sample
+                                    Headline</h5>
+                            </div>
+                        </a>
                     </div>
-                </a>
+                </th:block>
             </div>
-
-        </div>
+<!--        </div>-->
     </div>
 </section>
 
@@ -179,9 +199,10 @@
     </div>
 </section>
 
+<script th:src="@{/js/group-selector.js}"></script>
+
 </body>
 
 <footer th:replace="fragments/fragment::footer"></footer>
-<script th:src="@{js/search-field.js}"></script>
 
 </html>

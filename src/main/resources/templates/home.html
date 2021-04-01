@@ -34,13 +34,15 @@
                  Welcome to your Digital Innovative Modern Opportunities!|"></h1>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <li th:if="${allProducts.size() > 0}" class="u-nav-item">
+                <small style="font-size: 16px"><b>Group products by:</b></small>
                 <select name="dpSelector" id="dpSelector" onchange="myFunction()">
-                    <option value="">Order products by:</option>
+                    <option value="">-</option>
                     <option th:each="category : ${categoryList}"
                             th:value="${category}"
                             th:text="${category}">Speakers
                     </option>
                 </select>
+                <small style="font-size: 16px"><b> OR </b></small>
                 <input style="width: 400px; text-align:center;" id="searchInput" type="search"
                        placeholder="Search by product brand, model or category" name="search">
                 <div id="foundItems"
