@@ -1,8 +1,6 @@
 package bg.softuni.web;
 
 import bg.softuni.model.binding.ProfileBindingModel;
-import bg.softuni.model.binding.StoryAddBindingModel;
-import bg.softuni.model.binding.UserRegistrationBindingModel;
 import bg.softuni.model.service.ProfileServiceModel;
 import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
@@ -21,7 +19,6 @@ public class ProfileController {
     private final UserService userService;
     private final ProductService productService;
     private final StoryService storyService;
-    private final PurchasedUserService purchasedUserService;
     private final PurchasedProductService purchasedProductService;
     private final ModelMapper modelMapper;
 
@@ -29,13 +26,11 @@ public class ProfileController {
     public ProfileController(UserService userService,
                              ProductService productService,
                              StoryService storyService,
-                             PurchasedUserService purchasedUserService,
                              PurchasedProductService purchasedProductService,
                              ModelMapper modelMapper) {
         this.userService = userService;
         this.productService = productService;
         this.storyService = storyService;
-        this.purchasedUserService = purchasedUserService;
         this.purchasedProductService = purchasedProductService;
         this.modelMapper = modelMapper;
     }
@@ -49,16 +44,14 @@ public class ProfileController {
 
     @GetMapping("/view")
     public String viewProfile(Model model) throws Exception {
-        System.out.println();
 
         model.addAttribute("user", userService.getCurrentUserViewModel());
+        model.addAttribute("isRootAdmin", userService.checkIfUserIsRootAdmin());
         model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
         model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
-//        model.addAttribute("userSoldProductsList", purchasedProductService.getAllProductSoldByUserId());
-//        model.addAttribute("UserPurchasedProductsList", purchasedUserService.getAllPurchasedProductsByThisUser());
-        System.out.println();
-
-
+        model.addAttribute("userPurchasedList", purchasedProductService.getAllPurchasedProductByUserId());
+        model.addAttribute("userSoldList", purchasedProductService.getAllSoldProductsByUserId());
+        model.addAttribute("showAllArchivedProducts", purchasedProductService.getAllArchivedProducts());
 
         return "profile";
     }
@@ -88,7 +81,7 @@ public class ProfileController {
             return "redirect:/profile/edit/{id}";
         }
 
-        if (userService.isThisUsernameAlreadyExists(profileBindingModel.getUsername())) {
+        if (userService.isThisUsernameAlreadyExists(profileBindingModel.getUsername()) && !profileBindingModel.getUsername().equals(userService.getCurrentUser().getUsername())) {
             redirectAttributes.addFlashAttribute("profileBindingModel", profileBindingModel);
             redirectAttributes.addFlashAttribute("userAlreadyExist", true);
             return "redirect:/profile/edit/{id}";

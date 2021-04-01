@@ -6,7 +6,6 @@ import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.service.CategoryService;
 import bg.softuni.service.LogService;
 import bg.softuni.service.ProductService;
-import bg.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,6 @@ public class ProductController {
     private final CategoryService categoryService;
     private final ProductService productService;
     private final ModelMapper modelMapper;
-//    private final UserService userService;
     private final LogService logService;
 
     public ProductController(CategoryService categoryService, ProductService productService, ModelMapper modelMapper, LogService logService) {
@@ -73,6 +71,15 @@ public class ProductController {
         model.addAttribute("editAccess", productService.validateUserAccess(id));
 
         return "product-details";
+    }
+
+
+    @GetMapping("/archived/{id}")
+    public String purchasedProduct(Model model, @PathVariable Long id) throws Exception {
+        ProductViewModel productViewModel = productService.findArchivedProductById(id);
+        model.addAttribute("archivedProduct", productViewModel);
+
+        return "archived_product-details";
     }
 
     @GetMapping("/edit/{id}")

@@ -29,4 +29,6 @@ public interface ProductService {
     List<ProductViewModel> getAllProductsForCurrUser() throws Exception;
 
     boolean amITheCreatorOfThisProduct(Long id) throws Exception;
+
+    ProductViewModel findArchivedProductById(Long id);
 }

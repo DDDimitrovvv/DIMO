@@ -1,13 +1,12 @@
 package bg.softuni.service.impl;
 
+import bg.softuni.model.entities.ArchivedProductEntity;
 import bg.softuni.model.entities.ProductEntity;
-import bg.softuni.model.entities.PurchasedProductEntity;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.service.ProductServiceModel;
 import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.ProductRepository;
-import bg.softuni.repository.PurchasedProductRepository;
 import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,8 @@ public class ProductServiceImpl implements ProductService {
                               CloudinaryService cloudinaryService,
                               CategoryService categoryService,
                               UserService userService,
-                              CategoryRepository categoryRepository, PurchasedProductService purchasedProductService) {
+                              CategoryRepository categoryRepository,
+                              PurchasedProductService purchasedProductService) {
 
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
@@ -172,5 +172,15 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return creator;
+    }
+
+    @Override
+    public ProductViewModel findArchivedProductById(Long id) {
+
+        ArchivedProductEntity archivedProductEntity = purchasedProductService.findPurchasedProductById(id);
+        ProductViewModel productViewModel = modelMapper.map(archivedProductEntity, ProductViewModel.class);
+        productViewModel.setCategoryName(archivedProductEntity.getCategoryEntity().getCategoryName());
+
+        return productViewModel;
     }
 }

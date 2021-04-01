@@ -3,11 +3,12 @@ package bg.softuni.model.entities;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "purchased_products")
-public class PurchasedProductEntity extends BaseEntity {
+@Table(name = "archived_products")
+public class ArchivedProductEntity extends BaseEntity {
 
     @Column(name = "brand", nullable = false)
     private String brand;
@@ -33,20 +34,30 @@ public class PurchasedProductEntity extends BaseEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
+    @Column(name = "purchased_user_id", nullable = false)
+    private Long purchasedUserId;
+
+    @Column(name = "purchased_user_username", nullable = false)
+    private String purchasedUsername;
+
+    @Column(name = "purchased_date_and_time", nullable = false)
+    private LocalDateTime purchasedDateAndTime;
+
     @ManyToOne()
     private CategoryEntity categoryEntity;
 
     @ManyToOne()
     private UserEntity userEntity;
 
-    public PurchasedProductEntity() {
+
+    public ArchivedProductEntity() {
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public PurchasedProductEntity setBrand(String brand) {
+    public ArchivedProductEntity setBrand(String brand) {
         this.brand = brand;
         return this;
     }
@@ -55,7 +66,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return model;
     }
 
-    public PurchasedProductEntity setModel(String model) {
+    public ArchivedProductEntity setModel(String model) {
         this.model = model;
         return this;
     }
@@ -64,7 +75,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return manufactureDate;
     }
 
-    public PurchasedProductEntity setManufactureDate(LocalDate manufactureDate) {
+    public ArchivedProductEntity setManufactureDate(LocalDate manufactureDate) {
         this.manufactureDate = manufactureDate;
         return this;
     }
@@ -73,7 +84,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return color;
     }
 
-    public PurchasedProductEntity setColor(String color) {
+    public ArchivedProductEntity setColor(String color) {
         this.color = color;
         return this;
     }
@@ -82,7 +93,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return price;
     }
 
-    public PurchasedProductEntity setPrice(BigDecimal price) {
+    public ArchivedProductEntity setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -91,7 +102,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return warranty;
     }
 
-    public PurchasedProductEntity setWarranty(int warranty) {
+    public ArchivedProductEntity setWarranty(int warranty) {
         this.warranty = warranty;
         return this;
     }
@@ -100,7 +111,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return details;
     }
 
-    public PurchasedProductEntity setDetails(String details) {
+    public ArchivedProductEntity setDetails(String details) {
         this.details = details;
         return this;
     }
@@ -109,8 +120,35 @@ public class PurchasedProductEntity extends BaseEntity {
         return imageUrl;
     }
 
-    public PurchasedProductEntity setImageUrl(String imageUrl) {
+    public ArchivedProductEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public Long getPurchasedUserId() {
+        return purchasedUserId;
+    }
+
+    public ArchivedProductEntity setPurchasedUserId(Long purchasedUserId) {
+        this.purchasedUserId = purchasedUserId;
+        return this;
+    }
+
+    public LocalDateTime getPurchasedDateAndTime() {
+        return purchasedDateAndTime;
+    }
+
+    public ArchivedProductEntity setPurchasedDateAndTime(LocalDateTime purchasedDateAndTime) {
+        this.purchasedDateAndTime = purchasedDateAndTime;
+        return this;
+    }
+
+    public String getPurchasedUsername() {
+        return purchasedUsername;
+    }
+
+    public ArchivedProductEntity setPurchasedUsername(String purchasedUsername) {
+        this.purchasedUsername = purchasedUsername;
         return this;
     }
 
@@ -118,7 +156,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return categoryEntity;
     }
 
-    public PurchasedProductEntity setCategoryEntity(CategoryEntity categoryEntity) {
+    public ArchivedProductEntity setCategoryEntity(CategoryEntity categoryEntity) {
         this.categoryEntity = categoryEntity;
         return this;
     }
@@ -127,7 +165,7 @@ public class PurchasedProductEntity extends BaseEntity {
         return userEntity;
     }
 
-    public PurchasedProductEntity setUserEntity(UserEntity userEntity) {
+    public ArchivedProductEntity setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
         return this;
     }

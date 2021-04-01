@@ -1,6 +1,5 @@
 package bg.softuni.web;
 
-import bg.softuni.model.view.LogViewModel;
 import bg.softuni.service.LogService;
 import bg.softuni.service.ProductService;
 import bg.softuni.service.StoryService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 

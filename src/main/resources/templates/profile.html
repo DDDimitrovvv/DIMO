@@ -4,14 +4,14 @@
 
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Welcome to your digital innovative modern opportunities!">
-    <meta name="description" content="">
-    <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/css/Main.css">
+
+<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="/css/Profile.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <title>Profile</title>
+
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
@@ -51,112 +51,157 @@
     </div>
 </section>
 
-<!--<section class="u-align-center u-clearfix u-section-2" id="sec-46e5">-->
-<!--    <div class="u-clearfix u-sheet u-sheet-1">-->
-<!--        <br/> <br/>-->
-<!--        <button class="u-text u-text-1">Your purchased products:</button>-->
-<!--        <p th:if="${UserPurchasedProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any-->
-<!--            purchased products-->
-<!--            yet. :)</p>-->
-<!--        <div class="u-expanded-width u-table u-table-responsive u-table-1">-->
-<!--            <table class="u-table-entity u-table-entity-1">-->
-<!--                <colgroup>-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                </colgroup>-->
-<!--                <thead class="u-grey-50 u-table-header u-table-header-1">-->
-<!--                <tr style="height: 21px;">-->
-<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Product ID</th>-->
-<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Brand</th>-->
-<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Model</th>-->
-<!--                    <th class="u-border-1 u-border-grey-50 u-table-cell">Date</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody class="u-table-body">-->
-<!--                <tr style="height: 75px;">-->
-<!--                    <th:block th:each="purchasedProduct : ${UserPurchasedProductsList}">-->
-<!--                        <td th:text="|ID:*{purchasedProduct.getId()}|"-->
-<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Product-->
-<!--                            ID-->
-<!--                        </td>-->
-<!--                        <td th:text="*{purchasedProduct.getBrand()}"-->
-<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
-<!--                            Brand-->
-<!--                        </td>-->
-<!--                        <td th:text="*{purchasedProduct.getModel()}"-->
-<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
-<!--                            Model-->
-<!--                        </td>-->
-<!--                        <td th:if="*{purchasedProduct.getManufactureDate() != null}"-->
-<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">-->
-<!--                            Date-->
-<!--                        </td>-->
-<!--                        <td th:if="*{purchasedProduct.getManufactureDate() == null}"-->
-<!--                            class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">No date-->
-<!--                            entered!-->
-<!--                        </td>-->
-<!--                    </th:block>-->
-<!--                </tr>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+<div th:if="${!isRootAdmin}">
 
-<!--<section class="u-align-center u-clearfix u-section-3" id="sec-93fc">-->
-<!--    <div class="u-clearfix u-sheet u-sheet-1">-->
-<!--        <button class="u-text u-text-1">Your sold products:</button>-->
-<!--        <p th:if="${userSoldProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any sold-->
-<!--            products-->
-<!--            yet. :)</p>-->
-<!--        <div class="u-expanded-width u-table u-table-responsive u-table-1">-->
-<!--            <table class="u-table-entity u-table-entity-1">-->
-<!--                <colgroup>-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                    <col width="25%">-->
-<!--                </colgroup>-->
-<!--                <tbody class="u-table-alt-palette-1-light-3 u-table-body">-->
-<!--                <tr style="height: 65px;">-->
-<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-1">Product ID</td>-->
-<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-2">Brand</td>-->
-<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-3">Model</td>-->
-<!--                    <td class="u-palette-3-base u-table-cell u-table-cell-4">Manufacture Date</td>-->
-<!--                </tr>-->
-<!--                <th:block th:each="soldProduct : ${userSoldProductsList}">-->
-<!--                    <tr style="height: 65px;">-->
-<!--                        <td class="u-table-cell"-->
-<!--                            th:text="|ID:*{soldProduct.getId()}|">Product ID-->
-<!--                        </td>-->
-<!--                        <td class="u-table-cell"-->
-<!--                            th:text="*{soldProduct.getBrand()}">Brand-->
-<!--                        </td>-->
-<!--                        <td class="u-table-cell"-->
-<!--                            th:text="*{soldProduct.getModel()}">Model-->
-<!--                        </td>-->
-<!--                        <td th:if="*{soldProduct.getManufactureDate() != null}"-->
-<!--                            class="u-table-cell"-->
-<!--                            th:text="*{soldProduct.getManufactureDate()}">ManufactureDate-->
-<!--                        </td>-->
-<!--                        <td th:if="*{soldProduct.getManufactureDate() == null}"-->
-<!--                            class="u-table-cell"-->
-<!--                        >No date entered!-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                </th:block>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+    <section class=" u-align-center u-clearfix u-section-2" id="sec-46e5">
+        <button type="button" id="btn2_1" class="u-text u-text-1">Your purchased products</button>
+        <div id="sectionPurchased" style="display: none"  class="u-clearfix u-sheet u-sheet-1">
+            <br/> <br/>
+            <p th:if="${userPurchasedList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
+                purchased products
+                yet. :)</p>
+            <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <table class="u-table-entity u-table-entity-1">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <thead class="u-grey-50 u-table-header u-table-header-1">
+                    <tr style="height: 21px;">
+                        <th class="u-border-1 u-border-grey-50 u-table-cell">Brand (click)</th>
+                        <th class="u-border-1 u-border-grey-50 u-table-cell">Model</th>
+                        <th class="u-border-1 u-border-grey-50 u-table-cell">Date and time</th>
+                        <th class="u-border-1 u-border-grey-50 u-table-cell">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody class="u-table-body">
+                    <th:block th:each="purchasedProduct : ${userPurchasedList}">
+                        <tr style="height: 75px;">
+                            <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                                <a th:href="@{/products/archived/{id}(id = *{purchasedProduct.getId()})}"
+                                   th:text="*{purchasedProduct.getBrand()}">Brand</a>
+                            </td>
+                            <td th:text="*{purchasedProduct.getModel()}"
+                                class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                                Model
+                            </td>
+                            <td th:text="${#temporals.format(purchasedProduct.getPurchasedDateAndTime(), 'dd-MM-yyyy HH:mm:ss')}"
+                                class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                                Date and time
+                            </td>
+                            <td th:text="*{purchasedProduct.getPrice()}"
+                                class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                                Price
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="u-align-center u-clearfix u-section-3" id="sec-93fc">
+        <button type="button" id="btn2_2" class="u-text u-text-1">Your sold products</button>
+        <div id="sectionSold" style="display: none" class="u-clearfix u-sheet u-sheet-1">
+            <p th:if="${userSoldList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any sold
+                products
+                yet. :)</p>
+            <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <table class="u-table-entity u-table-entity-1">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                    <tr style="height: 65px;">
+                        <td class="u-palette-3-base u-table-cell u-table-cell-1">Brand (click)</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-2">Model</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-3">Date and time</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-4">Price</td>
+                    </tr>
+                    <th:block th:each="soldProduct : ${userSoldList}">
+                        <tr style="height: 65px;">
+                            <td class="u-table-cell">
+                                <a th:href="@{/products/archived/{id}(id = *{soldProduct.getId()})}"
+                                   th:text="*{soldProduct.getBrand()}">Brand</a>
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="*{soldProduct.getModel()}">Brand
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="${#temporals.format(soldProduct.getPurchasedDateAndTime(), 'dd-MM-yyyy HH:mm:ss')}"
+                            >Date and time
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="*{soldProduct.getPrice()}">ManufactureDate
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div th:if="${isRootAdmin}">
+
+    <section class="u-align-center u-clearfix u-section-3" id="sec-93fc">
+        <button type="button" id="btn1_1" class="u-text u-text-1">All archived products</button>
+        <div id="sectionArchived" style="display: none" class="u-clearfix u-sheet u-sheet-1">
+            <p th:if="${showAllArchivedProducts.size() == 0}" style="background-color: #b21f2d"> Sorry! All products are still in
+                the store :)</p>
+            <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <table class="u-table-entity u-table-entity-1">
+                    <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                    </colgroup>
+                    <tbody class="u-table-alt-palette-1-light-3 u-table-body">
+                    <tr style="height: 65px;">
+                        <td class="u-palette-3-base u-table-cell u-table-cell-1">Brand and Model (click)</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-2">Date and time</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-3">Sold by</td>
+                        <td class="u-palette-3-base u-table-cell u-table-cell-4">Bought by</td>
+                    </tr>
+                    <th:block th:each="archivedProduct : ${showAllArchivedProducts}">
+                        <tr style="height: 65px;">
+                            <td class="u-table-cell">
+                                <a th:href="@{/products/archived/{id}(id = *{archivedProduct.getId()})}"
+                                   th:text="|*{archivedProduct.getBrand()} *{archivedProduct.getModel()}|">Brand</a>
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="${#temporals.format(archivedProduct.getPurchasedDateAndTime(), 'dd-MM-yyyy HH:mm:ss')}">
+                                Brand
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="*{archivedProduct.getUserEntity().getUsername()}"
+                            >Date and time
+                            </td>
+                            <td class="u-table-cell"
+                                th:text="*{archivedProduct.getPurchasedUsername()}">ManufactureDate
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>
 
 <section class="u-align-center u-clearfix u-section-4" id="sec-9d1c">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <button class="u-text u-text-1">Your products:</button>
+    <button type="button" id="btn1_2" class="u-text u-text-1">Your products</button>
+    <div id="sectionViewProducts" style="display: none" class="u-clearfix u-sheet u-sheet-1">
         <p th:if="${userProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any products
             yet. :)</p>
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
@@ -203,9 +248,10 @@
         </div>
     </div>
 </section>
+
 <section class="u-align-center u-clearfix u-section-5" id="sec-6117">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <button class="u-text u-text-1">Your stories:</button>
+    <button type="button" id="btn1_3" class="u-text u-text-1">Your stories</button>
+    <div id="sectionViewStories" style="display: none"  class="u-clearfix u-sheet u-sheet-1">
         <p th:if="${userStoriesList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any stories
             yet. :)</p>
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
@@ -248,6 +294,8 @@
     </div>
 </section>
 
+<script th:if="${!isRootAdmin}" th:src="@{/js/profileButtons.js}"></script>
+<script th:if="${isRootAdmin}" th:src="@{/js/profileAdminButton.js}"></script>
 
 </body>
 

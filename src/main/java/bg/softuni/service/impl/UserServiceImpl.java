@@ -192,11 +192,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(long id) {
-        userRepository.deleteById(id);
-    }
-
-    @Override
     public boolean validateUserAccess(Long id) {
         return this.getCurrentUser().getId() == id || this.getCurrentUser().getUsername().equals("admin@gmail.com");
     }
@@ -219,6 +214,11 @@ public class UserServiceImpl implements UserService {
                 setId(id);
 
         userRepository.save(userEntity);
+    }
+
+    @Override
+    public boolean checkIfUserIsRootAdmin() {
+        return this.getCurrentUser().getUsername().equals("admin@gmail.com");
     }
 }
 
