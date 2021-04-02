@@ -36,6 +36,11 @@ public class AdminController {
 
     @GetMapping("/statistics")
     public String statistics(Model model) {
+
+        if (!userService.checkIsAdmin()) {
+            return "redirect:/home";
+        }
+
         model.addAttribute("usersCount", userService.getCountOfAllUsersInDB());
         model.addAttribute("loggedUsersCount", userService.getCountOfAllLoggedUsers());
         model.addAttribute("registeredUsersCount", userService.getCountOfAllRegisteredUsers());
@@ -64,16 +69,16 @@ public class AdminController {
 
     @GetMapping("/roles")
     public String roles(Model model) throws Exception {
+        if (!userService.checkIsAdmin()) {
+            return "redirect:/home";
+        }
         model.addAttribute("usernameList", userService.getAllUsernameList());
         return "roles";
     }
 
     @PostMapping("/roles")
-    public String rolesConfirm( String username,
-                              String role) throws Exception {
-
+    public String rolesConfirm(String username, String role) throws Exception {
         userService.changeRole(username, role);
-
         return "redirect:/home";
     }
 }

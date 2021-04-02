@@ -1,16 +1,14 @@
 package bg.softuni.web;
 
 import bg.softuni.model.entities.*;
-import bg.softuni.repository.CategoryRepository;
-import bg.softuni.repository.LogRepository;
-import bg.softuni.repository.ProductRepository;
-import bg.softuni.repository.UserRepository;
+import bg.softuni.repository.*;
 import bg.softuni.service.CloudinaryService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -45,11 +44,15 @@ public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
+    private ModelMapper modelMapper;
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ArchivedProductRepository archivedProductRepository;
     @Autowired
     private LogRepository logRepository;
 
@@ -67,6 +70,43 @@ public class ProductControllerTest {
             productRepository.deleteById(testProductId);
         }
     }
+
+
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void testBuyProductShouldReturnRedirectStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(
+                PRODUCT_CONTROLLER_PREFIX + "/buy/{id}", testProductId
+        )).
+                andExpect(status().is3xxRedirection());
+        Assertions.assertEquals(0, productRepository.count());
+        Assertions.assertEquals(2, archivedProductRepository.count());
+    }
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void testDeleteProductShouldReturnRedirectStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(
+                PRODUCT_CONTROLLER_PREFIX + "/delete/{id}", testProductId
+        )).
+        andExpect(status().is3xxRedirection());
+        Assertions.assertEquals(1, productRepository.count());
+    }
+
+
+
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void testArchiveProductShouldReturnValidStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(
+                PRODUCT_CONTROLLER_PREFIX + "/archived/{id}", testProductId
+        )).
+                andExpect(status().isOk()).
+                andExpect(view().name("archived_product-details")).
+                andExpect(model().attributeExists("archivedProduct"));
+    }
+
 
 
     @Test
@@ -266,6 +306,12 @@ public class ProductControllerTest {
         productEntity.setCategoryEntity(categoryEntity);
         productEntity = productRepository.save(productEntity);
         testProductId = productEntity.getId();
-//        }
+
+        ArchivedProductEntity archivedProductEntity = modelMapper.map(productEntity, ArchivedProductEntity.class);
+        archivedProductEntity.setId(0);
+        archivedProductEntity.setPurchasedUserId(userEntity.getId());
+        archivedProductEntity.setPurchasedUsername(userEntity.getUsername());
+        archivedProductEntity.setPurchasedDateAndTime(LocalDateTime.now());
+        archivedProductRepository.save(archivedProductEntity);
     }
 }
