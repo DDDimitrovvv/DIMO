@@ -1,5 +1,4 @@
 const storiesList = document.getElementById('storiesList');
-const searchField = document.getElementById('searchInput');
 const customErrorField = document.getElementById('customError');
 const foundItems = document.getElementById('foundItems');
 const dropDownMenu = document.getElementById('dpSelector');
@@ -11,28 +10,6 @@ fetch("http://localhost:8080/stories/api").then(response => response.json()).the
         allStories.push(story);
     }
 })
-
-// searchField.addEventListener("keyup", (e) => {
-//
-//     const searchingCharacters = searchField.value.toLowerCase();
-//     let filteredStories = allStories.filter(story => {
-//         return story.storyTypeEnum.toUpperCase().includes(searchingCharacters);
-//     })
-//
-//     if (filteredStories.length === 0) {
-//         customErrorField.style.display = "block";
-//         setTimeout(function() {
-//             $('#customError').fadeOut('fast');
-//         }, 1000);
-//     } else {
-//         foundItems.style.display = "block";
-//         foundItems.style.display = "block";
-//         setTimeout(function() {
-//             $('#foundItems').fadeOut('fast');
-//         }, 2000);
-//         displayProducts(filteredStories);
-//     }
-// })
 
 const displayStories= (stories) => {
     let foundItemsCounter = 0;

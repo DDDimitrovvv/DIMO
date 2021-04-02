@@ -220,5 +220,18 @@ public class UserServiceImpl implements UserService {
     public boolean checkIfUserIsRootAdmin() {
         return this.getCurrentUser().getUsername().equals("admin@gmail.com");
     }
+
+    @Override
+    public boolean checkIsAdmin() {
+        boolean isAdmin = false;
+
+        for ( UserRoleEntity role : this.getCurrentUser().getRoles() ){
+            if (role.getRole().equals(UserRole.ADMIN)) {
+                isAdmin = true;
+                break;
+            }
+        }
+        return isAdmin;
+    }
 }
 

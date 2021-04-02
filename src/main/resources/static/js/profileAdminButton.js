@@ -7,6 +7,9 @@ const viewPrSection =  document.getElementById('sectionViewProducts');
 const viewSt = document.getElementById('btn1_3');
 const viewStSection =  document.getElementById('sectionViewStories');
 
+const viewMsg = document.getElementById('btn1_4');
+const viewMsgSection =  document.getElementById('sectionMessages');
+
 archivedPr.addEventListener('click', function () {
     if (archivedSection.style.display === "none") {
         archivedSection.style.display = "block";
@@ -28,5 +31,14 @@ viewSt.addEventListener('click', function () {
         viewStSection.style.display = "block";
     } else {
         viewStSection.style.display = "none";
+    }
+});
+
+
+viewMsg.addEventListener('click', function () {
+    if (viewMsgSection.style.display === "none") {
+        viewMsgSection.style.display = "block";
+    } else {
+        viewMsgSection.style.display = "none";
     }
 });

@@ -37,4 +37,6 @@ public interface UserService {
     void updateUser(ProfileServiceModel profileServiceModel, Long id) throws IOException;
 
     boolean checkIfUserIsRootAdmin();
+
+    boolean checkIsAdmin();
 }

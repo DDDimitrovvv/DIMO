@@ -20,6 +20,7 @@ public class ProfileController {
     private final ProductService productService;
     private final StoryService storyService;
     private final PurchasedProductService purchasedProductService;
+    private final ContactService contactService;
     private final ModelMapper modelMapper;
 
 
@@ -27,11 +28,13 @@ public class ProfileController {
                              ProductService productService,
                              StoryService storyService,
                              PurchasedProductService purchasedProductService,
+                             ContactService contactService,
                              ModelMapper modelMapper) {
         this.userService = userService;
         this.productService = productService;
         this.storyService = storyService;
         this.purchasedProductService = purchasedProductService;
+        this.contactService = contactService;
         this.modelMapper = modelMapper;
     }
 
@@ -47,11 +50,13 @@ public class ProfileController {
 
         model.addAttribute("user", userService.getCurrentUserViewModel());
         model.addAttribute("isRootAdmin", userService.checkIfUserIsRootAdmin());
+        model.addAttribute("isAdmin", userService.checkIsAdmin());
         model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
         model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
         model.addAttribute("userPurchasedList", purchasedProductService.getAllPurchasedProductByUserId());
         model.addAttribute("userSoldList", purchasedProductService.getAllSoldProductsByUserId());
         model.addAttribute("showAllArchivedProducts", purchasedProductService.getAllArchivedProducts());
+        model.addAttribute("showMessages", contactService.getAllMessages());
 
         return "profile";
     }
@@ -94,6 +99,4 @@ public class ProfileController {
 
         return "redirect:/profile/view";
     }
-
-
 }

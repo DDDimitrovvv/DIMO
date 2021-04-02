@@ -5,7 +5,7 @@
 
 <head>
 
-<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="/css/Profile.css">
     <link rel="stylesheet" href="/css/Main.css" media="screen">
     <title>Profile</title>
@@ -48,14 +48,61 @@
                    class="u-btn u-button-style u-custom-color-4 u-text-body-alt-color u-btn-1">EDIT YOUR PROFILE</a>
             </div>
         </div>
+        <button th:if="${isRootAdmin}"
+                id="btn1_4"
+                class="u-btn u-button-style u-custom-color-3 u-text-body-alt-color"
+                style="text-align: center;  margin: -180px auto 60px 96px;  padding: 10px 70px;" type="submit"><b>MESSAGES</b>
+        </button>
     </div>
 </section>
+
+
+<section class="u-align-center u-clearfix u-section-2" id="carousel_5141_ss">
+    <div id="sectionMessages" style="display: none" class="u-clearfix u-sheet u-sheet-1">
+        <p th:if="${showMessages.size() == 0}" style="background-color: palegreen"> There are no messages stored in your
+            DB. :)</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-align-center u-font-merriweather u-grey-10 u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-black u-table-cell">From email</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Category</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Time</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Message (click)</th>
+                </tr>
+                </thead>
+                <tbody class="u-align-center u-border-1  u-table-body">
+                <tr th:each="message : ${showMessages}" style="height: 55px;">
+                    <td class="u-table-cell" th:text="*{message.username}">email
+                    </td>
+                    <td class="u-table-cell" th:text="*{message.categoryTypeEnum}">category</td>
+                    <td class="u-table-cell"
+                        th:text="${#temporals.format(message.getSubmittedDateTime(), 'dd-MM-yyyy HH:mm:ss')}"
+                    >date:
+                    </td>
+                    <td class="u-table-cell">
+                        <a th:href="@{/contact/message/{id}(id = *{message.getId()})}"
+                           th:text="|*{message.messageText.substring(0, 20)}...|">message text</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
 
 <div th:if="${!isRootAdmin}">
 
     <section class=" u-align-center u-clearfix u-section-2" id="sec-46e5">
         <button type="button" id="btn2_1" class="u-text u-text-1">Your purchased products</button>
-        <div id="sectionPurchased" style="display: none"  class="u-clearfix u-sheet u-sheet-1">
+        <div id="sectionPurchased" style="display: none" class="u-clearfix u-sheet u-sheet-1">
             <br/> <br/>
             <p th:if="${userPurchasedList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
                 purchased products
@@ -155,7 +202,8 @@
     <section class="u-align-center u-clearfix u-section-3" id="sec-93fc">
         <button type="button" id="btn1_1" class="u-text u-text-1">All archived products</button>
         <div id="sectionArchived" style="display: none" class="u-clearfix u-sheet u-sheet-1">
-            <p th:if="${showAllArchivedProducts.size() == 0}" style="background-color: #b21f2d"> Sorry! All products are still in
+            <p th:if="${showAllArchivedProducts.size() == 0}" style="background-color: #b21f2d"> Sorry! All products are
+                still in
                 the store :)</p>
             <div class="u-expanded-width u-table u-table-responsive u-table-1">
                 <table class="u-table-entity u-table-entity-1">
@@ -251,7 +299,7 @@
 
 <section class="u-align-center u-clearfix u-section-5" id="sec-6117">
     <button type="button" id="btn1_3" class="u-text u-text-1">Your stories</button>
-    <div id="sectionViewStories" style="display: none"  class="u-clearfix u-sheet u-sheet-1">
+    <div id="sectionViewStories" style="display: none" class="u-clearfix u-sheet u-sheet-1">
         <p th:if="${userStoriesList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any stories
             yet. :)</p>
         <div class="u-expanded-width u-table u-table-responsive u-table-1">

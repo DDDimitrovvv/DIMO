@@ -1,0 +1,98 @@
+.u-section-1 {
+  background-image: url("../images/night-europe.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 733px;
+}
+
+.u-section-1 .u-group-1 {
+  width: 581px;
+  min-height: 438px;
+  background-image: none;
+  height: auto;
+  margin: 96px auto 60px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px 50px;
+}
+
+.u-section-1 .u-text-1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  background-image: none;
+  font-size: 2.25rem;
+  margin: 10px 0 0;
+}
+
+.u-section-1 .u-text-2 {
+  margin: 37px 0 0;
+}
+
+.u-section-1 .u-text-3 {
+  margin: 17px 0 0;
+}
+
+.u-section-1 .u-text-4 {
+  margin: 17px 0 0;
+}
+
+.u-section-1 .u-text-5 {
+  margin: 37px 0 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 761px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 518px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .u-section-1 .u-text-1 {
+    width: 207px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 895px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 838px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 479px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 883px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 310px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 1.5rem;
+  }
+}
