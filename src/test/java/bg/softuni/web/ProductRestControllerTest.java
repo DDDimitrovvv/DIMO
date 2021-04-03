@@ -1,6 +1,9 @@
 package bg.softuni.web;
 
-import bg.softuni.model.entities.*;
+import bg.softuni.model.entities.CategoryEntity;
+import bg.softuni.model.entities.LogEntity;
+import bg.softuni.model.entities.ProductEntity;
+import bg.softuni.model.entities.UserEntity;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.LogRepository;
 import bg.softuni.repository.ProductRepository;
@@ -10,7 +13,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,12 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
@@ -90,7 +91,6 @@ public class ProductRestControllerTest {
         } else {
             userEntity = userRepository.save(userEntity);
         }
-
 
         ProductEntity productEntity = new ProductEntity();
         productEntity.setBrand("HK");

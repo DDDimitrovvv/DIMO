@@ -64,9 +64,7 @@ public class ProductController {
 
     @GetMapping("/details/{id}")
     public String details(Model model, @PathVariable Long id) throws Exception {
-
-        ProductViewModel productViewModel = productService.findById(id);
-        model.addAttribute("product", productViewModel);
+        model.addAttribute("product", productService.findById(id));
         model.addAttribute("creator", productService.amITheCreatorOfThisProduct(id));
         model.addAttribute("editAccess", productService.validateUserAccess(id));
 

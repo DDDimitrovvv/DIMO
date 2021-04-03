@@ -78,8 +78,12 @@ public class StoryServiceImpl implements StoryService {
     public StoryViewModel getStoryById(Long id) {
         StoryEntity storyEntity = storyRepository.
                 findById(id).
-                orElseThrow(() -> new IllegalStateException("Story entity not found."));
-        return modelMapper.map(storyEntity, StoryViewModel.class);
+                orElse(null);
+//                orElseThrow(() -> new IllegalStateException("Story entity not found."));
+        if(storyEntity != null){
+            return modelMapper.map(storyEntity, StoryViewModel.class);
+        }
+        return new StoryViewModel();
     }
 
     @Override

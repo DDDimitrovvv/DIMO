@@ -100,7 +100,6 @@ public class AdminControllerTest {
             userEntity.setUsername("test@abv.bg");
             userEntity.setFullname("Test Testov");
             userEntity.setPassword("123456");
-
             userEntity = userRepository.save(userEntity);
         }
 

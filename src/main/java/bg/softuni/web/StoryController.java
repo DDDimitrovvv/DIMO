@@ -66,7 +66,13 @@ public class StoryController {
 
     @GetMapping("/details/{id}")
     public String details(Model model, @PathVariable Long id) throws Exception {
-        model.addAttribute("story", storyService.getStoryById(id));
+        StoryViewModel storyViewModel = storyService.getStoryById(id);
+
+        if(storyViewModel.getId() == 0L){
+            return "redirect:/home";
+        }
+        
+        model.addAttribute("story", storyViewModel);
         model.addAttribute("editAccess", storyService.validateUserAccess(id));
 
 

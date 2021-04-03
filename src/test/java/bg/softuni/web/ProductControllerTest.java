@@ -72,7 +72,6 @@ public class ProductControllerTest {
     }
 
 
-
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER"})
     void testBuyProductShouldReturnRedirectStatus() throws Exception {
@@ -90,10 +89,9 @@ public class ProductControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get(
                 PRODUCT_CONTROLLER_PREFIX + "/delete/{id}", testProductId
         )).
-        andExpect(status().is3xxRedirection());
+                andExpect(status().is3xxRedirection());
         Assertions.assertEquals(1, productRepository.count());
     }
-
 
 
     @Test
@@ -106,7 +104,6 @@ public class ProductControllerTest {
                 andExpect(view().name("archived_product-details")).
                 andExpect(model().attributeExists("archivedProduct"));
     }
-
 
 
     @Test
@@ -141,20 +138,19 @@ public class ProductControllerTest {
 //        MockMultipartFile mockImgFile
 //                = new MockMultipartFile(
 //                "imageUrl",
-//                "hello.png",
+//                "helloMe.png",
 //                MediaType.TEXT_PLAIN_VALUE,
-//                "Hello, My World!".getBytes()
+//                "Hello, My Amazing World!".getBytes()
 //        );
 //
-//        mockMvc.perform(MockMvcRequestBuilders.multipart(
-//                PRODUCT_CONTROLLER_PREFIX + "/edit/{id}", testProductId)
-//                .file(mockImgFile)
-//                .param("Brand", "HKR")
+//
+//        mockMvc.perform(MockMvcRequestBuilders.patch(PRODUCT_CONTROLLER_PREFIX + "/edit/{id}", testProductId)
+//                .param("imageUrl", String.valueOf(mockImgFile)).
+//                        param("Brand", "HKR")
 //                .param("model", "AVR270")
-//                .param("coloT", "black")
-//                .param("manufactureDate", "2019-01-09")
+//                .param("color", "yellow")
 //                .param("price", "100")
-//                .param("warranty", "12")
+//                .param("price", "100")
 //                .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
 //                .param("categoryName", "Receivers")
 //                .param("notUpdateMyPicture", "")
@@ -176,18 +172,6 @@ public class ProductControllerTest {
                 andExpect(model().attributeExists("productAddBindingModel")).
                 andExpect(model().attributeExists("categoryList"));
     }
-
-
-//    @Test
-//    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
-//    void testDeleteProductShouldReturnInvalidStatus() throws Exception {
-//
-//        mockMvc.perform(MockMvcRequestBuilders.get(
-//                PRODUCT_CONTROLLER_PREFIX + "/delete/{id}", testProductId
-//        )).
-//                andExpect(status().is3xxRedirection());
-//    }
-
 
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER"})
@@ -243,7 +227,6 @@ public class ProductControllerTest {
     }
 
 
-
     @Test
     @WithMockUser(value = "test@abv.bg", roles = {"USER"})
     void addProductInvalidInput() throws Exception {
@@ -269,7 +252,7 @@ public class ProductControllerTest {
                 .param("categoryName", "Receivers")
                 .with(csrf())).
                 andExpect(status().is3xxRedirection()).
-        andExpect(view().name("redirect:add"));
+                andExpect(view().name("redirect:add"));
 
         Assertions.assertEquals(1, productRepository.count());
     }
