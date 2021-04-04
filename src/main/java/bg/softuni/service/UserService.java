@@ -39,4 +39,6 @@ public interface UserService {
     boolean checkIfUserIsRootAdmin();
 
     boolean checkIsAdmin();
+
+    void deleteUser(Long id);
 }

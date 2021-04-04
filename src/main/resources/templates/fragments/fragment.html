@@ -48,7 +48,8 @@
                             <div class="u-nav-popup">
                                 <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4">
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
-                                                              style="padding: 10px 28px;" th:href="@{/admin/statistics}">Statistics</a>
+                                                              style="padding: 10px 28px;"
+                                                              th:href="@{/admin/statistics}">Statistics</a>
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
                                                               style="padding: 10px 28px;" th:href="@{/admin/roles}">Roles</a>
@@ -90,7 +91,6 @@
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                                th:href="@{/profile/view}" style="padding: 10px 28px;">Profile</a>
                         </li>
-
                         <li class="u-nav-item"
                             sec:authorize="!isAuthenticated()">
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
@@ -116,11 +116,35 @@
                         <div class="u-sidenav-overflow">
                             <div class="u-menu-close"></div>
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-5">
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html"
+                                <li class="u-nav-item"
+                                    sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a class="u-button-style u-nav-link"
+                                       style="padding: 10px 28px;">Admin Panel</a>
+                                    <div class="u-nav-popup">
+                                        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
+                                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                      th:href="@{/admin/statistics}">Statistics</a>
+                                            </li>
+                                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                      th:href="@{/admin/roles}">Roles</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="u-nav-item"><a sec:authorize="isAuthenticated()"
+                                                          class="u-button-style u-nav-link"
+                                                          th:href="@{/about}"
                                                           style="padding: 10px 28px;">About</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html"
+                                <li class="u-nav-item"><a sec:authorize="isAuthenticated()"
+                                                          class="u-button-style u-nav-link"
+                                                          th:href="@{/contact/us}"
                                                           style="padding: 10px 28px;">Contact</a>
+                                </li>
+                                <li class="u-nav-item"><a sec:authorize="isAuthenticated()"
+                                                          class="u-button-style u-nav-link"
+                                                          th:href="@{/stories/all}"
+                                                          style="padding: 10px 28px;">Stories</a>
                                 </li>
                                 <li class="u-nav-item"
                                     sec:authorize="isAuthenticated()">
@@ -128,11 +152,11 @@
                                        style="padding: 10px 28px;">Menu</a>
                                     <div class="u-nav-popup">
                                         <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
-                                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Add Story</a>
+                                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                      th:href="@{/stories/add}">Add Story</a>
                                             </li>
-                                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Add Product</a>
-                                            </li>
-                                            <li class="u-nav-item"><a class="u-button-style u-nav-link">Products</a>
+                                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                      th:href="@{/products/add}">Add Product</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -140,9 +164,14 @@
                                 <li class="u-nav-item">
                                     <a class="u-button-style u-nav-link"
                                        sec:authorize="isAuthenticated()"
-                                       href="/users/profile"
+                                       th:href="@{/profile/view}"
                                        style="padding: 10px 28px;">Profile</a>
                                 <li class="u-nav-item">
+                                <li class="u-nav-item">
+                                    <a sec:authorize="!isAuthenticated()"
+                                       th:href="@{/about}"
+                                       class="u-button-style u-nav-link">About</a>
+                                </li>
                                 <li class="u-nav-item">
                                     <a sec:authorize="!isAuthenticated()"
                                        th:href="@{/users/login}"

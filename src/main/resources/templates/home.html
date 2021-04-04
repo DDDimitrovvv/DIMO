@@ -27,8 +27,8 @@
 <header th:replace="fragments/fragment::navigation"></header>
 
 <section class="skrollable u-align-center u-clearfix u-image u-section-1" id="sec-4415">
-    <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-custom-font u-font-Lobster u-text u-text-1"
+    <div class="u-clearfix u-sheet u-sheet-1"><br/>
+        <h1 class="u-custom-font u-font-Lobster u-text"
             style="white-space: pre-line;"
             th:text="|Hello ${currentUserFullName},
                  Welcome to your Digital Innovative Modern Opportunities!|"></h1>
@@ -75,8 +75,10 @@
                                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
                                         <h4>
                                             <a class="u-post-header-link" style="font-size: 20px; color: darkred"
-                                               th:text="|Brand: *{product.getBrand()}|">BRAND</a>
+                                               th:text="|Type: *{product.getCategoryName()}|">BRAND</a>
                                         </h4>
+                                        <a class="u-post-header-link" style="color: green"
+                                           th:text="|Brand: *{product.getBrand()}|">BRAND</a><br/>
                                         <a class="u-post-header-link" style="color: mediumpurple"
                                            th:text="|Model: *{product.getModel()}|">MODEL</a>
                                         <a class="u-post-header-link">
@@ -85,9 +87,6 @@
                                                  th:src="*{product.getImageUrl()}"></a>
                                         <a class="u-post-header-link" style="color: forestgreen"
                                            th:text="|Price: *{product.getPrice()}€|">PRICE</a>
-                                        <div class="u-blog-control u-post-content u-text u-text-2 fr-view"
-                                             th:text="|*{product.getDetails().substring(0,15)}...|">
-                                        </div>
                                         <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
                                            class="u-blog-control u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-none u-btn-1"
                                         >View product</a>
