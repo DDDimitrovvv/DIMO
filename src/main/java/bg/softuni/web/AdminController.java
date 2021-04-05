@@ -76,6 +76,15 @@ public class AdminController {
         return "roles";
     }
 
+    @GetMapping("/users")
+    public String users(Model model) throws Exception {
+        if (!userService.checkIsAdmin()) {
+            return "redirect:/home";
+        }
+        model.addAttribute("users", userService.getAllUsersFromDB());
+        return "users";
+    }
+
     @PostMapping("/roles")
     public String rolesConfirm(String username, String role) throws Exception {
         userService.changeRole(username, role);

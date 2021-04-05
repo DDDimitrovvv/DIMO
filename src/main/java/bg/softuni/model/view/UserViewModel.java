@@ -8,6 +8,7 @@ public class UserViewModel {
     private String password;
     private String avatarUrl;
     private String description;
+    private String roles;
 
     public UserViewModel() {
     }
@@ -63,6 +64,15 @@ public class UserViewModel {
 
     public UserViewModel setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public UserViewModel setRoles(String roles) {
+        this.roles = roles;
         return this;
     }
 }

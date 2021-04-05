@@ -7,12 +7,22 @@ import java.time.LocalDateTime;
 public class ContactViewModel {
 
     private long id;
+    private long userId;
     private String username;
     private String messageText;
     private LocalDateTime submittedDateTime;
     private ContactCategoryTypeEnum categoryTypeEnum;
 
     public ContactViewModel() {
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public ContactViewModel setUserId(long userId) {
+        this.userId = userId;
+        return this;
     }
 
     public long getId() {

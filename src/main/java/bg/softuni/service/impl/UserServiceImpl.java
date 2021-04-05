@@ -247,5 +247,32 @@ public class UserServiceImpl implements UserService {
     public boolean findUserById(Long id) {
         return userRepository.findById(id).isPresent();
     }
+
+    @Override
+    public UserViewModel getViewUserById(Long id) {
+        UserViewModel userEntModel = new UserViewModel();
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        if(userEntity != null){
+            userEntModel = modelMapper.map(userEntity, UserViewModel.class);
+        }
+        return userEntModel;
+    }
+
+    @Override
+    public List<UserViewModel> getAllUsersFromDB() {
+        List<UserEntity> allUserEntities = userRepository.findAll();
+        List<UserViewModel> userViewModelList = new ArrayList<>();
+        for ( UserEntity userEntity : allUserEntities ){
+            UserViewModel userViewModel = modelMapper.map(userEntity, UserViewModel.class);
+            StringBuilder roles = new StringBuilder();
+            for ( UserRoleEntity role : userEntity.getRoles() ){
+                roles.append(role.getRole().name()).append("; ");
+            }
+            userViewModel.setRoles(roles.toString().trim());
+            userViewModelList.add(userViewModel);
+        }
+
+        return userViewModelList;
+    }
 }
 

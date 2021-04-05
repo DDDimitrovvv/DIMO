@@ -44,6 +44,7 @@ public class ContactServiceImpl implements ContactService {
             for ( ContactEntity contactEntity : contactEntityList ){
                 ContactViewModel contactViewModel = modelMapper.map(contactEntity, ContactViewModel.class);
                 contactViewModel.
+                        setUserId((contactEntity.getUserEntity().getId())).
                         setUsername(contactEntity.getUserEntity().getUsername()).
                         setCategoryTypeEnum(contactEntity.getCategoryTypeEnum());
                 contactViewModelList.add(contactViewModel);

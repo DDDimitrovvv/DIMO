@@ -43,4 +43,8 @@ public interface UserService {
     void deleteUser(Long id) throws Exception;
 
     boolean findUserById(Long id);
+
+    UserViewModel getViewUserById(Long id);
+
+    List<UserViewModel> getAllUsersFromDB();
 }

@@ -2,6 +2,7 @@ package bg.softuni.web;
 
 import bg.softuni.model.binding.ProfileBindingModel;
 import bg.softuni.model.service.ProfileServiceModel;
+import bg.softuni.model.view.UserViewModel;
 import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,28 @@ public class ProfileController {
         model.addAttribute("user", userService.getCurrentUserViewModel());
         model.addAttribute("isRootAdmin", userService.checkIfUserIsRootAdmin());
         model.addAttribute("isAdmin", userService.checkIsAdmin());
+        model.addAttribute("notOrigUser", false);
+        model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
+        model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
+        model.addAttribute("userPurchasedList", purchasedProductService.getAllPurchasedProductByUserId());
+        model.addAttribute("userSoldList", purchasedProductService.getAllSoldProductsByUserId());
+        model.addAttribute("showAllArchivedProducts", purchasedProductService.getAllArchivedProducts());
+        model.addAttribute("showMessages", contactService.getAllMessages());
+
+        return "profile";
+    }
+
+    @GetMapping("/view/{id}")
+    public String viewProfileFromAdmin(Model model, @PathVariable Long id) throws Exception {
+
+        if (!userService.validateUserAccess(id)) {
+            return "redirect:/home";
+        }
+
+        model.addAttribute("user", userService.getViewUserById(id));
+        model.addAttribute("isRootAdmin", userService.checkIfUserIsRootAdmin());
+        model.addAttribute("isAdmin", userService.checkIsAdmin());
+        model.addAttribute("notOrigUser", true);
         model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
         model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
         model.addAttribute("userPurchasedList", purchasedProductService.getAllPurchasedProductByUserId());

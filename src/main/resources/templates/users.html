@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Users.css">
+    <link rel="stylesheet" href="/css/Main.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/page.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Lobster:400|Chenla:400">
+
+</head>
+
+<div th:replace="fragments/fragment::navigation"></div>
+
+<body>
+
+<section class="u-align-center u-clearfix u-gradient u-section-1" id="sec-ba99">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <img th:src="@{/images/master.jpg}"  alt="" class="u-image u-image-default u-image-1" data-image-width="640" data-image-height="400">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="26.2%">
+                    <col width="30.1%">
+                    <col width="15.2%">
+                    <col width="14.8%">
+                    <col width="13.8%">
+                </colgroup>
+                <thead class="u-palette-4-base u-table-header u-table-header-1">
+                <tr style="height: 60px;">
+                    <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-1">Username</th>
+                    <th class="u-border-2 u-border-grey-75 u-palette-3-base u-table-cell u-table-cell-2">Full Name</th>
+                    <th class="u-border-2 u-border-grey-75 u-palette-3-base u-table-cell u-table-cell-3">Roles</th>
+                    <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Select</th>
+                    <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-5">Action</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <tr th:each="user : ${users}" style="height: 29px;">
+                    <td class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-first-column u-palette-5-light-1 u-table-cell u-table-cell-6"
+                    th:text="*{user.username}"
+                    >Row 1</td>
+                    <td class="u-border-2 u-border-grey-75 u-palette-5-light-2 u-table-cell u-table-cell-7"
+                        th:text="*{user.fullname}">Description</td>
+                    <td class="u-border-2 u-border-grey-75 u-palette-5-light-2 u-table-cell u-table-cell-8"
+                        th:text="*{user.roles}" >Description</td>
+                    <td class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-5-light-2 u-table-cell u-table-cell-9">
+                        <form th:action="@{/profile/view/{id}(id = *{user.id})}">
+                            <input style="background-color: orange; cursor: pointer;" type="submit" value="     VIEW     " />
+                        </form>
+                    </td>
+                    <td class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-5-light-2 u-table-cell u-table-cell-10">
+                        <form th:if="*{!user.username.startsWith('admin@gmail.com')}" th:action="@{/users/delete/{id}(id = *{user.id})}">
+                            <input style="background-color: red; cursor: pointer;" type="submit" value="     DELETE     " />
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+</body>
+
+<footer th:replace="fragments/fragment::footer"></footer>
+
+</html>
