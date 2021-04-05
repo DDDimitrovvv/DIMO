@@ -40,5 +40,7 @@ public interface UserService {
 
     boolean checkIsAdmin();
 
-    void deleteUser(Long id);
+    void deleteUser(Long id) throws Exception;
+
+    boolean findUserById(Long id);
 }

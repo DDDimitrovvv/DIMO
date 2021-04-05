@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactServiceImpl implements ContactService {
@@ -63,5 +64,33 @@ public class ContactServiceImpl implements ContactService {
                     setCategoryTypeEnum(contactEntity.getCategoryTypeEnum());
         }
         return contactViewModel;
+    }
+
+    @Override
+    public void deleteMessageByUserId(Long id) {
+        List<ContactEntity> allByUserEntity_id = contactRepository.findAllByUserEntity_Id(id);
+        if(contactRepository.findAllByUserEntity_Id(id).size() > 0){
+            contactRepository.findAllByUserEntity_Id(id).forEach(contactEntity -> contactRepository.deleteById(contactEntity.getId()));
+        }
+    }
+
+    @Override
+    public List<ContactViewModel> getAllMessagesFromUser(Long id) {
+        List<ContactEntity> listWithAllMessagesForUser = contactRepository.findAllByUserEntity_Id(id);
+        List<ContactViewModel> allMessagesForUserViewModel = new ArrayList<>();
+
+        if (listWithAllMessagesForUser.size() > 0) {
+            allMessagesForUserViewModel.addAll(listWithAllMessagesForUser.
+                    stream().
+                    map(contactEntity -> modelMapper.map(contactEntity, ContactViewModel.class)).
+                    collect(Collectors.toList()));
+        }
+
+        return allMessagesForUserViewModel;
+    }
+
+    @Override
+    public void deleteMessageByMsgId(Long id) {
+        contactRepository.deleteById(id);
     }
 }

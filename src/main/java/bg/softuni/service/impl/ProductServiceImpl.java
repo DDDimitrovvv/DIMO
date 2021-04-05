@@ -12,10 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -156,6 +153,23 @@ public class ProductServiceImpl implements ProductService {
                 collect(Collectors.toList());
 
 
+    }
+
+    @Override
+    public List<ProductViewModel> getAllProductsForUser(Long id) throws Exception {
+
+        List<ProductViewModel> allProductsFromUserViewModel = new ArrayList<>();
+
+        if (productRepository.findAllByUserEntity_Id(id).size() > 0) {
+            allProductsFromUserViewModel.addAll(
+            productRepository.
+                    findAllByUserEntity_Id(id).
+                    stream().
+                    map(productEntity -> modelMapper.map(productEntity, ProductViewModel.class)).
+                    collect(Collectors.toList()));
+        }
+
+        return allProductsFromUserViewModel;
     }
 
     @Override

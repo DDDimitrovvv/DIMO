@@ -80,7 +80,7 @@ public class StoryServiceImpl implements StoryService {
                 findById(id).
                 orElse(null);
 //                orElseThrow(() -> new IllegalStateException("Story entity not found."));
-        if(storyEntity != null){
+        if (storyEntity != null) {
             return modelMapper.map(storyEntity, StoryViewModel.class);
         }
         return new StoryViewModel();
@@ -106,7 +106,7 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public void editProduct(StoryServiceModel storyServiceModel, Long id, String notUpdateMyPicture) throws Exception {
+    public void editStory(StoryServiceModel storyServiceModel, Long id, String notUpdateMyPicture) throws Exception {
         String imageUrl = getStoryById(id).getImageUrl();
 
         StoryEntity storyEntity = modelMapper.map(storyServiceModel, StoryEntity.class);
@@ -132,12 +132,34 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public List<StoryViewModel> getAllStoriesByCurrUser() throws Exception {
-        return storyRepository.
-                findAllByUserEntity_Id(userService.getCurrentUser().getId()).
-                stream().
-                map(storyEntity -> {
-                    return modelMapper.map(storyEntity, StoryViewModel.class);
-                }).
-                collect(Collectors.toList());
+        List<StoryViewModel> allStoriesView = new ArrayList<>();
+        if (storyRepository.findAllByUserEntity_Id(userService.getCurrentUser().getId()).size() > 0) {
+            allStoriesView.addAll(storyRepository.
+                    findAllByUserEntity_Id(userService.getCurrentUser().getId()).
+                    stream().
+                    map(storyEntity -> modelMapper.map(storyEntity, StoryViewModel.class)).
+                    collect(Collectors.toList()));
+        }
+        return allStoriesView;
+    }
+
+    @Override
+    public List<StoryViewModel> getAllStoriesByUserId(Long id) {
+        List<StoryViewModel> allStoriesView = new ArrayList<>();
+        if (storyRepository.findAllByUserEntity_Id(id).size() > 0) {
+            allStoriesView.addAll(storyRepository.
+                    findAllByUserEntity_Id(id).
+                    stream().
+                    map(storyEntity -> modelMapper.map(storyEntity, StoryViewModel.class)).
+                    collect(Collectors.toList()));
+        }
+        return allStoriesView;
+    }
+
+    @Override
+    public void deleteAllStoriesForUserWithId(Long id) {
+        for ( StoryEntity storyEntity : storyRepository.findAllByUserEntity_Id(id) ){
+            storyRepository.deleteById(storyEntity.getId());
+        }
     }
 }

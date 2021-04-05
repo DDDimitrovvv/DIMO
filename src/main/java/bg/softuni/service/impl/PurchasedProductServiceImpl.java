@@ -72,5 +72,10 @@ public class PurchasedProductServiceImpl implements PurchasedProductService {
         return allArchivedProductsList;
     }
 
-
+    @Override
+    public void deletePurchasedProductByUserEntityId(Long id) {
+        if(archivedProductRepository.findAllByUserEntity_Id(id).size() > 0){
+            archivedProductRepository.deleteAll(archivedProductRepository.findAllByUserEntity_Id(id));
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class ContactEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ContactCategoryTypeEnum categoryTypeEnum;
 
-    @Column(name = "message_text", nullable = false, unique = true, columnDefinition = "TEXT")
+    @Column(name = "message_text", nullable = false, columnDefinition = "TEXT")
     private String messageText;
 
     @Column(name = "submitted_date_time")

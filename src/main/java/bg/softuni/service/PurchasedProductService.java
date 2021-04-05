@@ -15,4 +15,6 @@ public interface PurchasedProductService {
     List<ArchivedProductEntity> getAllSoldProductsByUserId() throws Exception;
 
     List<ArchivedProductEntity>  getAllArchivedProducts();
+
+    void deletePurchasedProductByUserEntityId(Long id);
 }

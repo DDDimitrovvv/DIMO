@@ -11,4 +11,10 @@ public interface ContactService {
     List<ContactViewModel> getAllMessages();
 
     ContactViewModel getMessageById(Long id);
+
+    void deleteMessageByUserId(Long id);
+
+    List<ContactViewModel> getAllMessagesFromUser(Long id);
+
+    void deleteMessageByMsgId(Long id);
 }

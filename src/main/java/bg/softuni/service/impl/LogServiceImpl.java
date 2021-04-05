@@ -70,6 +70,6 @@ public class LogServiceImpl implements LogService {
     @Override
     public void deleteAllLogsForProductWithId(Long id) {
         List<LogEntity> logEntities = logRepository.findAllByProductEntity_Id(id);
-        logEntities.forEach(logRepository::delete);
+        logEntities.forEach(logEntity -> logRepository.deleteById(logEntity.getId()));
     }
 }

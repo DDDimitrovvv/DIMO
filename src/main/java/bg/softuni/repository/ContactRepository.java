@@ -13,4 +13,8 @@ public interface ContactRepository extends JpaRepository<ContactEntity, Long> {
 
     @Query(value = "SELECT c FROM ContactEntity AS c ORDER BY c.submittedDateTime DESC")
     List<ContactEntity> listAllContactsMessagesSortedByDate();
+
+    ContactEntity findByUserEntity_Id(Long id);
+
+    List<ContactEntity> findAllByUserEntity_Id(Long id);
 }

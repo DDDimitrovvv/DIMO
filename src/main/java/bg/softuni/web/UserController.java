@@ -2,15 +2,12 @@ package bg.softuni.web;
 
 import bg.softuni.model.binding.UserRegistrationBindingModel;
 import bg.softuni.model.service.UserRegistrationServiceModel;
-import bg.softuni.service.UserService;
+import bg.softuni.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,10 +19,26 @@ public class UserController {
 
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final LogService logService;
+    private final ProductService productService;
+    private final PurchasedProductService purchasedProductService;
+    private final ContactService contactService;
+    private final StoryService storyService;
 
-    public UserController(ModelMapper modelMapper, UserService userService) {
+    public UserController(ModelMapper modelMapper,
+                          UserService userService,
+                          LogService logService,
+                          ProductService productService,
+                          PurchasedProductService purchasedProductService,
+                          ContactService contactService,
+                          StoryService storyService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.logService = logService;
+        this.productService = productService;
+        this.purchasedProductService = purchasedProductService;
+        this.contactService = contactService;
+        this.storyService = storyService;
     }
 
     @ModelAttribute("userRegistrationBindingModel")
@@ -84,5 +97,49 @@ public class UserController {
 
         return modelAndView;
     }
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteUserById(@PathVariable Long id) throws Exception {
+
+        if(!userService.findUserById(id)){
+            return "redirect:/home";
+        }
+
+        if(!userService.checkIsAdmin()){
+            return "redirect:/home";
+        }
+
+        //I. Check if the user has any products and logs
+        if (productService.getAllProductsForUser(id).size() > 0) {
+            productService.getAllProductsForUser(id).forEach(productViewModel -> {
+
+                //clear all logs for this product (already unused data)
+                logService.deleteAllLogsForProductWithId(productViewModel.getId());
+
+                //clear all logs for this product (already unused data)
+                productService.deleteProduct(productViewModel.getId());
+            });
+        }
+
+        //II. Check if the user has any sold or purchased products and delete
+        purchasedProductService.deletePurchasedProductByUserEntityId(id);
+
+        //III. Check if the user has any messages
+        if (contactService.getAllMessagesFromUser(id).size() > 0) {
+            contactService.deleteMessageByUserId(id);
+        }
+
+        //IV. Check if the user has any stories
+        if (storyService.getAllStoriesByUserId(id).size() > 0) {
+            storyService.deleteAllStoriesForUserWithId(id);
+        }
+
+        //V. Finally delete the user
+        userService.deleteUser(id);
+
+        return "redirect:/admin/statistics";
+    }
+
 
 }

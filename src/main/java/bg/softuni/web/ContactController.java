@@ -70,4 +70,15 @@ public class ContactController {
         return "contact-message-view";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteContactMessage(Model model, @PathVariable Long id) {
+
+        if (!userService.checkIsAdmin()) {
+            return "redirect:/home";
+        }
+        contactService.deleteMessageByMsgId(id);
+
+        return "redirect:/profile/view";
+    }
+
 }

@@ -34,7 +34,8 @@
                     <p class="u-text u-text-3" th:utext="|&lt;b&gt;Created on:&lt;/b&gt; ${#temporals.format(messageView.getSubmittedDateTime(), 'dd-MM-yyyy HH:mm:ss')}|">TimeStamp:. Click to select the text box. Click agai</p>
                     <p class="u-text u-text-4" th:utext="|&lt;b&gt;Category:&lt;/b&gt; *{categoryTypeEnum}|">Category Type:. Click to select the text box. Click agai</p>
                     <p class="u-text u-text-5"  style="white-space: pre-line;" th:utext="|&lt;b&gt;Message:&lt;/b&gt;
-                    *{messageText}|">Message:.</p>
+                    *{messageText}|">Message:.</p><br/>
+                    <a th:href="@{/contact/delete/{id}(id = *{id})}" class="u-align-center btn btn-primary btn-block w-50" ><b>DELETE MESSAGE</b></a>
                 </div>
             </div>
         </div>

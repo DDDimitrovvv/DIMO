@@ -1,6 +1,8 @@
 package bg.softuni.service.impl;
 
+import bg.softuni.model.entities.ProductEntity;
 import bg.softuni.model.service.ProfileServiceModel;
+import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.scheduletasks.ActiveUserStore;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.UserRoleEntity;
@@ -10,6 +12,7 @@ import bg.softuni.model.view.UserViewModel;
 import bg.softuni.repository.UserRepository;
 import bg.softuni.repository.UserRoleRepository;
 import bg.softuni.service.CloudinaryService;
+import bg.softuni.service.ProductService;
 import bg.softuni.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +47,8 @@ public class UserServiceImpl implements UserService {
                            PasswordEncoder passwordEncoder,
                            ModelMapper modelMapper,
                            DimoDBUserService dimoDBUserService,
-                           ActiveUserStore activeUserStore, CloudinaryService cloudinaryService) {
+                           ActiveUserStore activeUserStore,
+                           CloudinaryService cloudinaryService) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -235,8 +239,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void deleteUser(Long id) throws Exception {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean findUserById(Long id) {
+        return userRepository.findById(id).isPresent();
     }
 }
 

@@ -106,7 +106,7 @@ public class StoryController {
         }
         //update product in DB
         storyService
-                .editProduct(modelMapper.map(storyAddBindingModel, StoryServiceModel.class), id, notUpdateMyPicture);
+                .editStory(modelMapper.map(storyAddBindingModel, StoryServiceModel.class), id, notUpdateMyPicture);
 
         return "redirect:/stories/details/{id}";
     }
