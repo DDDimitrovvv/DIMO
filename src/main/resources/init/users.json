@@ -1,0 +1,26 @@
+[
+  {
+    "username": "user@gmail.com",
+    "fullname": "User Userov",
+    "password": "123123",
+    "avatarUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png"
+  },
+  {
+    "username": "ivan@gmail.com",
+    "fullname": "Ivan Ivanov",
+    "password": "123123",
+    "avatarUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png"
+  },
+  {
+    "username": "marina@gmail.com",
+    "fullname": "Marina Dimitrova",
+    "password": "123123",
+    "avatarUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png"
+  },
+  {
+    "username": "dimo@gmail.com",
+    "fullname": "Dimo Dimitrov",
+    "password": "123123",
+    "avatarUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png"
+  }
+]

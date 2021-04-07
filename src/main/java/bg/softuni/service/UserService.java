@@ -47,4 +47,6 @@ public interface UserService {
     UserViewModel getViewUserById(Long id);
 
     List<UserViewModel> getAllUsersFromDB();
+
+    UserEntity findUserEntityByUsername(String username);
 }

@@ -27,4 +27,6 @@ public interface StoryService {
     List<StoryViewModel> getAllStoriesByUserId(Long id);
 
     void deleteAllStoriesForUserWithId(Long id);
+
+    void initStories();
 }

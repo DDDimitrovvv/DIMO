@@ -1,6 +1,7 @@
 package bg.softuni.model.entities;
 
 import bg.softuni.model.entities.enums.StoryTypeEnum;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,24 +10,30 @@ import java.time.LocalDate;
 @Table(name = "stories")
 public class StoryEntity extends BaseEntity {
 
+    @Expose
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Expose
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @Expose
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
     @Column(name = "added_date")
     private LocalDate addedDate;
 
+    @Expose
     @Column(name = "product_link")
     private String productLink;
 
+    @Expose
     @Enumerated(EnumType.STRING)
     private StoryTypeEnum storyTypeEnum;
 
+    @Expose
     @ManyToOne
     private UserEntity userEntity;
 

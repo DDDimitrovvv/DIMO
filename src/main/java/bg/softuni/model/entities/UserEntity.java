@@ -1,5 +1,7 @@
 package bg.softuni.model.entities;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +10,19 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
 
+    @Expose
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @Expose
     @Column(name = "fullname", nullable = false)
     private String fullname;
 
+    @Expose
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Expose
     @Column(name = "avatar_url")
     private String avatarUrl;
 

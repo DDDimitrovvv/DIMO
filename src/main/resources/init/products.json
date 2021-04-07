@@ -1,0 +1,227 @@
+[
+  {
+    "brand": "JBL",
+    "model": "E80",
+    "color": "black",
+    "price": "280.00",
+    "warranty": "11",
+    "details": "JBL E80 speaker systems are literally the center of the branded technologies. These are three-way speaker systems, made in the opened-type body. 19-mm (3/4\") tweeter with titanium coating, installed in frames of the branded EOS (Elliptical Oblate Spheroidal) horn is used here. This horn was initially developed for studio monitors JBL Pro LSR and now is used in other series too. It provides wide polar pattern of high frequencies. In MF and LF drivers there are branded two-layered heads. They consist of cellulose diffuser with special polymer coating. This technology is called PolyPlas. Bands are divided with a help of the branded separation filters by SSP scheme, providing minimal path of sound signal and, respectively, its minimal distortions. Another patented technology is used in the bass-reflex and called FreeFlow.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617816989/JBL_E80_550_dzskdn.jpg",
+    "categoryEntity": {
+      "categoryName": "Speakers"
+    },
+    "userEntity": {
+      "username": "user@gmail.com"
+    }
+  },
+  {
+    "brand": "HK",
+    "model": "AVR 370",
+    "color": "black",
+    "price": "1380.00",
+    "warranty": "36",
+    "details": "Play Armageddon on Blu-ray and the AVR 370 ploughs through the Aerosmith-filled soundtrack with punch and vigour. Harman Kardon’s characteristically muscular performance works a treat with Michael Bay’s love of ‘thrusters’ and explosions.\n\nThe crashing meteors, exploding space stations and science-defying asteroid storms roar across the room, each effect landing with powerful impact.\n\nThere’s enough rumble to the bass to accompany Michael Clarke Duncan’s deep baritone, but it’s a touch unwieldy. Despite the punch and energy, basslines can sound a bit bloated.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617817340/HK_370_jlnf6m.jpg",
+    "categoryEntity": {
+      "categoryName": "Receivers"
+    },
+    "userEntity": {
+      "username": "ivan@gmail.com"
+    }
+  },
+  {
+    "brand": "HK",
+    "model": "SB20",
+    "color": "black",
+    "price": "360.00",
+    "warranty": "24",
+    "details": "The Harman Kardon SB 20 soundbar provides theater-quality sound for all of your entertainment components, audio or video. Easily connect to your TV, smartphone, tablet or gaming console with HDMI (ARC), optical or Bluetooth. The wireless subwoofer delivers powerful bass and brings the future of home entertainment to life. Enjoy your favorite movies, music, sports and games in a classic, compact design that complements your home decor, integrating seamlessly with even the most stylish, slim-profile TV. This powerful soundbar is the elegant solution to complete any system.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617817575/HK_SB20_aloccn.jpg",
+    "categoryEntity": {
+      "categoryName": "Home_Cinema"
+    },
+    "userEntity": {
+      "username": "marina@gmail.com"
+    }
+  },
+  {
+    "brand": "Samsung ",
+    "model": "HT-DS420",
+    "color": "silver",
+    "price": "250.00",
+    "warranty": "0",
+    "details": "Specifications HT-DS420 5.1ch speaker system Speaker system Front/Center/Rear speaker Impedance 4 Ω x 5 Frequency range 150 Hz~20 KHz Output sound pressure level 85 dB/W/M Rated input 60 W Maximum input 120 W 85 x 1150 x 99 mm Front Dimensions (W x H x D) 85 x 131x 93.2mm Center/Rear...",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617817941/Samsung_420_zkvisd.jpg",
+    "categoryEntity": {
+      "categoryName": "Home_Cinema"
+    },
+    "userEntity": {
+      "username": "user@gmail.com"
+    }
+  },
+  {
+    "brand": "Benq",
+    "model": "TK800M",
+    "color": "white-blue",
+    "price": "1010.00",
+    "warranty": "24",
+    "details": "TK800M’s lightweight design and sleek, compact profile accentuates beautiful aesthetics as well as intuitive functionality and eco-friendly design. A chic addition to your living room décor with easy setup, TK800M makes your home entertainment simple and comfortable for friends and family to enjoy parties, sports, movies.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617818120/Benq_Projector_btff7t.jpg",
+    "categoryEntity": {
+      "categoryName": "Accessories"
+    },
+    "userEntity": {
+      "username": "ivan@gmail.com"
+    }
+  },
+  {
+    "brand": "iVANKY",
+    "model": "Optical Cable",
+    "color": "silver",
+    "price": "10.00",
+    "warranty": "12",
+    "details": " 【For Immersive Sound Experience】This optical audio cable allows you to connect soundbars and home theatres to TVs, PS4, Xbox, Blu-Ray/DVD Players, receiver/preamp, providing greater clarity and richer sound for an immersive sound experience while gaming or watching movies.\n【Outstanding Flexibility & Durability】This extra flexible fabric braided nylon cable can make loops as small as 5cm across without risking damage to the wire, which is ideal for complex set-ups and wiring systems. Gold-plated connectors won't tarnish and decrease conductivity over time.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617821013/SPDF_mztsrq.jpg",
+    "categoryEntity": {
+      "categoryName": "Accessories"
+    },
+    "userEntity": {
+      "username": "user@gmail.com"
+    }
+  },
+  {
+    "brand": "Denon",
+    "model": "AVR-X3600H",
+    "color": "black",
+    "price": "1080.00",
+    "warranty": "24",
+    "details": "9.2 channel 4K Ultra HD AV receiver with 180W per channel and advanced HDMI (8in / 3out with eARC) section. Supports 3D audio formats Dolby Atmos®, Dolby Atmos Height Virtualization Technology, DTS:X™, DTS Virtual:X® and new IMAX Enhanced. Works with Amazon Alexa, Google Assistant, and Apple Siri for seamless voice control.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617818452/DENON_REC_wqtxmk.jpg",
+    "categoryEntity": {
+      "categoryName": "Receivers"
+    },
+    "userEntity": {
+      "username": "dimo@gmail.com"
+    }
+  },
+  {
+    "brand": "JBL",
+    "model": "A100P",
+    "color": "black",
+    "price": "480.00",
+    "warranty": "60",
+    "details": "The JBL Stage is an advanced, home-stereo/home-theater speaker system that offers you the thrill of a live-concert experience, all in your living room. Featuring 1” aluminum dome tweeters with high-definition waveguide sound design and 8” woofers that register deep, signature JBL bass, the JBL Stage captures every note of the audio spectrum from high to low – and combines them into pure listening pleasure. Available in pantone black or two-tone wood, JBL Stage is a stylish addition to any theater system. Whether it’s for movies or music, the sound of your home will never be the same.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617819033/JBL_SUB_npnqfv.jpg",
+    "categoryEntity": {
+      "categoryName": "Speakers"
+    },
+    "userEntity": {
+      "username": "user@gmail.com"
+    }
+  },
+  {
+    "brand": "Marantz",
+    "model": "SR5015",
+    "color": "black",
+    "price": "2099.00",
+    "warranty": "36",
+    "details": "The new Marantz SR5015 includes 6 HDMI inputs and 2 outputs for all your favorite sources. One dedicated 8K input supports 8K/60Hz and 4K/120Hz pass-through capability, 4:4:4 Pure Color sub-sampling, Dolby Vision, HLG, HDR10, 21:9 video, 3D and BT.2020 pass-through. Additionally, the latest HDCP 2.3 copy protection standard is supported on all HDMI inputs.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617819246/maranz_rec_hpn0jy.jpg",
+    "categoryEntity": {
+      "categoryName": "Receivers"
+    },
+    "userEntity": {
+      "username": "ivan@gmail.com"
+    }
+  },
+  {
+    "brand": "Sony",
+    "model": "HT-ST5000",
+    "color": "black",
+    "price": "980.00",
+    "warranty": "24",
+    "details": "7.1.2ch S-Force PRO Front Surround technology\n\nOur virtual surround sound combines Digital Signal Processing and S-Force PRO Front Surround with wavefront technology to emulate a natural, three-dimensional sound field, all from a single soundbar and subwoofer. Keep adding to your Home Theater setup, with 3x HDCP 2.2-compatible HDMI inputs, 1x HDMI ARC output, optical SPDIF, analog AUX, and a USB connection.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617819525/Sony_HT-ST5000_igfkgc.jpg",
+    "categoryEntity": {
+      "categoryName": "Home_Cinema"
+    },
+    "userEntity": {
+      "username": "marina@gmail.com"
+    }
+  },
+  {
+    "brand": "Sony",
+    "model": "SS-CS3",
+    "color": "black",
+    "price": "680.00",
+    "warranty": "24",
+    "details": "Experience authentic, full-frequency audio with this versatile three-way coaxial, four-driver speaker system. Wide dispersion super tweeters provide high-quality audio across a wider soundstage, while mica-reinforced woofer cones deliver a deeper low end. Optimized crossover components help ensure minimal signal loss.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617819688/Sony_SS-CS3_lo2giz.jpg",
+    "categoryEntity": {
+      "categoryName": "Speakers"
+    },
+    "userEntity": {
+      "username": "ivan@gmail.com"
+    }
+  },
+  {
+    "brand": "Swans",
+    "model": "M3A",
+    "color": "cherry",
+    "price": "1275.00",
+    "warranty": "60",
+    "details": "THREE-WAY ACOUSTIC DESIGN – Smooth the connections among three drivers for excellent full-range sound which is more accurate and well-balanced;\n    HIGH-FIDELITY SYSTEM – Consists of Isodynamic Ribbon Tweeter for rich detail sound and extend frequency range to 40kHz, 2’’ midrange to reproduce natural and sweet sound between 800Hz and 6kHz, and long-throw 6’’ woofer provides punchy and powerful bass playback;\n    CLASSIC DESIGN – Luxurious solid wood cabinets aim to reduce resonance for high-quality audio reproduction; Sloping front panel is designed for stereo music listening;\n    MULTIPLE CONNECTIONS – With various connection inputs in the cloud era, users can choose preferred connection method among Wifi, Bluetooth, Balanced XLR, LAN, and AUX;\n    REMOTE CONTROL – Adjust volume and switch connection methods based on your personal preference for convenience.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617819846/Swam_sp_v2ywks.jpg",
+    "categoryEntity": {
+      "categoryName": "Speakers"
+    },
+    "userEntity": {
+      "username": "dimo@gmail.com"
+    }
+  },
+  {
+    "brand": "Cerwin-Vega",
+    "model": "XLS-215",
+    "color": "black",
+    "price": "749.00",
+    "warranty": "12",
+    "details": "1\" Soft Dome Tweeter with Ferro Fluid\n    6.5\" Woofer with Fiber Impregnated Cone\n    Dual 15\" Cast Frame High Excursion Woofer\n    Proprietary Mid and High Frequency Waveguide\n    Fuse Protection\n    500W max, 250W RMS\n    Dual 15-Inch paper cone foam half-roll cast-frame woofers.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617820034/Cerwin_bywdlm.jpg",
+    "categoryEntity": {
+      "categoryName": "Speakers"
+    },
+    "userEntity": {
+      "username": "dimo@gmail.com"
+    }
+  },
+  {
+    "brand": "Pioneer",
+    "model": "VSX-934",
+    "color": "black",
+    "price": "699.00",
+    "warranty": "12",
+    "details": "Immerse in 3D surround sound of Dolby Atmos® or DTS:X, or you can still enjoy similar effects by Dolby Atmos Height Virtualizer* and DTS Virtual:X* even without height or surround speakers. Featuring Ultra HD, HDR10, HLG, and Dolby Vision™ pass through with support for HDCP 2.2., the VSX-934 offers evermore life-like images. You can stream songs from various sources via Wi-Fi, Bluetooth®, DTS Play-Fi, SONOS system and Apple AirPlay 2*. Other highlights include Powered Zone 2 feature with a dedicated DAC, Personal Preset buttons, and 2 HDMI outputs.",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617820188/pioneer_rec_ogocsq.jpg",
+    "categoryEntity": {
+      "categoryName": "Receivers"
+    },
+    "userEntity": {
+      "username": "ivan@gmail.com"
+    }
+  },
+  {
+    "brand": "Pioneer",
+    "model": "MCS-636",
+    "color": "black",
+    "price": "1390.00",
+    "warranty": "12",
+    "details": " 3D Blu-ray Player, BD-Live Profile 2.0, HDMI ver 1.4 (3D & ARC), 1080p video scaler\nDolby TrueHD, DTS-HD Master Audio, Sound & Virtual 3D front surround mode, bass boost mode\nDLNA Streaming Client 1.5, vTuner Internet Radio, USB, Control app, file Copy CD -.> USB, USB -> USB\nFront Audio In, Karaoke, FM tuner, playback of external hard drives (NTFS / FAT32).",
+    "imageUrl": "https://res.cloudinary.com/dsrmaoof8/image/upload/v1617820320/Pioneer_home_sys_h00s2a.jpg",
+    "categoryEntity": {
+      "categoryName": "Home_Cinema"
+    },
+    "userEntity": {
+      "username": "marina@gmail.com"
+    }
+  }
+]

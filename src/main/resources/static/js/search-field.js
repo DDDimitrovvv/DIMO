@@ -45,9 +45,9 @@ const displayProducts = (products) => {
                             <div class="u-container-layout u-container-layout-1">
                                 <div class="u-blog-post u-container-style u-repeater-item u-white u-repeater-item-1">
                                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                    <h4>
-                                        <a class="u-post-header-link" style="font-size: 20px; color: darkred">Type: ${prod.categoryName}</a>
-                                        </h4>
+                                    <h5>
+                                        <a class="u-post-header-link" style="font-size: 18px; color: darkred">Type: ${prod.categoryName}</a>
+                                        </h5>
                                         <a class="u-post-header-link" style="color: green">Brand: ${prod.brand}</a><br/>
                                         <a class="u-post-header-link" style="color: mediumpurple">Model: ${prod.model}</a>
                                         <a class="u-post-header-link"><img alt="" style="height:200px; width:auto; max-width:170px; object-fit: contain" src="${prod.imageUrl}"></a>

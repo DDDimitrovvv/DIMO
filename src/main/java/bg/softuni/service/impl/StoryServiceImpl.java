@@ -1,26 +1,29 @@
 package bg.softuni.service.impl;
 
+import bg.softuni.model.entities.ProductEntity;
 import bg.softuni.model.entities.StoryEntity;
 import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.UserRoleEntity;
 import bg.softuni.model.entities.enums.StoryTypeEnum;
 import bg.softuni.model.entities.enums.UserRole;
 import bg.softuni.model.service.StoryServiceModel;
-import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.model.view.StoryViewModel;
 import bg.softuni.repository.StoryRepository;
 import bg.softuni.service.CloudinaryService;
 import bg.softuni.service.StoryService;
 import bg.softuni.service.UserService;
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,13 +32,22 @@ public class StoryServiceImpl implements StoryService {
     private final StoryRepository storyRepository;
     private final UserService userService;
     private final CloudinaryService cloudinaryService;
+    private final Gson gson;
+    private final Resource storiesFile;
 
 
-    public StoryServiceImpl(ModelMapper modelMapper, StoryRepository storyRepository, UserService userService, CloudinaryService cloudinaryService) {
+    public StoryServiceImpl(@Value("classpath:init/stories.json") Resource storiesFile,
+                            ModelMapper modelMapper,
+                            StoryRepository storyRepository,
+                            UserService userService,
+                            CloudinaryService cloudinaryService,
+                            Gson gson) {
         this.modelMapper = modelMapper;
         this.storyRepository = storyRepository;
         this.userService = userService;
         this.cloudinaryService = cloudinaryService;
+        this.gson = gson;
+        this.storiesFile = storiesFile;
     }
 
     @Override
@@ -160,6 +172,24 @@ public class StoryServiceImpl implements StoryService {
     public void deleteAllStoriesForUserWithId(Long id) {
         for ( StoryEntity storyEntity : storyRepository.findAllByUserEntity_Id(id) ){
             storyRepository.deleteById(storyEntity.getId());
+        }
+    }
+
+    @Override
+    public void initStories() {
+        try {
+            StoryEntity[] storyEntities =
+                    gson.fromJson(Files.
+                            readString(Path.of(storiesFile.getURI())), StoryEntity[].class);
+
+            Arrays.stream(storyEntities).
+                    forEach(storyEntity -> {
+                        storyEntity.
+                                setUserEntity(userService.findUserEntityByUsername(storyEntity.getUserEntity().getUsername()));
+                        storyRepository.save(storyEntity);
+                    });
+        } catch (IOException e) {
+            throw new IllegalStateException("Sorry! The stories cannot be seed in DB!!!");
         }
     }
 }

@@ -32,4 +32,6 @@ public interface ProductService {
     boolean amITheCreatorOfThisProduct(Long id) throws Exception;
 
     ProductViewModel findArchivedProductById(Long id);
+
+    void seedProducts();
 }

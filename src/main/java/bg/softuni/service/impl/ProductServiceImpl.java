@@ -8,10 +8,16 @@ import bg.softuni.model.view.ProductViewModel;
 import bg.softuni.repository.CategoryRepository;
 import bg.softuni.repository.ProductRepository;
 import bg.softuni.service.*;
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,14 +31,19 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final CategoryRepository categoryRepository;
     private final PurchasedProductService purchasedProductService;
+    private final Gson gson;
+    private final Resource productsFile;
 
-    public ProductServiceImpl(ProductRepository productRepository,
+
+    public ProductServiceImpl(@Value("classpath:init/products.json") Resource productsFile,
+                              ProductRepository productRepository,
                               ModelMapper modelMapper,
                               CloudinaryService cloudinaryService,
                               CategoryService categoryService,
                               UserService userService,
                               CategoryRepository categoryRepository,
-                              PurchasedProductService purchasedProductService) {
+                              PurchasedProductService purchasedProductService,
+                              Gson gson) {
 
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
@@ -41,6 +52,8 @@ public class ProductServiceImpl implements ProductService {
         this.userService = userService;
         this.categoryRepository = categoryRepository;
         this.purchasedProductService = purchasedProductService;
+        this.gson = gson;
+        this.productsFile = productsFile;
     }
 
     @Override
@@ -162,11 +175,11 @@ public class ProductServiceImpl implements ProductService {
 
         if (productRepository.findAllByUserEntity_Id(id).size() > 0) {
             allProductsFromUserViewModel.addAll(
-            productRepository.
-                    findAllByUserEntity_Id(id).
-                    stream().
-                    map(productEntity -> modelMapper.map(productEntity, ProductViewModel.class)).
-                    collect(Collectors.toList()));
+                    productRepository.
+                            findAllByUserEntity_Id(id).
+                            stream().
+                            map(productEntity -> modelMapper.map(productEntity, ProductViewModel.class)).
+                            collect(Collectors.toList()));
         }
 
         return allProductsFromUserViewModel;
@@ -196,5 +209,24 @@ public class ProductServiceImpl implements ProductService {
         productViewModel.setCategoryName(archivedProductEntity.getCategoryEntity().getCategoryName());
 
         return productViewModel;
+    }
+
+    @Override
+    public void seedProducts() {
+        try {
+            ProductEntity[] productEntities =
+                    gson.fromJson(Files.
+                            readString(Path.of(productsFile.getURI())), ProductEntity[].class);
+
+            Arrays.stream(productEntities).
+                    forEach(productEntity -> {
+                        productEntity.
+                                setCategoryEntity(categoryService.findCategoryByCategoryName(productEntity.getCategoryEntity().getCategoryName())).
+                                setUserEntity(userService.findUserEntityByUsername(productEntity.getUserEntity().getUsername()));
+                        productRepository.save(productEntity);
+                    });
+        } catch (IOException e) {
+            throw new IllegalStateException("Sorry! The products cannot be seed in DB!!!");
+        }
     }
 }

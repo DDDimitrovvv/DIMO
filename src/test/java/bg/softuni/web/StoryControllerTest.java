@@ -156,7 +156,7 @@ public class StoryControllerTest {
                 andExpect(status().is3xxRedirection()).
                 andExpect(view().name("redirect:/stories/all"));
 
-        Assertions.assertEquals(2, storyRepository.count());
+        Assertions.assertEquals(7, storyRepository.count());
     }
 
     @Test
@@ -181,7 +181,7 @@ public class StoryControllerTest {
                 andExpect(status().is3xxRedirection()).
                 andExpect(view().name("redirect:add"));
 
-        Assertions.assertEquals(1, storyRepository.count());
+        Assertions.assertEquals(6, storyRepository.count());
     }
 
 

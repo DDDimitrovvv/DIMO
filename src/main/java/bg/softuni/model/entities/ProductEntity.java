@@ -1,5 +1,6 @@
 package bg.softuni.model.entities;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -10,33 +11,42 @@ import java.time.LocalDate;
 @Table(name = "products")
 public class ProductEntity extends BaseEntity {
 
+    @Expose
     @Column(name = "brand", nullable = false)
     private String brand;
 
+    @Expose
     @Column(name = "model", nullable = false)
     private String model;
 
     @Column(name = "manufacture_date")
     private LocalDate manufactureDate;
 
+    @Expose
     @Column(name = "color", nullable = false)
     private String color;
 
+    @Expose
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
+    @Expose
     @Column(name = "warranty")
     private int warranty;
 
+    @Expose
     @Column(name = "details", columnDefinition = "TEXT", nullable = false)
     private String details;
 
+    @Expose
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
+    @Expose
     @ManyToOne()
     private CategoryEntity categoryEntity;
 
+    @Expose
     @ManyToOne()
     private UserEntity userEntity;
 

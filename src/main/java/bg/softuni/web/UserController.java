@@ -138,7 +138,7 @@ public class UserController {
         //V. Finally delete the user
         userService.deleteUser(id);
 
-        return "redirect:/admin/statistics";
+        return "redirect:/admin/users";
     }
 
 
