@@ -64,6 +64,26 @@ public class AdminControllerTest {
                 andExpect(status().is3xxRedirection());
     }
 
+
+    @Test
+    @WithMockUser(username = "test@abv.bg", authorities = {"USER"})
+    void testViewAdminUsersPanelReturnRedirectStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/admin/users")).
+                andExpect(status().is3xxRedirection()).
+                andExpect(view().name("redirect:/home"));
+    }
+
+    @Test
+    @WithMockUser(username = "admin@gmail.com", authorities = {"USER", "ADMIN"})
+    void testViewAdminUsersPanelWithAdminReturnStatusOK() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/admin/users")).
+                andExpect(status().isOk()).
+                andExpect(view().name("users")).
+                andExpect(model().attributeExists("users"));
+    }
+
+
+
     @Test
     @WithMockUser(username = "user@gmail.com", authorities = {"USER"})
     void testAddRoleReturnRedirectStatus() throws Exception {

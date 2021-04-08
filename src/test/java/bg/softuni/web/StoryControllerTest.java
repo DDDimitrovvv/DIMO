@@ -185,26 +185,6 @@ public class StoryControllerTest {
     }
 
 
-//    @PostMapping("/add")
-//    public String addProduct(@Valid StoryAddBindingModel storyAddBindingModel,
-//                             BindingResult bindingResult,
-//                             RedirectAttributes redirectAttributes) throws Exception {
-//
-//        if (bindingResult.hasErrors() || storyAddBindingModel.getImageUrl().isEmpty()) {
-//            redirectAttributes.addFlashAttribute("storyAddBindingModel", storyAddBindingModel);
-//            redirectAttributes.addFlashAttribute(
-//                    "org.springframework.validation.BindingResult.storyAddBindingModel",
-//                    bindingResult);
-//            return "redirect:add";
-//        }
-//
-//        //save story in DB
-//        storyService
-//                .addStory(modelMapper.map(storyAddBindingModel, StoryServiceModel.class));
-//
-//        return "redirect:/stories/all";
-//    }
-
     private void init() {
         UserEntity userEntity = new UserEntity();
 

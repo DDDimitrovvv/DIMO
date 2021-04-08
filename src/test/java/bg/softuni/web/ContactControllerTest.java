@@ -5,6 +5,7 @@ import bg.softuni.model.entities.UserEntity;
 import bg.softuni.model.entities.enums.ContactCategoryTypeEnum;
 import bg.softuni.repository.ContactRepository;
 import bg.softuni.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,18 @@ public class ContactControllerTest {
                 andExpect(status().is3xxRedirection());
     }
 
+    @Test
+    @WithMockUser(username = "test@abv.bg", authorities = {"USER"})
+    void testPostContactReturnRedirectStatusSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/contact/us").
+                param("categoryTypeEnum", "WARNING").
+                param("messageText", "bla bla tatatata bla bla nanana nanana").
+                param("submittedDateTime" , "2018-07-14T17:45:55.948353600").
+                with(csrf())).
+                andExpect(status().is3xxRedirection());
+    }
+
+
 
     @Test
     @WithMockUser(username = "admin@gmail.com", authorities = {"USER", "ADMIN"})
@@ -74,6 +87,23 @@ public class ContactControllerTest {
     void testViewContactMessageReturnRedirect302Status() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/contact/message/{id}", testContactID)).
                 andExpect(status().is3xxRedirection());
+    }
+
+
+    @Test
+    @WithMockUser(username = "test@abv.bg", authorities = {"USER"})
+    void testDeleteContactShouldReturnRedirectStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/contact/delete/{id}", testContactID)).
+                andExpect(status().is3xxRedirection());
+        Assertions.assertEquals(2, contactRepository.count());
+    }
+
+    @Test
+    @WithMockUser(username = "admin@gmail.com", authorities = {"USER", "ADMIN"})
+    void testDeleteContactShouldReturnRedirectStatusWithAdminAccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/contact/delete/{id}", testContactID)).
+                andExpect(status().is3xxRedirection());
+        Assertions.assertEquals(0, contactRepository.count());
     }
 
 

@@ -77,6 +77,31 @@ public class ProfileControllerTest {
                 andExpect(model().attributeExists("showMessages"));
     }
 
+    @Test
+    @WithMockUser(username = "dimo@gmail.com", authorities = {"USER"})
+    void testViewUserWithUserPageStatusRedirect() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/profile/view/{id}", testUserId)).
+                andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    @WithMockUser(username = "ivan@abv.bg", authorities = {"USER"})
+    void testViewUserPageWithUserIDStatusOK() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/profile/view/{id}", testUserId)).
+                andExpect(status().isOk()).
+                andExpect(view().name("profile")).
+                andExpect(model().attributeExists("user")).
+                andExpect(model().attributeExists("isRootAdmin")).
+                andExpect(model().attributeExists("isAdmin")).
+                andExpect(model().attributeExists("notOrigUser")).
+                andExpect(model().attributeExists("userProductsList")).
+                andExpect(model().attributeExists("userStoriesList")).
+                andExpect(model().attributeExists("userPurchasedList")).
+                andExpect(model().attributeExists("userSoldList")).
+                andExpect(model().attributeExists("showAllArchivedProducts")).
+                andExpect(model().attributeExists("showMessages"));
+    }
+
 
     @Test
     @WithMockUser(username = "admin@gmail.com", authorities = {"USER", "ADMIN"})

@@ -37,6 +37,7 @@ public class ProductControllerTest {
 
     private static final String PRODUCT_CONTROLLER_PREFIX = "/products";
     private long testProductId;
+    private long testPurchasedProductId;
 
     @MockBean
     CloudinaryService mockCloudinaryService;
@@ -94,16 +95,16 @@ public class ProductControllerTest {
     }
 
 
-//    @Test
-//    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
-//    void testArchiveProductShouldReturnValidStatus() throws Exception {
-//        mockMvc.perform(MockMvcRequestBuilders.get(
-//                PRODUCT_CONTROLLER_PREFIX + "/archived/{id}", testProductId
-//        )).
-//                andExpect(status().isOk()).
-//                andExpect(view().name("archived_product-details")).
-//                andExpect(model().attributeExists("archivedProduct"));
-//    }
+    @Test
+    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
+    void testArchiveProductShouldReturnValidStatus() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(
+                PRODUCT_CONTROLLER_PREFIX + "/archived/{id}", testPurchasedProductId
+        )).
+                andExpect(status().isOk()).
+                andExpect(view().name("archived_product-details")).
+                andExpect(model().attributeExists("archivedProduct"));
+    }
 
 
     @Test
@@ -130,36 +131,6 @@ public class ProductControllerTest {
 
     }
 
-
-//    @Test
-//    @WithMockUser(value = "test@abv.bg", roles = {"USER"})
-//    void testEditProductShouldReturnRedirectStatusPostConfig() throws Exception {
-//
-//        MockMultipartFile mockImgFile
-//                = new MockMultipartFile(
-//                "imageUrl",
-//                "helloMe.png",
-//                MediaType.TEXT_PLAIN_VALUE,
-//                "Hello, My Amazing World!".getBytes()
-//        );
-//
-//
-//        mockMvc.perform(MockMvcRequestBuilders.patch(PRODUCT_CONTROLLER_PREFIX + "/edit/{id}", testProductId)
-//                .param("imageUrl", String.valueOf(mockImgFile)).
-//                        param("Brand", "HKR")
-//                .param("model", "AVR270")
-//                .param("color", "yellow")
-//                .param("price", "100")
-//                .param("price", "100")
-//                .param("details", "Your AVR includes Dolby Pro Logic IIz decoding, which uses the AVR’s Assigned Amp...")
-//                .param("categoryName", "Receivers")
-//                .param("notUpdateMyPicture", "")
-//                .with(csrf())).
-//                andExpect(status().is3xxRedirection()).
-//                andExpect(view().name("redirect:add"));
-//
-////        Assertions.assertEquals(1, productRepository.count());
-//    }
 
 
     @Test
@@ -288,7 +259,7 @@ public class ProductControllerTest {
         productEntity.setUserEntity(userEntity);
         productEntity.setCategoryEntity(categoryEntity);
         productEntity = productRepository.save(productEntity);
-        testProductId = productEntity.getId();
+        this.testProductId = productEntity.getId();
 
         ArchivedProductEntity archivedProductEntity = modelMapper.map(productEntity, ArchivedProductEntity.class);
         archivedProductEntity.setId(0);
@@ -296,5 +267,7 @@ public class ProductControllerTest {
         archivedProductEntity.setPurchasedUsername(userEntity.getUsername());
         archivedProductEntity.setPurchasedDateAndTime(LocalDateTime.now());
         archivedProductRepository.save(archivedProductEntity);
+        this.testPurchasedProductId = archivedProductEntity.getId();
+
     }
 }
