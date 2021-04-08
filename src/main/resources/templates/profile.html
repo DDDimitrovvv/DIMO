@@ -2,9 +2,7 @@
 <html lang="en" style="font-size: 16px;"
       xmlns:th="http://www.thymeleaf.org">
 
-
 <head>
-    <!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="/css/Profile.css">
     <link rel="stylesheet" href="/css/Main.css" media="screen">
     <title>Profile</title>
@@ -256,106 +254,107 @@
 
     </div>
 
-    <section class="u-align-center u-clearfix u-section-4" id="sec-9d1c">
-        <button type="button" id="btn1_2" class="u-text u-text-1">Your products</button>
-        <div id="sectionViewProducts" style="display: none" class="u-clearfix u-sheet u-sheet-1">
-            <p th:if="${userProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
-                products
-                yet. :)</p>
-            <div class="u-expanded-width u-table u-table-responsive u-table-1">
-                <table class="u-table-entity u-table-entity-1">
-                    <colgroup>
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                    </colgroup>
-                    <thead class="u-palette-4-base u-table-header u-table-header-1">
-                    <tr style="height: 21px;">
-                        <th class="u-border-1 u-border-palette-4-base u-table-cell">Product ID (click)</th>
-                        <th class="u-border-1 u-border-palette-4-base u-table-cell">Brand</th>
-                        <th class="u-border-1 u-border-palette-4-base u-table-cell">Model</th>
-                        <th class="u-border-1 u-border-palette-4-base u-table-cell">Manufacture Date</th>
-                    </tr>
-                    </thead>
-                    <tbody class="u-table-body">
-                    <th:block th:each="product : ${userProductsList}">
-                        <tr style="height: 75px;">
-                            <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">
-                                <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
-                                   th:text="|ID:*{product.getId()}|">My clickable text</a>
-                            </td>
-                            <td class="u-border-1 u-border-grey-30 u-table-cell"
-                                th:text="*{product.getBrand()}">Brand
-                            </td>
-                            <td class="u-border-1 u-border-grey-30 u-table-cell"
-                                th:text="*{product.getModel()}">Model
-                            </td>
-                            <td th:if="*{product.getManufactureDate() != null}"
-                                class="u-border-1 u-border-grey-30 u-table-cell"
-                                th:text="*{product.getManufactureDate()}">ManufactureDate
-                            </td>
-                            <td th:if="*{product.getManufactureDate() == null}"
-                                class="u-border-1 u-border-grey-30 u-table-cell"
-                            >No date entered!
-                            </td>
-                        </tr>
-                    </th:block>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section class="u-align-center u-clearfix u-section-5" id="sec-6117">
-        <button type="button" id="btn1_3" class="u-text u-text-1">Your stories</button>
-        <div id="sectionViewStories" style="display: none" class="u-clearfix u-sheet u-sheet-1">
-            <p th:if="${userStoriesList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
-                stories
-                yet. :)</p>
-            <div class="u-expanded-width u-table u-table-responsive u-table-1">
-                <table class="u-table-entity u-table-entity-1">
-                    <colgroup>
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                    </colgroup>
-                    <thead class="u-black u-table-header u-table-header-1">
-                    <tr style="height: 21px;">
-                        <th class="u-border-1 u-border-black u-table-cell">Story ID (click)</th>
-                        <th class="u-border-1 u-border-black u-table-cell">Title</th>
-                        <th class="u-border-1 u-border-black u-table-cell">Short description</th>
-                        <th class="u-border-1 u-border-black u-table-cell">Date</th>
-                    </tr>
-                    </thead>
-                    <tbody class="u-table-body">
-                    <th:block th:each="story : ${userStoriesList}">
-                        <tr style="height: 75px;">
-                            <td class="u-border-1 u-border-grey-30 u-table-cell">
-                                <a th:href="@{/stories/details/{id}(id = *{story.getId()})}"
-                                   th:text="|ID:*{story.getId()}|">My clickable text</a>
-                            </td>
-                            <td th:text="*{story.getTitle()}"
-                                class="u-border-1 u-border-grey-30 u-table-cell">Title
-                            </td>
-                            <td th:text="*{story.getDescription().substring(0, 20)}"
-                                class="u-border-1 u-border-grey-30 u-table-cell">Description
-                            </td>
-                            <td th:text="*{story.getAddedDate()}"
-                                class="u-border-1 u-border-grey-30 u-table-cell">Date
-                            </td>
-                        </tr>
-                    </th:block>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
 </th:block>
-<script th:if="${!isRootAdmin}" th:src="@{/js/profileButtons.js}"></script>
-<script th:if="${isRootAdmin}" th:src="@{/js/profileAdminButton.js}"></script>
+
+
+<section class="u-align-center u-clearfix u-section-4" id="sec-9d1c">
+    <button type="button" id="btn1_2" class="u-text u-text-1">Your products</button>
+    <div id="sectionViewProducts" style="display: none" class="u-clearfix u-sheet u-sheet-1">
+        <p th:if="${userProductsList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
+            products
+            yet. :)</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-palette-4-base u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Product ID (click)</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Brand</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Model</th>
+                    <th class="u-border-1 u-border-palette-4-base u-table-cell">Manufacture Date</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <th:block th:each="product : ${userProductsList}">
+                    <tr style="height: 75px;">
+                        <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">
+                            <a th:href="@{/products/details/{id}(id = *{product.getId()})}"
+                               th:text="|ID:*{product.getId()}|">My clickable text</a>
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getBrand()}">Brand
+                        </td>
+                        <td class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getModel()}">Model
+                        </td>
+                        <td th:if="*{product.getManufactureDate() != null}"
+                            class="u-border-1 u-border-grey-30 u-table-cell"
+                            th:text="*{product.getManufactureDate()}">ManufactureDate
+                        </td>
+                        <td th:if="*{product.getManufactureDate() == null}"
+                            class="u-border-1 u-border-grey-30 u-table-cell"
+                        >No date entered!
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="u-align-center u-clearfix u-section-5" id="sec-6117">
+    <button type="button" id="btn1_3" class="u-text u-text-1">Your stories</button>
+    <div id="sectionViewStories" style="display: none" class="u-clearfix u-sheet u-sheet-1">
+        <p th:if="${userStoriesList.size() == 0}" style="background-color: #b21f2d"> Sorry! You don't have any
+            stories
+            yet. :)</p>
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity u-table-entity-1">
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <thead class="u-black u-table-header u-table-header-1">
+                <tr style="height: 21px;">
+                    <th class="u-border-1 u-border-black u-table-cell">Story ID (click)</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Title</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Short description</th>
+                    <th class="u-border-1 u-border-black u-table-cell">Date</th>
+                </tr>
+                </thead>
+                <tbody class="u-table-body">
+                <th:block th:each="story : ${userStoriesList}">
+                    <tr style="height: 75px;">
+                        <td class="u-border-1 u-border-grey-30 u-table-cell">
+                            <a th:href="@{/stories/details/{id}(id = *{story.getId()})}"
+                               th:text="|ID:*{story.getId()}|">My clickable text</a>
+                        </td>
+                        <td th:text="*{story.getTitle()}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Title
+                        </td>
+                        <td th:text="*{story.getDescription().substring(0, 20)}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Description
+                        </td>
+                        <td th:text="*{story.getAddedDate()}"
+                            class="u-border-1 u-border-grey-30 u-table-cell">Date
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/js/profile-buttons.js}"></script>
 
 </body>
 

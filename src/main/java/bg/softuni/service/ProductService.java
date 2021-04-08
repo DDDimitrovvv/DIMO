@@ -27,6 +27,7 @@ public interface ProductService {
     void buyProduct(Long id) throws Exception;
 
     List<ProductViewModel> getAllProductsForCurrUser() throws Exception;
+
     List<ProductViewModel> getAllProductsForUser(Long id) throws Exception;
 
     boolean amITheCreatorOfThisProduct(Long id) throws Exception;

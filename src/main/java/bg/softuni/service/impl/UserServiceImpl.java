@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 
             UserEntity admin = new UserEntity().
                     setUsername("admin@gmail.com").
-                    setFullname("Admin Adminov").
+                    setFullname("Master Admin").
                     setPassword(passwordEncoder.encode("123456")).
                     setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040599/maxresdefault_dbs08u.jpg");
 

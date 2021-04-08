@@ -74,8 +74,8 @@ public class ProfileController {
         model.addAttribute("isRootAdmin", userService.checkIfUserIsRootAdmin());
         model.addAttribute("isAdmin", userService.checkIsAdmin());
         model.addAttribute("notOrigUser", true);
-        model.addAttribute("userProductsList", productService.getAllProductsForCurrUser());
-        model.addAttribute("userStoriesList", storyService.getAllStoriesByCurrUser());
+        model.addAttribute("userProductsList", productService.getAllProductsForUser(id));
+        model.addAttribute("userStoriesList", storyService.getAllStoriesByUserId(id));
         model.addAttribute("userPurchasedList", purchasedProductService.getAllPurchasedProductByUserId());
         model.addAttribute("userSoldList", purchasedProductService.getAllSoldProductsByUserId());
         model.addAttribute("showAllArchivedProducts", purchasedProductService.getAllArchivedProducts());
