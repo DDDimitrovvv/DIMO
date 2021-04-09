@@ -64,11 +64,15 @@ public class ProductController {
 
     @GetMapping("/details/{id}")
     public String details(Model model, @PathVariable Long id) throws Exception {
-        model.addAttribute("product", productService.findById(id));
-        model.addAttribute("creator", productService.amITheCreatorOfThisProduct(id));
-        model.addAttribute("editAccess", productService.validateUserAccess(id));
+        try {
+            model.addAttribute("product", productService.findById(id));
+            model.addAttribute("creator", productService.amITheCreatorOfThisProduct(id));
+            model.addAttribute("editAccess", productService.validateUserAccess(id));
 
-        return "product-details";
+            return "product-details";
+        } catch (IllegalArgumentException exception) {
+            return "redirect:/home";
+        }
     }
 
 

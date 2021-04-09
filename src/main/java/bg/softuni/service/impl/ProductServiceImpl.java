@@ -107,7 +107,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductEntity findProductEntityById(Long productId) {
         return productRepository.
                 findById(productId).
-                orElseThrow(IllegalArgumentException::new);
+                orElse(null);
     }
 
     @Override
