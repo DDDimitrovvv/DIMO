@@ -3,6 +3,7 @@ package bg.softuni.model.entities;
 import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class UserEntity extends BaseEntity {
     @Expose
     @Column(name = "avatar_url")
     private String avatarUrl;
+
+    @Column(name = "register_date")
+    private LocalDateTime registerDate;
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
@@ -72,6 +76,15 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public LocalDateTime getRegisterDate() {
+        return registerDate;
+    }
+
+    public UserEntity setRegisterDate(LocalDateTime registerDate) {
+        this.registerDate = registerDate;
+        return this;
+    }
+
     public List<UserRoleEntity> getRoles() {
         return roles;
     }
@@ -92,7 +105,7 @@ public class UserEntity extends BaseEntity {
     }
 
     //external logic
-    public UserEntity addRole(UserRoleEntity roleEntity){
+    public UserEntity addRole(UserRoleEntity roleEntity) {
         this.roles.add(roleEntity);
         return this;
     }

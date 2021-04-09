@@ -1,6 +1,8 @@
 package bg.softuni.model.view;
 
 
+import java.time.LocalDateTime;
+
 public class UserViewModel {
     private Long id;
     private String username;
@@ -8,6 +10,7 @@ public class UserViewModel {
     private String password;
     private String avatarUrl;
     private String description;
+    private LocalDateTime registerDate;
     private String roles;
 
     public UserViewModel() {
@@ -73,6 +76,15 @@ public class UserViewModel {
 
     public UserViewModel setRoles(String roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public LocalDateTime getRegisterDate() {
+        return registerDate;
+    }
+
+    public UserViewModel setRegisterDate(LocalDateTime registerDate) {
+        this.registerDate = registerDate;
         return this;
     }
 }

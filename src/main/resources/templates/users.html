@@ -27,16 +27,18 @@
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
             <table class="u-table-entity u-table-entity-1">
                 <colgroup>
-                    <col width="26.2%">
-                    <col width="30.1%">
+                    <col width="23.2%">
+                    <col width="23.1%">
+                    <col width="13.0%">
                     <col width="15.2%">
                     <col width="14.8%">
-                    <col width="13.8%">
+                    <col width="15.8%">
                 </colgroup>
                 <thead class="u-palette-4-base u-table-header u-table-header-1">
                 <tr style="height: 60px;">
                     <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-1">Username</th>
                     <th class="u-border-2 u-border-grey-75 u-palette-3-base u-table-cell u-table-cell-2">Full Name</th>
+                    <th class="u-border-2 u-border-grey-75 u-palette-3-base u-table-cell u-table-cell-2">Register date</th>
                     <th class="u-border-2 u-border-grey-75 u-palette-3-base u-table-cell u-table-cell-3">Roles</th>
                     <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-4">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Select</th>
                     <th class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-3-base u-table-cell u-table-cell-5">Action</th>
@@ -49,6 +51,8 @@
                     >Row 1</td>
                     <td class="u-border-2 u-border-grey-75 u-palette-5-light-2 u-table-cell u-table-cell-7"
                         th:text="*{user.fullname}">Description</td>
+                    <td class="u-border-2 u-border-grey-75 u-palette-5-light-2 u-table-cell u-table-cell-7"
+                        th:text="${#temporals.format(user.getRegisterDate(), 'dd-MM-yyyy HH:mm:ss')}">Description</td>
                     <td class="u-border-2 u-border-grey-75 u-palette-5-light-2 u-table-cell u-table-cell-8"
                         th:text="*{user.roles}" >Description</td>
                     <td class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-palette-5-light-2 u-table-cell u-table-cell-9">

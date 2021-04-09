@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,6 +83,7 @@ public class UserServiceImpl implements UserService {
                     setUsername("admin@gmail.com").
                     setFullname("Master Admin").
                     setPassword(passwordEncoder.encode("123456")).
+                    setRegisterDate(LocalDateTime.now()).
                     setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040599/maxresdefault_dbs08u.jpg");
 
             admin.setRoles(List.of(adminRole, userRole));
@@ -101,6 +103,7 @@ public class UserServiceImpl implements UserService {
             Arrays.stream(userEntities).
                     forEach(userEntity -> {
                         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+                        userEntity.setRegisterDate(LocalDateTime.now());
                         userEntity.setRoles(List.of(userRole));
                         userRepository.save(userEntity);
                     });
@@ -119,6 +122,7 @@ public class UserServiceImpl implements UserService {
                 orElseThrow(() -> new IllegalStateException("User role not found. Please seed the roles."));
         newUser.
                 addRole(userRole).
+                setRegisterDate(LocalDateTime.now()).
                 setAvatarUrl("https://res.cloudinary.com/dsrmaoof8/image/upload/v1617040348/profileAvatar_p85qvd.png");
         newUser = userRepository.save(newUser);
 
@@ -226,6 +230,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(ProfileServiceModel profileServiceModel, Long id) throws IOException {
         String avatarUrl = this.getCurrentUser().getAvatarUrl();
+        LocalDateTime regDate = this.getCurrentUser().getRegisterDate();
 
         UserEntity userEntity = modelMapper.map(profileServiceModel, UserEntity.class);
 
@@ -237,6 +242,7 @@ public class UserServiceImpl implements UserService {
         userEntity.
                 setAvatarUrl(avatarUrl).
                 setRoles(this.getCurrentUser().getRoles()).
+                setRegisterDate(regDate).
                 setPassword(passwordEncoder.encode(profileServiceModel.getPassword())).
                 setId(id);
 
