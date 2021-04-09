@@ -75,6 +75,7 @@
                     <label for="password" class="h4 mb-2">Password</label>
                 </div>
                 <input type="password"
+                       onkeyup='check();'
                        class="form-control"
                        id="password"
                        style="text-align: center"
@@ -94,6 +95,7 @@
                     <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
                 </div>
                 <input type="password"
+                       onkeyup='check();'
                        class="form-control"
                        id="confirmPassword"
                        style="text-align: center"
@@ -104,8 +106,8 @@
                        th:errorclass="is-invalid"
                        name="confirmPassword"/>
                 <p class="text-center">
-                    <small class="text-danger invalid-feedback"
-                           style="font-size:20px; background-color:#ffff99;">Password error message</small>
+                    <small id="wrongconfirmpassword" class="text-danger invalid-feedback"
+                           style="font-size:20px; background-color:#ffff99;">Both passwords must match!</small>
                 </p>
             </div>
 
@@ -117,6 +119,8 @@
 
     </form>
 </main>
+
+<script th:src="@{/js/register.js}"></script>
 
 </body>
 
