@@ -33,9 +33,8 @@
                 <p class="u-text u-text-2" th:utext="|&lt;b&gt;Email:&lt;/b&gt; *{username}|"><b>Email:</b></p>
                 <p class="u-text u-text-4">
                 <div th:unless="*{description == null || description.isBlank()}">
-                              <span style="font-weight: 700;"
-                                    th:utext="|&lt;b&gt;Description:&lt;/b&gt; *{description}|">Description:</span>
-                </div>
+                <text th:utext="|&lt;b&gt;Description:&lt;/b&gt; *{description}|"><b>Description:</b></text>
+            </div>
                 <div th:if="*{description == null || description.isBlank()}">
                     <span style="font-weight: 700;"><b>Description: </b></span>
                     <h5>Welcome to your Profile page. Here you can add a short description about yourself!</h5>
@@ -52,7 +51,7 @@
             <button th:if="${isRootAdmin}"
                     id="btn1_4"
                     class="u-btn u-button-style u-custom-color-3 u-text-body-alt-color"
-                    style="text-align: center;  margin: -180px auto 60px 96px;  padding: 10px 70px;" type="submit"><b>MESSAGES</b>
+                    style="text-align: center;  margin: -180px auto 60px 76px;  padding: 10px 70px;" type="submit"><b>MESSAGES</b>
             </button>
         </th:block>
     </div>
