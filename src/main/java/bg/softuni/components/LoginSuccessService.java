@@ -22,7 +22,7 @@ public class LoginSuccessService implements ApplicationListener<AuthenticationSu
     @Override
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
         activeUserStore.setLoggedUsersCounter(1);
-        LOGGER.info("You have been logged in successfully.");
+        LOGGER.info("You have successfully logged in!");
         Date loginDate = new Date();
         LOGGER.info("Login Time: " + loginDate.toString());
     }

@@ -16,9 +16,9 @@ public class ClearLogFromDB {
         this.logService = logService;
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *") /* every 24 hours */
     public void clearDBFromOldLogs(){
         logService.deleteAllLogsEntities();
-        LOGGER.info("ALl logs are reset!");
+        LOGGER.info("All logs have been reset!");
     }
 }

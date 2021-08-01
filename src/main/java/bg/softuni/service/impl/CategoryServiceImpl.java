@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(
-            @Value("classpath:init/Hi-Fi.json") Resource categoriesFile,
+            @Value("classpath:init/categories.json") Resource categoriesFile,
             Gson gson,
             CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

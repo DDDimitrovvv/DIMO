@@ -34,11 +34,11 @@ public class ActiveUserStore {
         return this;
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *") /* every 24 hours */
     public void resetLoggedAndRegisteredUsersCount(){
         this.loggedUsersCounter = 0;
         this.registeredUsersCounter = 0;
-        LOGGER.info("ALl logged and registered users are reset!");
+        LOGGER.info("All logged and registered users have been reset!");
     }
 
 }
